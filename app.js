@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var Account = require('./models/account');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -39,7 +40,6 @@ app.use('/users', users);
 app.use('/events', events);
 
 // passport config
-var Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.use(new FacebookStrategy({
         clientID: '1682265012051455',
@@ -77,9 +77,15 @@ passport.use(new FacebookStrategy({
             })
     }
 ));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+passport.serializeUser(function(user, done) {
+    done(null, user._id);
+});
 
+passport.deserializeUser(function(id, done) {
+    Account.findOne({_id: id}, function(err, user) {
+        done(err, user);
+    });
+});
 // mongoose
 mongoose.connect('mongodb://localhost/innovision');
 

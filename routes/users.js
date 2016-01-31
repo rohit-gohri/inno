@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/details', function (req, res) {
     if (req.user) {
-        Account.findOne({email: req.user.email},
+        Account.findOne({_id: req.user._id},
             function (err, user) {
                 if (err) {
                     res.render('error', {message: err.message, error: err});
