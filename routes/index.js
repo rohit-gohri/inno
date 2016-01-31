@@ -29,11 +29,14 @@ router.get('/login/fb/callback',
         failureRedirect: '/login'
     }), function(req, res) {
         console.log(req);
-        if (req.user.is_new) {
-            res.redirect('/users/details');
-        } else {
-            res.redirect('/');
-        }
+        Account.findOne({'providerData.id': req.user.providerData.id},
+        function(err, user) {
+            if (user.is_new) {
+                res.redirect('/users/details');
+            } else {
+                res.redirect('/');
+            }
+        });
     }
 );
 

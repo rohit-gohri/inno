@@ -26,13 +26,11 @@ router.post('/details', function (req, res) {
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
     var phone_no = req.body.phone_no;
-    Account.findOne({username: req.user.username},
+    Account.findOne({email: req.user.email},
         function (err, user) {
             if(err) {
                 res.render('error', {message: err.message, error: err});
             }
-            user.firstName = firstName;
-            user.lastName = lastName;
             user.phone_no = phone_no;
             user.is_new = false;
             /*user.dob = req.body.dob;

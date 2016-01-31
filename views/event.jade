@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .container
+        .parallax-container
+            .parallax
+                img(src=#{event.photo})
+        h2 event.name
+        p event.details
+        p
+            a(href=#{event.fbLink}) "FB event page"
+        if(event.isTeamEvent)
+            h5 Team Event
+            p Min Participants: #{event.minParticipants}
+        button.btn.waves-effect.waves-light
+            a(href="/events/register") Register
+
+script
+    $(document).ready(function(){
+        $('.parallax').parallax();
+    });
