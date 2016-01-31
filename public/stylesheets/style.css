@@ -12,3 +12,12 @@ main {
 a {
     color: #00B7FF;
 }
+
+#events {
+    margin-right: -1.5%;
+}
+
+#events .card {
+    width: 30%;
+    margin-right: 3%;
+}
