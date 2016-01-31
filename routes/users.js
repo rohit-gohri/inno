@@ -27,16 +27,16 @@ router.post('/details', function (req, res) {
     var lastName = req.body.lastName;
     Account.findOne({username: req.user.username},
         function (err, user) {
-            if (err) {
+            if(err) {
                 res.render('error', {message: err.message, error: err});
             }
             user.firstName = firstName;
             user.lastName = lastName;
             /*user.dob = req.body.dob;
-             user.college = req.body.college;
-             user.course = req.body.course;
-             user.year = req.body.year;
-             */
+            user.college = req.body.college;
+            user.course = req.body.course;
+            user.year = req.body.year;
+            */
             user.save(function (err, data) {
                 if (err)
                     console.log(err);

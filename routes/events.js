@@ -19,7 +19,7 @@ router.get('/addEvent', function (req, res) {
     }
 });
 
-router.post('addEvent', function (req, res) {
+router.post('addEvent', function(req, res) {
 
 });
 
