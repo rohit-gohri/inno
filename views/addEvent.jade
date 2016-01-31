@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    .container
+        h1 Add Event
+        form(role='form', action='/addEvent', method='post')
+            .form-group
+                input.form-control(type='text', name="name", placeholder='Event Name' required)
+            .form-group
+                textarea.form-control(name="details", placeholder='Event Details' required)
+            .form-group
+                input.form-control(type='text', name="fbLink", placeholder='Facebook Event Link')
+            .form-group
+                input.form-control(type='text', name="isTeamEvent", placeholder='Enter Username')

@@ -5,16 +5,21 @@ block content
         h1 Login Page
         p.lead Say something worthwhile here.
         br
-        form(role='form', action="/login", method="post", style='max-width: 300px;')
-            .form-group
-                input.form-control(type='text', name="username", placeholder='Enter Username')
-            .form-group
-                input.form-control(type='password', name="password", placeholder='Password')
-            button.btn.btn-default(type='submit') Submit
-&nbsp;
+        div.row
+            form.col.s12(role='form', action="/login", method="post", style='max-width: 300px;')
+                div.row
+                    div.input-field.col.s6
+                        input(type='text', id="username" name="username")
+                        label(for="username") Username
+                    div.input-field.col.s6
+                        input(type='text', id="password" name="password")
+                        label(for="password") Password
+                div.row
+                    button.btn.waves-effect.waves-light(type='submit') Submit
+        &nbsp;
     form(role='form', action="/login/fb", method="get", style='max-width: 300px;')
-        button.btn.btn-default(type='submit')
+        button(type='submit')
             img(src='http://i.stack.imgur.com/ryt6L.png', style='max-width: 200px;')
 &nbsp;
     a(href='/')
-        button.btn.btn-primary(type="button") Cancel
+        button.btn(type="button") Cancel

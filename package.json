@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "body-parser": "~1.13.2",
+    "consolidate": "^0.14.0",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
     "express": "~4.13.1",
@@ -15,6 +16,7 @@
     "kerberos": "0.0.18",
     "mongoose": "^4.3.7",
     "morgan": "~1.6.1",
+    "mustache-express": "^1.2.2",
     "node-gyp": "^3.2.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.0.0",

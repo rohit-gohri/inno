@@ -3,10 +3,41 @@ html
     head
         title= title
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
-        link(href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css', rel='stylesheet', media='screen')
+        link(href='/stylesheets/materialize.min.css', rel='stylesheet', media='screen')
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
-        block content
+        nav.z-depth-0.amber.accent-4
+            div.nav-wrapper.container
+                a.brand-logo.center(href="/") INNOVISION
+                ul.left.hide-on-med-and-down(id="nav-monile")
+                    li
+                        a(href="/") Home
+                    li
+                        a(href="/events") Events
+
+        main
+            block content
+
+        footer.page-footer.amber.accent-4
+            div.container
+                div.row
+                    div.col.l6.s12
+                        h5.white-text Follow Us On:
+                        div.row.white-text
+                            div.col.s4 FB
+                            div.col.s4 Twitter
+                            div.col.s4 Google+
+                    div.l4.offset-l2.s12
+                        h5.white-text Site
+                        ul
+                            li
+                                a.grey-text.text-lighten-3(href="/events") Events
+                            li
+                                a.grey-text.text-lighten-3(href="/login") Login
+            div.footer-copyright
+                div.container
+                © 2016 Innovision, NSIT
+a.grey-text.text-lighten-3.right(href="#") More Links
 
     script(src='http://code.jquery.com/jquery.js')
-    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+script(src='/javascripts/materialize.js')

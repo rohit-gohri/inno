@@ -7,13 +7,20 @@ router.get('/list', function (req, res) {
     res.render('eventList', {events: events});
 });
 
-router.post('/addEvent', function (req, res) {
+router.get('/addEvent', function (req, res) {
     var user = req.user;
-    if (user.is_em) {
-        res.render()
-    } else {
-        res.render('error', {message: "You don't have permission to do this"});
+    if (!user) {
+        res.render('error', {message: "Please login to view this"});
     }
+    if (user.is_em) {
+        res.render('addEvent')
+    } else {
+        res.render('error', {message: "You don't have permission to view this."});
+    }
+});
+
+router.post('addEvent', function (req, res) {
+
 });
 
 module.exports = router;
