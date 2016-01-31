@@ -1,0 +1,68 @@
+extends layout
+
+block content
+    .container
+        if (user.is_new)
+            h1 Register
+        else
+            h1 Profile
+        br
+        div.row
+            if (edit)
+                p Edit successful
+            form.col.s12#form(role='form', action='/users/details', method='post')
+            
+                div.row
+                    div.col.s12.center
+                        img#dp(src=user.photo)
+                    
+                div.row
+                    div.input-field.col.s6
+                        input(disabled value=user.firstName, id='firstName', name='firstName', type='text', class='validate')
+                        label.active(for='firstName') First Name
+                    div.input-field.col.s6
+                        input(disabled value=user.lastName, id='lastName', name='lastName', type='text', class='validate')
+                        label.active(for='lastName') Last Name
+            
+                div.row
+                    div.input-field.col.s6
+                        input(disabled value=user.email, id='email', name='email', type='email', class='validate')
+                        label.active(for='email') Email
+                        
+                    div.input-field.col.s6
+                        input(value=user.phone_no, id='phone_no', name='phone_no',type='tel', class='validate')
+                        label.active(for='phone_no') Phone Number
+                        
+                if (user.provider == 'local')
+                    div.row
+                        div.input-field.col.s6
+                            input(value='********', id='password', name='password', type='password', class='validate')
+                            label.active(for='password') Password
+                div.row
+                    div.input-field.col.s6
+                        input(value=user.college, id='college', name='college', type='text', class='validate')
+                        label.active(for='college') College    
+                    div.input-field.col.s6
+                        input(value=user.course, id='course', name='course', type='text', class='validate')
+                        label.active(for='course') Course    
+                        
+                        
+                if(!user.is_new)
+                    table.responsive-table.highlight
+                        thead
+                            tr
+                                th.s6(data-field="id")  Registered for the following events:
+                        tbody
+                            tr 
+                                td event1
+                            tr 
+                                td event2
+                if (user.is_new)            
+                    div.row.center
+                        button.btn.waves-light.waves-effect(type='submit') Save
+                            i.material-icons.right send
+                else
+                    div.row.center
+                        button.btn.waves-light.waves-effect(type='submit') Update
+                            i.material-icons.right cloud
+        
