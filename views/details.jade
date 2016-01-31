@@ -7,6 +7,8 @@ block content
         div.row
             if (edit)
                 p Edit successful
+            if (user.is_admin || user.is_edit)
+                a(href='/events/addEvent') Add Event
             form.col.s12(role='form', action='/users/details', method='post')
                 div.row
                     div.input-field.col.s6
