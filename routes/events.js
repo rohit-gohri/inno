@@ -46,7 +46,10 @@ router.post('addEvent', function(req, res) {
             }
             if (user.is_em || user.is_admin) {
                 event = new Event({
-                    name: name
+                    name: name,
+                    details: details,
+                    fbLink: fbLink,
+                    minParticipants: minParticipants
                 })
                 res.render('addEvent')
             } else {

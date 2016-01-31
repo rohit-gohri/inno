@@ -31,8 +31,6 @@ router.post('/details', function (req, res) {
             if(err) {
                 res.render('error', {message: err.message, error: err});
             }
-            user.firstName = firstName;
-            user.lastName = lastName;
             user.phone_no = phone_no;
             user.is_new = false;
             /*user.dob = req.body.dob;
