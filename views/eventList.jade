@@ -1,0 +1,24 @@
+//
+   Created by shubham on 31/1/16.
+extends layout
+
+block content
+    h4.center Events
+    .container
+        .row#events
+            each event, index in events
+                .card.small.col.s4
+                    .card-image.waves-effect.waves-block.waves.light
+                        img.activator(src="http://materializecss.com/images/office.jpg")
+                    .card-content
+                        span.card-title.activator.grey-text.text-darken-4 event.name
+                            i.material-icons.right more_vert
+                        p
+                            a(href="#") This is a link
+                    .card-reveal
+                        span.card-title.grey-text.text-darken-4 Card Title
+                            i.material-icons.right close
+                        p event.details
+
+
+

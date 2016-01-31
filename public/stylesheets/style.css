@@ -26,3 +26,12 @@ a {
     border-radius: 5px;
     border-color: white;
 }
+
+#events {
+    margin-right: -1.5%;
+}
+
+#events .card {
+    width: 30%;
+    margin-right: 3%;
+}
