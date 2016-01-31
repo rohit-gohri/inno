@@ -1,0 +1,262 @@
+/*Woobus colors*/
+.woobus {
+    background-color: #e52f3c !important;
+}
+
+.woobus.bg {
+    background-color: #ffffff !important;
+}
+
+.woobus.dark {
+    background-color: #BA2631 !important;
+}
+
+.woobus.accent {
+    background-color: #F72328 !important;
+}
+
+.woobus-text {
+    color: #e52f3c !important;
+}
+
+.woobus-text.accent {
+    color: #F72328 !important;
+}
+
+.woobus-text.dark {
+    color: #BA2631 !important;
+}
+
+nav div {
+    font-size: 1.3rem;
+}
+
+img.logo.registration {
+    width: 30%;
+    max-width: 180px;
+    height: auto;
+    padding: 20px 0 0 0;
+}
+
+.logo img {
+    width: 70%;
+    max-width: 350px;
+    height: auto;
+    padding: 2rem 0;
+    margin-top: 40%;
+}
+
+.wifi {
+    padding: 15%;
+    color: #ffffff;
+    display: block;
+    margin: 50% 30px;
+    text-align: center;
+}
+
+i {
+    color: #fff !important;
+}
+
+.row {
+    margin-bottom: 2% !important;
+}
+
+.input-field label{
+    color: #e52f3c;
+}
+
+.input-field span {
+    color: #e52f3c;
+}
+
+input:not([type]),
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=time],
+input[type=date],
+input[type=datetime-local],
+input[type=tel],
+input[type=number],
+input[type=search],
+textarea.materialize-textarea {
+    border-bottom: 1px solid #e52f3c;
+}
+
+input[type]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
+    border-bottom: 1px solid #e52f3c;
+    box-shadow: 0 1px 0 0 #e52f3c;
+}
+
+input[type]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) + label{
+    color: #e52f3c;
+}
+
+/* label color */
+.input-field label, input, textarea {
+    color: #e52f3c;
+}
+/* label focus color */
+.input-field input[type]:focus,textarea.materialize-textarea:focus + label {
+    color: #e52f3c;
+}
+/* label underline focus color */
+.input-field input[type]:focus {
+    border-bottom: 1px solid #e52f3c;
+    box-shadow: 0 1px 0 0 #e52f3c;
+}
+/* valid color */
+.input-field input[type].valid {
+    border-bottom: 1px solid #e52f3c;
+    box-shadow: 0 1px 0 0 #e52f3c;
+}
+/* invalid color */
+.input-field input[type].invalid {
+    border-bottom: 1px solid #101010;
+    box-shadow: 0 1px 0 0 #101010;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #e52f3c;
+}
+
+textarea {
+    max-height: 200px;
+}
+
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:focus:not([readonly]) + label,
+input[type=password]:focus:not([readonly]) + label,
+input[type=email]:focus:not([readonly]) + label,
+input[type=url]:focus:not([readonly]) + label,
+input[type=time]:focus:not([readonly]) + label,
+input[type=date]:focus:not([readonly]) + label,
+input[type=datetime-local]:focus:not([readonly]) + label,
+input[type=tel]:focus:not([readonly]) + label,
+input[type=number]:focus:not([readonly]) + label,
+input[type=search]:focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #e52f3c;
+}
+
+.journey {
+    margin: 5px 0;
+}
+
+#journey-box {
+    padding: 4%;
+    margin: 20px 0;
+}
+
+.strip ul {
+    padding: 0 !important;
+    margin: 0;
+}
+
+#marker {
+position: relative;
+left: 0%;
+}
+
+#stops {
+margin-bottom: -20px;
+}
+
+#arrow {
+margin-top: -10px;
+margin-left: -10px;
+}
+
+.strip li {
+    display: inline-block;
+    width: 7%;
+    height: auto;
+}
+
+.strip li:not(#arrow) {
+    margin: 10px 0;
+    width: 8%;
+    height: 3px;
+    background: #FFF none repeat scroll 0% 0%;
+}
+
+.promo-caption {
+    font-weight: 900;
+    font-size: small;
+    margin-bottom: 10px;
+    margin-top: 3px;
+}
+
+hr {
+    display: block;
+    position: relative;
+    padding: 0;
+    height: 0;
+    width: 100%;
+    max-height: 0;
+    font-size: 1px;
+    line-height: 0;
+    clear: both;
+    border: none;
+    border-top: 1px solid #BA2631;
+    border-bottom: 1px solid #e52f3c;
+}
+
+.headerDivider {
+    border-left:1px solid #e52f3c;
+    border-right:1px solid #BA2631;
+    height:80px;
+    position:absolute;
+    right:249px;
+    top:10px;
+}
+
+.promo-journey {
+    border-left:2px solid #BA2631;
+    border-right:2px solid #BA2631;
+}
+
+@media screen and (orientation:landscape)
+{
+    #portrait {
+        display:none !important;
+    }
+
+    .video-container {
+        margin: 0 !important;
+        padding: 0;
+        width: 100%;
+        height: auto;
+    }
+    .responsive-video {
+        width: 100%;
+    }
+}
+
+#nav-back {
+    padding-left: 10px;
+}
+
+.brand-logo {
+    font-size: x-large !important;
+}
+
+.material-tooltip {
+    color: #e52f3c;
+    border: 0;
+    box-shadow: 1px 1px 10px #0e0e0e !important;
+}
+
+.backdrop {
+    background-color: #fff;
+}
+
+.star-rating {
+    text-align: center;
+    line-height:32px;
+    font-size:2.5em;
+    cursor: pointer;
+    margin-bottom:5px;
+}
