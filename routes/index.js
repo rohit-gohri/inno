@@ -26,9 +26,15 @@ router.get('/login/fb', passport.authenticate('facebook', {authType: 'rerequest'
 
 router.get('/login/fb/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/users/details',
         failureRedirect: '/login'
-    })
+    }), function(req, res) {
+        console.log(req);
+        if (req.user.is_new) {
+            res.redirect('/users/details');
+        } else {
+            res.redirect('/');
+        }
+    }
 );
 
 router.get('/login', function (req, res) {

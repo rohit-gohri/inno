@@ -21,7 +21,8 @@ var Account = new Schema({
     year: String,
     dateJoined: Date,
     is_em: Boolean,
-    is_admin: Boolean
+    is_admin: Boolean,
+    is_new: Boolean
 });
 
 Account.plugin(passportLocalMongoose);

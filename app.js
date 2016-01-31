@@ -60,12 +60,12 @@ passport.use(new FacebookStrategy({
                         lastName: profile.name.familyName,
                         gender: profile.gender,
                         email: profile.emails[0].value,
-                        username: profile.username,
                         photo: profile.photos[0].value,
                         dob: profile.birthday,
                         provider: 'facebook',
                         providerData: profile._json,
-                        accessToken: accessToken
+                        accessToken: accessToken,
+                        is_new: true
                     });
                     user.save(function (err) {
                         if (err) console.log(err);

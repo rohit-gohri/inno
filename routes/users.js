@@ -34,16 +34,18 @@ router.post('/details', function (req, res) {
             user.firstName = firstName;
             user.lastName = lastName;
             user.phone_no = phone_no;
+            user.is_new = false;
             /*user.dob = req.body.dob;
             user.college = req.body.college;
             user.course = req.body.course;
             user.year = req.body.year;
             */
             user.save(function (err, data) {
-                if (err)
+                if (err) {
                     console.log(err);
-                console.log(data)
-                res.render('details', {user: data, edit: 'success'})
+                } else {
+                    res.render('details', {user: data, edit: 'success'})
+                }
             });
         });
 });
