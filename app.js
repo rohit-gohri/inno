@@ -45,7 +45,7 @@ passport.use(new FacebookStrategy({
         clientID: '1682265012051455',
         clientSecret: '2e4238e0e2da29509fb8beb48126d2bf',
         callbackURL: "http://www.innovisionnsit.com/login/fb/callback",
-        profileFields: ['id', 'displayName', 'photos', 'emails', 'name']
+        profileFields: ['id', 'displayName', 'picture.type(large)', 'emails', 'name', 'birthday', 'gender']
     },
     function (accessToken, refreshToken, profile, done) {
         Account.findOne({'providerData.id': profile.id},
