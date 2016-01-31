@@ -2,11 +2,13 @@ extends layout
 
 block content
     div.container
+        br
         if (!user)
             a(href="/login") Login
             br
+            br
             a(href="/register") Register
         if (user)
-            p You are currently logged in as
+            p You are currently logged in as 
                 a(href="/users/details") #{user.firstName} #{user.lastName}
             a(href="/logout") Logout
