@@ -4,7 +4,7 @@ var router = express.Router();
 var Account = require('../models/account')
 var Team = require('../models/team')
 
-router.get('/Team', function(req, res) {
+router.get('/myteam', function(req, res) {
     Account.findOne({inno_id: req.user.inno_id}, function(err, user) {
         if (err) {
             res.render('error');
