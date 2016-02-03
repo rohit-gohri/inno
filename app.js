@@ -13,6 +13,7 @@ var Account = require('./models/account');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var events = require('./routes/events');
+var teams = require('./routes/teams');
 
 var app = express();
 
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/events', events);
+app.use('/teams', teams);
 
 // passport config
 passport.use(new LocalStrategy(Account.authenticate()));
