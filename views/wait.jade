@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        title= title
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(href='/stylesheets/materialize.min.css', rel='stylesheet', media='screen')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/font/material\ icons/material-icons.css')
+
+body.orange.lighten-1
+    //img.materialboxed(src="/images/i_reel.jpg" width="98.4%")#reel
+    .image
+        img.materialboxed(src="/images/inno-white.png" width="15%" height="auto" style="margin: 17% auto 0 auto;")
+        h2#theme BACK TO<br />THE FUTURE
+        h2#dates 10-12th<br />FEB, 2016
+
+    script(src='/javascripts/jquery-2.2.0.min.js')
+    script(src='/javascripts/materialize.min.js')
+    script.
+        $(document).ready(function () {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });
+        $(document).ready(function () {
+            $('.parallax').parallax();
+        });
+        $(document).ready(function () {
+            $('.slider').slider({full_width: true});
+        });

@@ -4,7 +4,7 @@ block content
     .container
         h3 Add Event
         .row
-            form.col.s12(role='form', action="/login", method="post")
+            form.col.s12(role='form', action="/events/addEvent", method="post")
                 .row
                     .input-field.col.s8.m7
                         input(type='text', id="event_name" name="name" required=true)
