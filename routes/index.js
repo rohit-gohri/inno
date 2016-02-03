@@ -7,6 +7,10 @@ router.get('/', function (req, res) {
     res.render('index', {user: req.user});
 });
 
+router.get('/wait', function (req, res) {
+    res.render('wait');
+});
+
 router.get('/register', function (req, res) {
     res.render('register', {});
 });

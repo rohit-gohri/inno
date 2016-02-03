@@ -33,11 +33,10 @@ router.post('/details', function (req, res) {
             }
             user.phone_no = phone_no;
             user.is_new = false;
-            /*user.dob = req.body.dob;
+            user.dob = req.body.dob;
             user.college = req.body.college;
             user.course = req.body.course;
             user.year = req.body.year;
-            */
             user.save(function (err, data) {
                 if (err) {
                     console.log(err);
