@@ -2,24 +2,21 @@ extends layout
 
 block content
     .container
-        h1 Login Page
+        h4 Login Page
         p.lead Say something worthwhile here.
         br
         div.row
             form.col.s12(role='form', action="/login", method="post", style='max-width: 300px;')
                 div.row
-                    div.input-field.col.s6
+                    div.input-field.col.s12
                         input(type='text', id="username" name="username")
                         label(for="username") Username
-                    div.input-field.col.s6
+                    div.input-field.col.s12
                         input(type='text', id="password" name="password")
                         label(for="password") Password
                 div.row
-                    button.btn.waves-effect.waves-light(type='submit') Submit
+                    button.btn.waves-effect.waves-light.blue.darken-4(type='submit') Submit
             &nbsp;
             form(role='form', action="/login/fb", method="get", style='max-width: 300px;')
-                button(type='submit')
+                button(type='submit')#fb
                     img(src='http://i.stack.imgur.com/ryt6L.png', style='max-width: 200px;')
-            &nbsp;
-            a(href='/')
-                button.btn(type="button") Cancel

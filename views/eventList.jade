@@ -3,20 +3,61 @@
 extends layout
 
 block content
-    h4.center Events
+    .slider
+        ul.slides.black
+            li
+                img(src="/images/bike.jpg")
+                .caption.left-align
+                    h3 ROAD SHOW
+                    h5.light.
+                        Two words: adrenaline rush. Roads and hearts will be set on fire
+                        as the Harley-Davidsons and Hondas will race past on the streets
+                        overflowing with spectators.
+            li
+                img(src="/images/pd.jpg")
+                .caption.left-align
+                    h3 PANEL DISCUSSION
+                    h5.light.
+                        Clash of wits, conflicting intellects, a hour of unprecedented
+                        intellectual simulation awaits the people in the form of 'Panel Discussion'
+            li
+                img(src="/images/robowars.jpg")
+                .caption.left-align
+                    h3 ROBOTICA
+                    h5.light.
+                        An array of various robotics competitions that include
+                        Line Follower competition, Robot Quidditch, Maze
+                        Navigation event and several more.
+            li
+                img(src="/images/felicity.jpg")
+                .caption.left-align
+                    h3 FELICITY
+                    h5.light.
+                        Intense happiness. Delight. Satisfaction. The Oxford Dictionary
+                        doesn’t come close to describe all the emotions that Felicity at Inno’
+                        induces. Felicity is one of the headliner events at the fest.
+            li
+                img(src="/images/defexpo.jpg")
+                .caption.left-align
+                    h3 DEFENSE EXPO
+                    h5.light.
+                        Defense Expo, done in collaboration with various government
+                        bodies, is an exhibition of state-of-the-art
+                        artillery and machines used by the Indian Army.
+    h3.center Events
     .container
         .row#events
             each event, index in events
-                .card.small.col.s4
+                .card.small.col
                     .card-image.waves-effect.waves-block.waves.light
-                        img.activator(src="http://materializecss.com/images/office.jpg")
+                        img.activator(src="/images/inno.png")
                     .card-content
                         span.card-title.activator.grey-text.text-darken-4 event.name
                             i.material-icons.right more_vert
                         p
                             a(href="#") This is a link
                     .card-reveal
-                        span.card-title.grey-text.text-darken-4 event.details
+                        span.card-title.grey-text.text-darken-4 Card Title
                             i.material-icons.right close
                         p event.details
 

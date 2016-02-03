@@ -7,38 +7,85 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='/font/material\ icons/material-icons.css')
     body
-        nav.z-depth-0.blue.accent-4
-            div.nav-wrapper.container
-                a.brand-logo.center(href="/") INNOVISION
-                ul.left.hide-on-med-and-down(id="nav-monile")
+        nav.z-depth-0.grey.lighten-2
+            div.nav-wrapper.black-text.container
+                a.brand-logo.left(href="/") innovision'16
+                    img.left(src="/images/inno2.png")
+                ul.right.hide-on-small-and-down.black-text
                     li
                         a(href="/") Home
                     li
                         a(href="/events") Events
+                    li
+                        a(href="/contact") Contact Us
+                    li
+                        a(href="/about") About Us
+                    li
+                        if(!user)
+                            a.modal-trigger(href="#loginModal") Login
+                        else
+                            a.modal-trigger(href="/users/details") Hello #{user.firstName}!
 
         main
             block content
 
-        footer.page-footer.blue.accent-4
+        footer.page-footer.grey.lighten-2
             div.container
                 div.row
                     div.col.l6.s12
-                        h5.white-text Follow Us On:
-                        div.row.white-text
+                        h5.black-text Follow Us On:
+                        div.row.black-text
                             div.col.s4 FB
                             div.col.s4 Twitter
                             div.col.s4 Google+
                     div.col.l4.offset-l2.s12
-                        h5.white-text Site
+                        h5.black-text Site
                         ul
                             li
-                                a.grey-text.text-lighten-3(href="/events") Events
+                                a.black-text(href="/events") Events
                             li
-                                a.grey-text.text-lighten-3(href="/login") Login
+                                a.black-text(href="/login") Login
             div.footer-copyright
-                div.container
+                div.container.black-text
                     © 2016 Innovision, NSIT
                     a.grey-text.text-lighten-3.right(href="#") More Links
 
-    script(src='http://code.jquery.com/jquery.js')
+        #loginModal.modal
+            .modal-content.center
+                h4 Login
+                .row
+                    form.col.s12(role='form', action="/login", method="post")
+                            .input-field.col.s8.offset-s2
+                                input(type='text', id="username" name="username")
+                                label(for="username") Username
+                            .input-field.col.s8.offset-s2
+                                input(type='text', id="password" name="password")
+                                label(for="password") Password
+                            button.btn.waves-effect.waves-light.blue.darken-4(type='submit', style="width: 200px;") Login
+                form.row(role='form', action="/login/fb", method="get")
+                    button.btn(type='submit')#fb
+                        img(src='http://i.stack.imgur.com/ryt6L.png', style='max-width: 200px;')
+                .row
+                    a(href='/register')
+                        button.btn.waves-effect.waves-light.blue.darken-4(style="width: 200px;") Register
+
+    script(src='/javascripts/jquery-2.2.0.min.js')
     script(src='/javascripts/materialize.js')
+    script.
+        $(document).ready(function () {
+            $('.parallax').parallax();
+            $('.slider').slider({full_width: true});
+            $('select').material_select();
+            $('.modal-trigger').leanModal();
+            $("input[name='is_team_event']").change(radioValueChanged);
+        });
+        function radioValueChanged() {
+            radioValue = $(this).val();
+            if ($(this).is(":checked") && radioValue == "1") {
+                $('#minPart').toggleClass('hidden')
+            }
+            else {
+                $('#minPart').toggleClass('hidden')
+            }
+        }
+

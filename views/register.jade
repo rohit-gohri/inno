@@ -2,17 +2,28 @@ extends layout
 
 block content
     .container
-        h1 Register Page
-        p.lead Say something worthwhile here.
+        h3 REGISTER PAGE
+        p Register to participate in competitions, attend workshops, or just roam around the fest.
         br
-        form(role='form', action="/register",method="post", style='max-width: 300px;')
-            .form-group
-                input.form-control(type='text', name="username", placeholder='Enter Username')
-            .form-group
-                input.form-control(type='password', name="password", placeholder='Password')
-            .form-group
-                input.form-control(type='password', name="password2", placeholder='Re-enter Password')
-            button.btn.btn-default(type='submit') Submit
-            &nbsp;
-            a(href='/')
-                button.btn.btn-primary(type="button") Cancel
+        form.col.s12(role='form', action="/register", method="post", style='max-width: 300px;')
+            div.row
+                div.input-field.col.s12
+                    //i.material-icons.blue-text.darken-4.prefix email
+                    input(type='email', id="email" name="email")
+                    label(for="email") Enter Email
+                div.input-field.col.s12
+                    //i.material-icons.blue-text.darken-4.prefix star
+                    input(type='text', id="password1" name="password1")
+                    label(for="password1") Password
+                div.input-field.col.s12
+                    //i.material-icons.blue-text.darken-4.prefix star
+                    input(type='text', id="password2" name="password2")
+                    label(for="password2") Repeat Password
+            div.row
+                &nbsp;
+                &nbsp;
+                button.btn.waves-effect.waves-light.blue.darken-4(type='submit') Submit
+                &nbsp;
+                &nbsp;
+                a(href='/')
+                    button.btn.waves-effect.waves-light.blue.darken-4(type="button") Cancel

@@ -1,14 +1,59 @@
 extends layout
 
 block content
+    img.materialboxed(src="/images/i_reel.jpg" width="98.4%")#reel
+    br
+    br
+    br
+    .slider
+        ul.slides.black
+            li
+                img(src="/images/bike.jpg")
+                .caption.left-align
+                    h3 ROAD SHOW
+                    h5.light.
+                        Two words: adrenaline rush. Roads and hearts will be set on fire
+                        as the Harley-Davidsons and Hondas will race past on the streets
+                        overflowing with spectators.
+            li
+                img(src="/images/pd.jpg")
+                .caption.left-align
+                    h3 PANEL DISCUSSION
+                    h5.light.
+                        Clash of wits, conflicting intellects, a hour of unprecedented
+                        intellectual simulation awaits the people in the form of 'Panel Discussion'
+            li
+                img(src="/images/robowars.jpg")
+                .caption.left-align
+                    h3 ROBOTICA
+                    h5.light.
+                        An array of various robotics competitions that include
+                        Line Follower competition, Robot Quidditch, Maze
+                        Navigation event and several more.
+            li
+                img(src="/images/felicity.jpg")
+                .caption.left-align
+                    h3 FELICITY
+                    h5.light.
+                        Intense happiness. Delight. Satisfaction. The Oxford Dictionary
+                        doesn’t come close to describe all the emotions that Felicity at Inno’
+                        induces. Felicity is one of the headliner events at the fest.
+            li
+                img(src="/images/defexpo.jpg")
+                .caption.left-align
+                    h3 DEFENSE EXPO
+                    h5.light.
+                        Defense Expo, done in collaboration with various government
+                        bodies, is an exhibition of state-of-the-art
+                        artillery and machines used by the Indian Army.
+
+
     div.container
-        br
         if (!user)
             a(href="/login") Login
-            br
             br
             a(href="/register") Register
         if (user)
             p You are currently logged in as
-                a(href="/users/details")  #{user.firstName} #{user.lastName}
+                a(href="/users/details") #{user.firstName} #{user.lastName}
             a(href="/logout") Logout

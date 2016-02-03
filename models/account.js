@@ -22,7 +22,8 @@ var Account = new Schema({
     dateJoined: Date,
     is_em: Boolean,
     is_admin: Boolean,
-    is_new: Boolean
+    is_new: Boolean,
+    team: {type: Schema.ObjectId, ref: 'Team'}
 });
 
 Account.plugin(passportLocalMongoose);
