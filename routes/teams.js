@@ -57,3 +57,5 @@ router.post('/newTeam', function(req, res) {
         captain: captain
     })
 });
+
+module.exports = router;
