@@ -14,6 +14,7 @@
     "express-session": "^1.13.0",
     "jade": "~1.11.0",
     "kerberos": "0.0.18",
+    "mongodb": "^2.1.4",
     "mongoose": "^4.3.7",
     "morgan": "~1.6.1",
     "mustache-express": "^1.2.2",

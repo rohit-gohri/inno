@@ -3,7 +3,7 @@ extends layout
 block content
     .container
         h1 Add Event
-        form(role='form', action='/addEvent', method='post')
+        form(role='form', action='addEvent', method='post')
             .form-group
                 input.form-control(type='text', name="name", placeholder='Event Name' required)
             .form-group
@@ -11,4 +11,6 @@ block content
             .form-group
                 input.form-control(type='text', name="fbLink", placeholder='Facebook Event Link')
             .form-group
-                input.form-control(type='text', name="isTeamEvent", placeholder='Enter Username')
+                input.form-control(type='text', name="minParticipants", placeholder='Enter minimum no of team members')
+            button.btn.waves-light.waves-effect(type='submit') Submit
+                i.material-icons.right send
