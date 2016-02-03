@@ -6,8 +6,8 @@ block content
             .parallax
                 if event.photo
                     img(src=event.photo)
-        h2 event.name
-        p event.details
+        h2 #{event.name}
+        p #{event.details}
         p
             a(href=event.fbLink) "FB event page"
         if(event.isTeamEvent)

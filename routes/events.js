@@ -53,6 +53,7 @@ router.post('/addEvent', function(req, res) {
     var details = req.body.details;
     var fbLink = req.body.fbLink;
     var minParticipants = req.body.minParticipants;
+
     Account.findOne({_id: req.user._id},
         function(err, user) {
             if (!user || err) {
@@ -64,13 +65,15 @@ router.post('/addEvent', function(req, res) {
                     details: details,
                     fbLink: fbLink,
                     minParticipants: minParticipants,
-                    managers: [req.user._id]
+                    managers: [req.user._id],
+                    category: req.body.category,
                 });
                 event.save(function (err, event) {
                     if(err) {
                         console.log(err);
                     }
-                    res.render('event', {event: event});
+                    var red = '' + event.name;
+                    res.redirect(red);
                 });
             } else {
                 res.render('error',
@@ -81,7 +84,7 @@ router.post('/addEvent', function(req, res) {
 });
 
 router.get('/:eventName', function (req, res) {
-    Event.find({name: req.params.eventName},
+    Event.findOne({name: req.params.eventName},
         function (err, event) {
             if(!event || err ) {
                 res.render('error', {message: "Event not found!!!", error: {status: '', stack: ''}});
