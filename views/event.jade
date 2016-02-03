@@ -9,7 +9,7 @@ block content
         h2 #{event.name}
         p #{event.details}
         p
-            a(href=event.fbLink) "FB event page"
+            a(href=event.fbLink) #{event.fbLink}
         if(event.isTeamEvent)
             h5 Team Event
             p Min Participants: #{event.minParticipants}

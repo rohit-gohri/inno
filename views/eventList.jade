@@ -52,12 +52,12 @@ block content
                     .card-image.waves-effect.waves-block.waves.light
                         img.activator(src="/images/inno.png")
                     .card-content
-                        span.card-title.activator.grey-text.text-darken-4 event.name
+                        span.card-title.activator.grey-text.text-darken-4 #{event.name}
                             i.material-icons.right more_vert
                         p
-                            a(href="#") This is a link
+                            a(href="#") #{event.link}
                     .card-reveal
-                        span.card-title.grey-text.text-darken-4 Card Title
+                        span.card-title.grey-text.text-darken-4 #{event.details}
                             i.material-icons.right close
                         p event.details
 

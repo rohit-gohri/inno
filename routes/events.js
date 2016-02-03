@@ -4,19 +4,12 @@ var router = express.Router();
 var Account = require('../models/account');
 
 router.get('/', function (req, res) {
-    if(req.event) {
-        Event.findOne({name: 'req.event.name'},
-            function (err, event) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    res.render('event', {event: event});
-                }
-            });
-    } else {
-        var events = Event.find();
+
+    Event.find({}).lean().exec(function (err, events) {
+        console.log(events);
         res.render('eventList', {events: events});
-    }
+    });
+
 });
 
 router.get('/edit', function (req, res) {
