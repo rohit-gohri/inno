@@ -6,7 +6,7 @@ body {
     flex-direction: column;
 }
 
-h3 {
+h1,h2,h3,h4,h5,h6 {
     font-family: "Open Sans", sans-serif;
     font-weight: 800;
 }
@@ -15,7 +15,7 @@ h3 {
     height: 300px;
 }
 
-.row {
+.row.equal {
     display: flex; /* equal height of the children */
 }
 
@@ -74,11 +74,6 @@ a {
 
 .brand-logo {
     font-size: x-large !important;
-}
-
-.body {
-    font-family: "Open Sans" , sans-serif !important;
-    font-weight: 800;
 }
 
 .title {
@@ -417,9 +412,4 @@ input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
     color: #0D47A6;
-}
-
-.inno-ascii {
-    margin-left: auto;
-    margin-right: auto;
 }
