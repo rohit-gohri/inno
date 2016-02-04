@@ -1,11 +1,36 @@
 extends layout
 
 block content
-    img.materialboxed(src="/images/i_reel.jpg" width="98.4%")#reel
-    br
-    br
-    br
-    .slider
+    .row.zero
+        .col.s6.blue.darken-4.white-text
+            div(style="display:table; height:350px;overflow:hidden")
+                div(style="display:table-cell; vertical-align:middle;")
+                    h3 INNOVISION<br />10-12th MARCH
+        .col.s6.blue.center(style="height:350px;")
+            img(src="/images/inno-white.png" width='54%')
+    .row.zero
+        .col.s6(style="padding:0; margin:0;")
+            .parallax-container(style="height:400px;")
+                .parallax
+                    img(src="/images/delorean.gif")
+        .col.s6.blue.darken-4.white-text(style="padding:25px;")
+            div(style="display:table; height:350px;overflow:hidden")
+                div(style="display:table-cell; vertical-align:middle;")
+                    h3 BACK TO<br />THE FUTURE
+                    p.
+                        Time moves only in one direction, but memories flow in the opposite
+                        Our theme ‘Back to the Future’ stands at the intersection of the two
+                        We explore time as a concept, as a history, as a force of nature, as the
+                        n-th dimension, and as the utmost disciplinarian. We explore time not
+                        just through the lens of Sci-Fi novellas and ideas of time machines,
+                        paradoxes and other fascinating constructs, but through eras gone
+                        by and to come.
+                        ‘Back to the Future’ is not about just backwards or forward in time. It’s
+                        about exploration, analysis and moreover, a celebration of time.
+    .row.zero
+        .col.s12.grey.darken-4.white-text.center-align
+            h3 EVENTS
+    .slider.grey.darken-4
         ul.slides.black
             li
                 img(src="/images/bike.jpg")
@@ -46,14 +71,65 @@ block content
                         Defense Expo, done in collaboration with various government
                         bodies, is an exhibition of state-of-the-art
                         artillery and machines used by the Indian Army.
+    .row.zero
+        .col.s12.center-align.grey.darken-4.white-text
+            h3 OUR SPONSORS
+
+    hr#break.zero
+    //img.materialboxed(src="/images/i_reel.jpg" width="98.4%")#reel
+    //br
+    //br
+    //br
+
+    //.slider
+    //    ul.slides.black
+    //        li
+    //            img(src="/images/bike.jpg")
+    //            .caption.left-align
+    //                h3 ROAD SHOW
+    //                h5.light.
+    //                    Two words: adrenaline rush. Roads and hearts will be set on fire
+    //                    as the Harley-Davidsons and Hondas will race past on the streets
+    //                    overflowing with spectators.
+    //        li
+    //            img(src="/images/pd.jpg")
+    //            .caption.left-align
+    //                h3 PANEL DISCUSSION
+    //                h5.light.
+    //                    Clash of wits, conflicting intellects, a hour of unprecedented
+    //                    intellectual simulation awaits the people in the form of 'Panel Discussion'
+    //        li
+    //            img(src="/images/robowars.jpg")
+    //            .caption.left-align
+    //                h3 ROBOTICA
+    //                h5.light.
+    //                    An array of various robotics competitions that include
+    //                    Line Follower competition, Robot Quidditch, Maze
+    //                    Navigation event and several more.
+    //        li
+    //            img(src="/images/felicity.jpg")
+    //            .caption.left-align
+    //                h3 FELICITY
+    //                h5.light.
+    //                    Intense happiness. Delight. Satisfaction. The Oxford Dictionary
+    //                    doesn’t come close to describe all the emotions that Felicity at Inno’
+    //                    induces. Felicity is one of the headliner events at the fest.
+    //        li
+    //            img(src="/images/defexpo.jpg")
+    //            .caption.left-align
+    //                h3 DEFENSE EXPO
+    //                h5.light.
+    //                    Defense Expo, done in collaboration with various government
+    //                    bodies, is an exhibition of state-of-the-art
+    //                    artillery and machines used by the Indian Army.
 
 
-    div.container
-        if (!user)
-            a(href="/login") Login
-            br
-            a(href="/register") Register
-        if (user)
-            p You are currently logged in as
-                a(href="/users/details") #{user.firstName} #{user.lastName}
-            a(href="/logout") Logout
+    //div.container
+    //    if (!user)
+    //        a(href="/login") Login
+    //        br
+    //        a(href="/register") Register
+    //    if (user)
+    //        p You are currently logged in as
+    //            a(href="/users/details") #{user.firstName} #{user.lastName}
+    //        a(href="/logout") Logout

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 var validate = require('mongoose-validator');
 var nameValidator = [
     validate({
@@ -49,5 +50,6 @@ var Account = new Schema({
 });
 
 Account.plugin(passportLocalMongoose);
+Account.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Account', Account);

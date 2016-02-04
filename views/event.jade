@@ -1,21 +1,29 @@
 extends layout
 
 block content
-    .parallax-container#eventPhoto
-        .parallax
-            if event.photo
+    if event.photo
+        .parallax-container#eventPhoto
+            .parallax
                 img(src=event.photo)
     .container
         h3 #{event.name}
         p #{event.details}
-        p
-            a(href=event.fbLink) "FB event page"
+        if event.fbLink
+            p
+                a(href=event.fbLink) "FB event page"
         if(event.isTeamEvent)
             h5 Team Event
             p Min Participants: #{event.minParticipants}
         button.btn.waves-effect.waves-light.blue.darken-4
             a(href="/events/register") Register
-
+        if is_admin || is_em
+            h5
+                a(href='/events/' + event.name + '/participants') Participants
+            h5
+                a(href='/events/' + event.name + '/winners/') Winners
+        if is_admin
+            h5
+                a(href='/events/' + event.name + '/managers') Managers
 script.
     $(document).ready(function(){
         $('.parallax').parallax();

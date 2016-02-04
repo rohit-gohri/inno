@@ -9,10 +9,10 @@ var Event = new Schema({
     minParticipants: {type:Number, default:'1'},
     isTeamEvent: {type:Boolean,default:false},
     category: String,
-    participants: [{type: Schema.ObjectId, ref: 'Account'}],
     managers: [{type: Schema.ObjectId, ref: 'Account'}],
-    winners: [{type: Schema.ObjectId, ref: 'Account'}],
-    teams: [{type: Schema.ObjectId, ref: 'Team'}]
+    // In case of team events, participants and winners refer to captian of team events
+    participants: [{type: Schema.ObjectId, ref: 'Account'}],
+    winners: [{type: Schema.ObjectId, ref: 'Account'}]
 });
 
 

@@ -9,6 +9,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var Account = require('./models/account');
+var paginate = require('express-paginate');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -36,10 +37,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(paginate.middleware(10, 50));
+
 app.get('*', function (req, res, next) {
     res.locals.login = req.user? true : false;
     if (res.locals.login) {
+        res.locals.is_admin = req.user.is_admin;
+        res.locals.is_em = req.user.is_em;
         res.locals.firstName = req.user.firstName;
+    } else {
+        res.locals.is_admin = false;
+        res.locals.is_em = false;
     }
     next();
 });
@@ -97,7 +105,7 @@ passport.deserializeUser(function(id, done) {
     });
 });
 // mongoose
-mongoose.connect('mongodb://localhost/innovision');
+mongoose.connect('mongodb://127.0.0.1:27017/innovision');
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

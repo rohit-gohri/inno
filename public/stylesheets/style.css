@@ -13,7 +13,10 @@ h3 {
 
 #eventPhoto.parallax-container {
     height: 300px;
+}
 
+.row {
+    display: flex; /* equal height of the children */
 }
 
 .slides img {
@@ -89,6 +92,26 @@ a {
 
 .black-text a {
     color: #000;
+}
+
+#break {
+    color: #fff;
+}
+
+.slider .indicators .indicator-item.active {
+    background-color: #0D47A1 !important;
+}
+
+.zero {
+    margin: 0 !important;
+}
+
+footer {
+    margin-top: 0 !important;
+}
+
+.white-text a {
+    color: #fff;
 }
 
 .image {

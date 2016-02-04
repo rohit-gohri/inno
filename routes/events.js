@@ -97,5 +97,31 @@ router.get('/:eventName', function (req, res) {
     });
 });
 
+router.get('/:eventName/participants', function (req, res) {
+    Event.findOne({name: req.params.eventName}),
+        function (err, event) {
+            if(!event || err ) {
+                res.render('error', {message: "Event not found!!!", error: {status: '', stack: ''}});
+            } else {
+                //if(req.params.listType == 'participants') {
+                    var list = event.participants;
+                //} else if(req.params.listType == 'winners') {
+                //    var list = event.winners;
+                //} else if(req.params.listType == 'managers') {
+                //    var list = event.managers;
+                //}
+                //Account.paginate({_id: list}, { page: req.query.page, limit: req.query.limit },
+                //    function(err, users, pageCount, itemCount) {
+                //        if (err) return next(err);
+                //        res.render('participants', {
+                //            participants: users,
+                //            pageCount: pageCount,
+                //            itemCount: itemCount,
+                //            pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+                //        });
+                //    });
+            }
+        }
+});
 
 module.exports = router;
