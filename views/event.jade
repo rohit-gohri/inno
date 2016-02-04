@@ -1,19 +1,19 @@
 extends layout
 
 block content
+    .parallax-container#eventPhoto
+        .parallax
+            if event.photo
+                img(src=event.photo)
     .container
-        .parallax-container
-            .parallax
-                if event.photo
-                    img(src=event.photo)
-        h2 #{event.name}
+        h3 #{event.name}
         p #{event.details}
         p
             a(href=event.fbLink) "FB event page"
         if(event.isTeamEvent)
             h5 Team Event
             p Min Participants: #{event.minParticipants}
-        button.btn.waves-effect.waves-light
+        button.btn.waves-effect.waves-light.blue.darken-4
             a(href="/events/register") Register
 
 script.

@@ -6,8 +6,9 @@ html
         link(href='/stylesheets/materialize.min.css', rel='stylesheet', media='screen')
         link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='/font/material\ icons/material-icons.css')
+        link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,300', type='text/css')
     body
-        nav.z-depth-0.grey.lighten-2
+        nav.z-depth-1.grey.lighten-2
             div.nav-wrapper.black-text.container
                 a.brand-logo.left(href="/") innovision'16
                     img.left(src="/images/inno2.png")
@@ -21,10 +22,10 @@ html
                     li
                         a(href="/about") About Us
                     li
-                        if(!user)
+                        if ! login
                             a.modal-trigger(href="#loginModal") Login
                         else
-                            a.modal-trigger(href="/users/details") Hello #{user.firstName}!
+                            a.modal-trigger(href="/users/details") Hello #{firstName}!
 
         main
             block content

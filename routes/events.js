@@ -2,6 +2,12 @@ var express = require('express');
 var Event = require('../models/event');
 var router = express.Router();
 var Account = require('../models/account');
+var multer = require('multer');
+
+var upload = multer({
+    dest: 'public/uploads/',
+    limits: {fileSize: 10000000, files:1},
+});
 
 router.get('/', function (req, res) {
     if(req.event) {
@@ -48,12 +54,7 @@ router.get('/addEvent', function (req, res) {
     });
 });
 
-router.post('/addEvent', function(req, res) {
-    var name = req.body.name;
-    var details = req.body.details;
-    var fbLink = req.body.fbLink;
-    var minParticipants = req.body.minParticipants;
-
+router.post('/addEvent', upload.single('eventPhoto'), function(req, res) {
     Account.findOne({_id: req.user._id},
         function(err, user) {
             if (!user || err) {
@@ -61,12 +62,13 @@ router.post('/addEvent', function(req, res) {
             }
             if (user.is_em || user.is_admin) {
                 event = new Event({
-                    name: name,
-                    details: details,
-                    fbLink: fbLink,
-                    minParticipants: minParticipants,
+                    name: req.body.name,
+                    details: req.body.details,
+                    fbLink: req.body.fbLink,
+                    minParticipants: req.body.minParticipants,
                     managers: [req.user._id],
                     category: req.body.category,
+                    photo: '/uploads/' + req.file.filename
                 });
                 event.save(function (err, event) {
                     if(err) {

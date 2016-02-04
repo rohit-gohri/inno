@@ -36,6 +36,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('*', function (req, res, next) {
+    res.locals.login = req.user? true : false;
+    if (res.locals.login) {
+        res.locals.firstName = req.user.firstName;
+    }
+    next();
+});
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/events', events);
@@ -65,7 +73,7 @@ passport.use(new FacebookStrategy({
                         photo: profile.photos[0].value,
                         dob: profile.birthday,
                         provider: 'facebook',
-                        providerData: profile._json,
+                        providerId: profile._json.id,
                         accessToken: accessToken,
                         is_new: true
                     });
@@ -121,6 +129,5 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;

@@ -4,7 +4,7 @@ block content
     .container
         h3 Add Event
         .row
-            form.col.s12(role='form', action="/events/addEvent", method="post")
+            form.col.s12(role='form', action="/events/addEvent", method="post", enctype="multipart/form-data")
                 .row
                     .input-field.col.s8.m7
                         input(type='text', id="event_name" name="name" required=true)
@@ -28,7 +28,7 @@ block content
                     .input-field.file-field.col.s8.m7
                         .btn.blue.darken-4.waves-effect.waves-light
                             span Photo
-                            input(type="file")
+                            input(type="file" name="eventPhoto")
                         .file-path-wrapper
                             input.file-path.validate(type="text")
                 h6 Is the event a team event?
