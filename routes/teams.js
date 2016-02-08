@@ -29,6 +29,7 @@ router.post('/newTeam', function(req, res) {
     var captain = null;
     var mem = [];
     var err = [];
+    var hup=null;
     Account.findOne({inno_id: req.user.inno_id}, function(err, user) {
         if (err) {
             console.log(err);
