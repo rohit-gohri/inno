@@ -6,6 +6,14 @@ var Account = require('../models/account');
 router.get('/', function (req, res, next) {
     res.send('respond with a resource');
 });
+var express = require('express');
+var router = express.Router();
+var Account = require('../models/account');
+var Event = require('../models/event');
+/* GET users listing. */
+router.get('/', function (req, res, next) {
+    res.send('respond with a resource');
+});
 
 router.get('/details', function (req, res) {
     if (req.user) {
@@ -14,13 +22,39 @@ router.get('/details', function (req, res) {
                 if (err) {
                     res.render('error', {message: err.message, error: err});
                 }
+                else
+                {
+
+               /* Event.find({participants: req.user._id},
+                    function(err,event){
+                         if (err) {
+                    res.render('error', {message: err.message, error: err});
+                    }
+                    else
+                    {
+                        event.
+                    }
+
+                    });
+                    
+                function(err,event){
+                    if (err) {
+                    res.render('error', {message: err.message, error: err});
+                    }
+                    
+                    event.
+                } */   
                 res.render('details', {user: user});
+                }
+
             });
-    } else {
+    } 
+    else {
         res.render('error', {message: 'Please login', error: {status: '', stack: ''}});
     }
 
 });
+
 
 router.post('/details', function (req, res) {
     var firstName = req.body.firstName;
