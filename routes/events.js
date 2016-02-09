@@ -10,17 +10,13 @@ var upload = multer({
 });
 
 router.get('/', function (req, res) {
-
     Event.find({}).lean().exec(function (err, events) {
         console.log(events);
         res.render('eventList', {events: events});
     });
-
 });
 
 router.post('/:eventName/register', function (req, res){
-     
-
     var ename=req.params.eventName;
     var id=req.user._id;
     console.log(id);

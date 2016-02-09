@@ -73,10 +73,10 @@ html
                 .row
                     form.col.s12(role='form', action="/login", method="post")
                             .input-field.col.s8.offset-s2
-                                input(type='text', id="username" name="username")
-                                label(for="username") Username
+                                input(type='text', id="email" name="email")
+                                label(for="email") Email
                             .input-field.col.s8.offset-s2
-                                input(type='text', id="password" name="password")
+                                input(type='password', id="password" name="password")
                                 label(for="password") Password
                             button.btn.waves-effect.waves-light.blue.darken-4(type='submit', style="width: 200px;") Login
                 form.row(role='form', action="/login/fb", method="get")

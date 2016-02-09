@@ -29,9 +29,6 @@ router.get('/newTeam', function(req, res) {
 });
 
 router.post('/newTeam', function(req, res) {
-
-    
-
     var id1 = req.body.name1;
     var id2 = req.body.name2;
     var id3 = req.body.name3;

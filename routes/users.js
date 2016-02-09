@@ -1,19 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Account = require('../models/account');
-
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-    res.send('respond with a resource');
-});
-var express = require('express');
-var router = express.Router();
-var Account = require('../models/account');
 var Event = require('../models/event');
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-    res.send('respond with a resource');
-});
 
 router.get('/details', function (req, res) {
     if (req.user) {
