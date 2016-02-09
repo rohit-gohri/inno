@@ -15,7 +15,7 @@ block content
             h5 Team Event
             p Min Participants: #{event.minParticipants}
         button.btn.waves-effect.waves-light.blue.darken-4
-            a(href="/events/register") Register
+            a(href="/events/" + #{event.name} + "/register") Register
         if is_admin || is_em
             h5
                 a(href='/events/' + event.name + '/participants') Participants

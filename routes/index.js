@@ -16,13 +16,20 @@ router.get('/register', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
-    Account.register(new Account({username: req.body.username}), req.body.password, function (err, account) {
+    Account.register(new Account({email: req.body.email}), req.body.password, function (err, account) {
         if (err) {
-            return res.render('register', {account: account});
+            return res.render('error', {message: err.message, error: err});
         }
-        passport.authenticate('local')(req, res, function () {
-            res.redirect('/');
-        });
+        console.log(account);
+        if(!req.isAuthenticated()) {
+            passport.authenticate('local')(req, res, function () {
+                console.log(req);
+                res.redirect('/users/details');
+            });
+        } else {
+            console.log(req);
+            res.redirect('/users/details');
+        }
     });
 });
 
@@ -45,20 +52,16 @@ router.get('/login/fb/callback',
 );
 
 router.get('/login', function (req, res) {
-    res.render('login', {user: req.user});
+    res.render('login');
 });
 
-router.post('/login', passport.authenticate('local'), function (req, res) {
+router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), function (req, res) {
     res.redirect('/');
 });
 
 router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
-});
-
-router.get('/ping', function (req, res) {
-    res.status(200).send("pong!");
 });
 
 module.exports = router;

@@ -2,28 +2,33 @@ extends layout
 
 block content
     .container
-        h3 REGISTER PAGE
+        h3 REGISTER
         p Register to participate in competitions, attend workshops, or just roam around the fest.
-        br
-        form.col.s12(role='form', action="/register", method="post", style='max-width: 300px;')
+        form.col.s12#register(role='form', action="/register", method="post", style='max-width: 300px;')
             div.row
+                if (info)
+                    h6.red-text= info
                 div.input-field.col.s12
                     //i.material-icons.blue-text.darken-4.prefix email
-                    input(type='email', id="email" name="email")
+                    input#email(type='email', name="email" required=true)
                     label(for="email") Enter Email
                 div.input-field.col.s12
                     //i.material-icons.blue-text.darken-4.prefix star
-                    input(type='text', id="password1" name="password1")
-                    label(for="password1") Password
+                    input#pass1(type='password', name="password" required=true)
+                    label(for="pass1") Password
                 div.input-field.col.s12
                     //i.material-icons.blue-text.darken-4.prefix star
-                    input(type='text', id="password2" name="password2")
-                    label(for="password2") Repeat Password
-            div.row
-                &nbsp;
-                &nbsp;
-                button.btn.waves-effect.waves-light.blue.darken-4(type='submit') Submit
-                &nbsp;
-                &nbsp;
+                    input#pass2(type='password', name="password2" required=true)
+                    label(for="pass2") Confirm Password
+            div.row &nbsp; &nbsp;
+                button.btn.waves-effect.waves-light.blue.darken-4(type='submit') Submit &nbsp; &nbsp;
                 a(href='/')
                     button.btn.waves-effect.waves-light.blue.darken-4(type="button") Cancel
+script.
+    $('#register').submit(function () {
+        if ($('#pass1').val() == $('#pass2').val())
+            return true;
+        else {
+            return true;
+        }
+    });

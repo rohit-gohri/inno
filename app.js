@@ -58,7 +58,7 @@ app.use('/events', events);
 app.use('/teams', teams);
 
 // passport config
-passport.use(new LocalStrategy(Account.authenticate()));
+passport.use(Account.createStrategy());
 passport.use(new FacebookStrategy({
         clientID: '1682265012051455',
         clientSecret: '2e4238e0e2da29509fb8beb48126d2bf',
@@ -81,7 +81,7 @@ passport.use(new FacebookStrategy({
                         photo: profile.photos[0].value,
                         dob: profile.birthday,
                         provider: 'facebook',
-                        providerId: profile._json.id,
+                        providerData: profile._json,
                         accessToken: accessToken,
                         is_new: true
                     });

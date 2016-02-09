@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Event = new Schema({
-    name: {type:String,unique:true,dropDups:true},
+    name: {type:String, unique:true, dropDups:true},
+    linkName: {type:String, unique:true, dropDups:true},
     details: String,
     fbLink: String,
     photo: String,

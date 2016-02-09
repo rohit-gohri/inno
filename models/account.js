@@ -29,16 +29,15 @@ var Account = new Schema({
     provider: String,
     providerData: Object,
     accessToken: String,
-    inno_id: {type:String,unique:true,dropDups:true},
-    username: {type:String,unique:true,dropDups:true},
+    inno_id: {type:String, unique:true, dropDups:true, sparse:true},
     password: String,
-    email: {type:String,validator:emailValidator,unique:true,dropDups:true},
+    email: {type:String, validator:emailValidator, unique:true, dropDups:true},
     firstName: String,
     lastName: String,
     photo: String,
     dob: Date,
     gender: String,
-    phone_no: {type:String,validate:phoneValidator,unique:true,dropDups:true},
+    phone_no: {type:String, validate:phoneValidator, unique:true, dropDups:true, sparse:true},
     college: String,
     course: String,
     year: String,
@@ -49,7 +48,7 @@ var Account = new Schema({
     team: {type: Schema.ObjectId, ref: 'Team'}
 });
 
-Account.plugin(passportLocalMongoose);
+Account.plugin(passportLocalMongoose, {usernameField: 'email', usernameLowerCase: true});
 Account.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Account', Account);
