@@ -3,6 +3,7 @@ var Event = require('../models/event');
 var router = express.Router();
 var Account = require('../models/account');
 var multer = require('multer');
+var userLogic = require('../logic/userLogic');
 
 var upload = multer({
     dest: 'public/uploads/',
@@ -16,120 +17,78 @@ router.get('/', function (req, res) {
     });
 });
 
-router.post('/:eventName/register', function (req, res){
-    var ename=req.params.eventName;
-    var id=req.user._id;
-    console.log(id);
-    console.log(ename);
-    Event.findOne({name: ename},
-        function(err,even) {
-            if(!even || err){
-                 res.render('error', {message: "Please login to view this", error: {status: '', stack: ''}});
-            }
-            else if(even.isTeamEvent)
-            {
-
-                Account.findOne({inno_id: id},
-                function(err,user){
-                    if(!even || err){
-                        res.render('error', {message: "Please login to view this", error: {status: '', stack: ''}});
-                    }
-                    var teamid=user.team;
-                    console.log(teamid);
-                    console.log(even.teams);
-                    even.teams.push(teamid);
-                    console.log(even.teams);
-                    even.save(function (err, event) {
-                    if(err) {
+router.post('/:eventLink/register/', userLogic.ensureAuthenticated, function (req, res){
+    var elink=req.params.eventLink;
+    var teamName = req.body.teamName;
+    var id = req.user._id;
+    Event.findOne({linkName: elink}, function(err, event) {
+        if (!event || err){
+            res.render('error', {message: "Event not found", error: {status: '', stack: ''}});
+        } else if (event.isTeamEvent) {
+            Team.findOne({name: teamName}, function(err, team){
+                if(!user || err)
+                    res.render('error', {message: "Error", error: {status: '', stack: ''}});
+                event.participants.push(team.captain);
+                event.save(function (err, event) {
+                    if(err)
                         console.log(err);
-                    }
-                    res.render('event', {event: event});
-                    });
-                }); 
-
-            }
-            else
-            {
-            var members=even.participants;
-            console.log(members);
-            even.participants.push(id);
-            console.log(members);
-            even.save(function (err, event) {
-                    if(err) {
-                        console.log(err);
-                    }
                     res.render('event', {event: event});
                 });
-            }
-        });
-
-});
-
-router.get('/edit', function (req, res) {
-    Event.find({managers: req.user._id },
-        function (err, event) {
-            if(err) {
-                console.log(err);
-            }
-            else {
-                res.render('event', {event: event});
-            }
-    })
-
-} );
-
-router.get('/addEvent', function (req, res) {
-    Account.findOne({email: req.user.email},
-    function(err, user) {
-        if (!user || err) {
-            res.render('error', {message: "Please login to view this", error: {status: '', stack: ''}});
-        }
-        if (user.is_em || user.is_admin) {
-            res.render('addEvent')
+            });
         } else {
-            res.render('error',
-                {message: "You don't have permission to view this.", error: {status: '', stack: ''}});
+            event.participants.push(id);
+            event.save(function (err, event) {
+                if(err)
+                    console.log(err);
+                res.render('event', {event: event, msg: "Successfully Registered"});
+            });
         }
-
     });
 });
 
-router.post('/addEvent', upload.single('eventPhoto'), function(req, res) {
-    Account.findOne({_id: req.user._id},
-        function(err, user) {
-            if (!user || err) {
-                res.render('error', {message: "Please login to edit this", error: {status: '', stack: ''}});
-            }
-            if (user.is_em || user.is_admin) {
-                event = new Event({
-                    name: req.body.name,
-                    details: req.body.details,
-                    fbLink: req.body.fbLink,
-                    minParticipants: req.body.minParticipants,
-                    managers: [req.user._id],
-                    category: req.body.category,
-                    photo: '/uploads/' + req.file.filename
-                });
-                event.save(function (err, event) {
-                    if(err) {
-                        console.log(err);
-                    }
-                    var red = '' + event.name;
-                    res.redirect(red);
-                });
-            } else {
-                res.render('error',
-                    {message: "You don't have permission to edit this.", error: {status: '', stack: ''}});
-            }
-
-        });
+router.get('/:eventName/edit', userLogic.isEM, function (req, res) {
+    Event.find({managers: req.user._id }, function (err, event) {
+        if(err)
+            console.log(err);
+        else if (event.name = req.params.eventName) {
+            res.render('addEvent', {event: event, edit: true});
+        } else {
+            res.render('error', {message:"You don't have permission to view this", err: {status:"", stack:""}});
+        }
+    })
 });
 
-router.get('/:eventName', function (req, res) {
-    Event.findOne({name: req.params.eventName},
+router.get('/addEvent', userLogic.isEM, function (req, res) {
+    res.render('addEvent')
+});
+
+router.post('/addEvent', userLogic.isEM, upload.single('eventPhoto'), function(req, res) {
+    var linkName = req.body.name;
+    linkName = linkName.replace(/\s+/g, '-').toLowerCase();
+    event = new Event({
+        name: req.body.name,
+        linkName: linkName,
+        details: req.body.details,
+        fbLink: req.body.fbLink,
+        minParticipants: req.body.minParticipants,
+        managers: [req.user._id],
+        category: req.body.category,
+        photo: '/uploads/' + req.file.filename
+    });
+    event.save(function (err, event) {
+        if(err) {
+            console.log(err);
+        }
+        var red = '' + event.name;
+        res.redirect(red);
+    });
+});
+
+router.get('/:eventLink', function (req, res) {
+    Event.findOne({linkName: req.params.eventLink},
         function (err, event) {
             if(!event || err ) {
-                res.render('error', {message: "Event not found!!!", error: {status: '', stack: ''}});
+                res.render('error', {message: "Event not found!", error: {status: '', stack: ''}});
             }
             else {
                 res.render('event', {event: event});

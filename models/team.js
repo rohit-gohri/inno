@@ -9,7 +9,7 @@ var nameValidator = [
     })
 ];
 var Team = new Schema({
-    name: {type:String,validator:nameValidator,unique:true,dropDups:true},
+    name: {type:String, validator:nameValidator, unique:true, dropDups:true, trim:true},
     members: [{type: Schema.ObjectId, ref: 'Account'}],
     captain: {type: Schema.ObjectId, ref: 'Account'}
 });

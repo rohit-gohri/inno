@@ -10,11 +10,16 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var Account = require('./models/account');
 var paginate = require('express-paginate');
+var Hashids = require("hashids");
+
+var hashids = new Hashids("LetsINNOvade", 5, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var events = require('./routes/events');
 var teams = require('./routes/teams');
+var userLogic = require('./logic/userLogic');
 
 var app = express();
 
@@ -39,19 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(paginate.middleware(10, 50));
 
-app.get('*', function (req, res, next) {
-    res.locals.login = req.user? true : false;
-    if (res.locals.login) {
-        res.locals.is_admin = req.user.is_admin;
-        res.locals.is_em = req.user.is_em;
-        res.locals.firstName = req.user.firstName;
-    } else {
-        res.locals.is_admin = false;
-        res.locals.is_em = false;
-    }
-    next();
-});
-
+app.get('*', userLogic.setLoginStatus);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/events', events);
@@ -87,7 +80,10 @@ passport.use(new FacebookStrategy({
                     });
                     user.save(function (err) {
                         if (err) console.log(err);
-                        return done(err, user);
+                        user.inno_id = hashids.encode(user.accNo);
+                        user.save(function(err) {
+                            return done(err, user);
+                        });
                     });
                 } else {
                     return done(err, user);
@@ -98,12 +94,12 @@ passport.use(new FacebookStrategy({
 passport.serializeUser(function(user, done) {
     done(null, user._id);
 });
-
 passport.deserializeUser(function(id, done) {
     Account.findOne({_id: id}, function(err, user) {
         done(err, user);
     });
 });
+
 // mongoose
 mongoose.connect('mongodb://127.0.0.1:27017/innovision');
 

@@ -6,7 +6,11 @@ block content
             .parallax
                 img(src=event.photo)
     .container
+        h6= msg
         h3 #{event.name}
+            if (is_admin || is_em)
+                a(href="/events/" + event.linkName + "/edit")
+                    i.material-icons.prefix mode_edit
         p #{event.details}
         if event.fbLink
             p
@@ -14,8 +18,12 @@ block content
         if(event.isTeamEvent)
             h5 Team Event
             p Min Participants: #{event.minParticipants}
-        button.btn.waves-effect.waves-light.blue.darken-4
-            a(href="/events/" + #{event.name} + "/register") Register
+        if event.isTeamEvent
+            button.btn.waves-effect.waves-light.blue.darken-4
+                a.modal-trigger(href="#eventTeamModal") Register
+        else
+            form(role='form', action='/events/' + event.linkName + "/register", method='post')
+                button.btn.waves-effect.blue.darken-4(type="submit") Register
         if is_admin || is_em
             h5
                 a(href='/events/' + event.name + '/participants') Participants
@@ -24,8 +32,43 @@ block content
         if is_admin
             h5
                 a(href='/events/' + event.name + '/managers') Managers
+
+    #eventTeamModal.modal
+        .modal-content.center
+            h4 Select Team for Event
+            .row
+                form.col.s12(role='form', action="/events/" + event.name + "/register/", method="post")
+                    h6 Select Team
+                    //each team, index in teams
+                        p
+                            input.with-gap(name="teamName" type="radio" id="opt"+index)
+                            label(for="opt"+index) team.name
+                    .btn.waves-light.waves-effect
+                        a(href="/teams/newTeam") New Team
+                    button.btn.waves-effect.waves-light.blue.darken-4(type="submit") Select Team
+                        i.material-icons.prefix.right send
+
+            form.row(role='form', action="/login/fb", method="get")
+                .col.s12.center-align.center
+                    button.btn(type='submit')#fb
+                        img(src='http://i.stack.imgur.com/ryt6L.png', style='max-width: 200px;')
+            .row
+                .col.s12.center-align.center
+                    a(href='/register')
+                        button.btn.waves-effect.waves-light.blue.darken-4(style="width: 200px;") Register
 script.
     $(document).ready(function(){
         $('.parallax').parallax();
-
+    });
+    $.ajax({
+        url: '/teams/api/myteams',
+        dataType: teams,
+        type: 'GET',
+        success: function (teams) {
+            /* do something with items here */
+            // You will likely want a template so you don't have to format the string by hand
+            for (var team in teams) {
+                $('#results').append('<div>' + item.interestingField + '</div>);
+            }
+        }
     });

@@ -4,24 +4,32 @@ var router = express.Router();
 var Account = require('../models/account')
 var Team = require('../models/team')
 
-router.get('/myteam', function(req, res) {
-    Account.findOne({inno_id: req.user.inno_id}, function(err, user) {
+router.get('/myteams', function(req, res) {
+    Account.findOne({_id: req.user._id}, function(err, user) {
         if (err) {
             res.render('error');
         } else {
-            if (user.team) {
-                Team.findOne({_id: user.team}, function(err, team) {
-                    res.render('team', {user:user, team: team});
-                })
-            } else {
-                res.redirect('/newTeam');
-            }
+            Team.find({members: user._id}).lean().execute(function(err, teams) {
+                if(err)
+                    res.render('error', {message:"Sorry!", error: err});
+                res.render('team', {user:user, teams: teams});
+            })
         }
     })
 });
 
-router.get('/', function(req, res) {
-    res.render('addEvent');
+router.get('/api/myteams', function(req, res) {
+    Account.findOne({_id: req.user._id}, function(err, user) {
+        if (err) {
+            res.render('error');
+        } else {
+            Team.find({members: user._id}).lean().execute(function(err, teams) {
+                if(err)
+                    res.send({message:"Sorry!", error: err});
+                res.send({teams: teams});
+            })
+        }
+    })
 });
 
 router.get('/newTeam', function(req, res) {

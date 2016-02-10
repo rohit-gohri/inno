@@ -3,6 +3,11 @@ var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 var mongoosePaginate = require('mongoose-paginate');
 var validate = require('mongoose-validator');
+var autoIncrement = require('mongoose-auto-increment');
+
+var connection = mongoose.createConnection('mongodb://127.0.0.1:27017/innovision');
+autoIncrement.initialize(connection);
+
 var nameValidator = [
     validate({
         validator: 'isLength',
@@ -24,30 +29,30 @@ var phoneValidator = [
     })
 ];
 
-
 var Account = new Schema({
+    accNo: Number,
     provider: String,
     providerData: Object,
     accessToken: String,
     inno_id: {type:String, unique:true, dropDups:true, sparse:true},
     password: String,
-    email: {type:String, validator:emailValidator, unique:true, dropDups:true},
+    email: {type:String, validator:emailValidator, unique:true, dropDups:true, trim: true},
     firstName: String,
     lastName: String,
     photo: String,
     dob: Date,
     gender: String,
-    phone_no: {type:String, validate:phoneValidator, unique:true, dropDups:true, sparse:true},
-    college: String,
-    course: String,
+    phone_no: {type:String, validate:phoneValidator, unique:true, dropDups:true, sparse:true, trim: true},
+    college: {type:String, trim: true},
+    course: {type:String, trim: true},
     year: String,
     dateJoined: Date,
     is_em: {type:Boolean,default:false},
     is_admin: {type:Boolean,default:false},
-    is_new: {type:Boolean,default:true},
-    team: {type: Schema.ObjectId, ref: 'Team'}
+    is_new: {type:Boolean,default:true}
 });
 
+Account.plugin(autoIncrement.plugin, {model: 'Account', field: 'accNo'});
 Account.plugin(passportLocalMongoose, {usernameField: 'email', usernameLowerCase: true});
 Account.plugin(mongoosePaginate);
 
