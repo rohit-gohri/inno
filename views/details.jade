@@ -55,18 +55,18 @@ block content
                         input(value=user.course, id='course', name='course', type='text', class='validate' required=true)
                         label.active(for='course') Course
 
-                if(!user.is_new)
+                if(!user.is_new && events)
                     ul.collection.with-header
                         li.collection-header
                             h4 Registered Events
-                        li.collection-item.avatar
-                            a(href="/events/" + "event.name")
-                                span.title event.name
-                                p
-                                    a(href="event.fbLink") FB Event Link
-                                a.secondary-content(href="/events/" + "event.name")
-                                    i.material-icons send
-                                //each event in events*/
+                        each event in events
+                            li.collection-item.avatar
+                                a(href="/events/" + event.name)
+                                    span.title= event.name
+                                    p
+                                        a(href=event.fbLink) FB Event Link
+                                    a.secondary-content(href="/events/" + event.linkName)
+                                        i.material-icons send
                 if (user.is_new)
                     div.row.center
                         button.btn.waves-light.waves-effect(type='submit') Save

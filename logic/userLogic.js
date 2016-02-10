@@ -7,6 +7,7 @@ var users = {
     setLoginStatus: function(req, res, next) {
         if(req.isAuthenticated()) {
             res.locals.login = true;
+            res.locals.firstName = req.user.firstName;
             res.locals.is_admin = req.user.is_admin;
             res.locals.is_em = req.user.is_em;
         } else {
@@ -24,7 +25,7 @@ var users = {
         }
     },
     getTeams: function(req, res, next) {
-        Team.find({members: req.user._id}).lean().execute(function(err, teams) {
+        Team.find({members: req.user._id}).lean().exec(function(err, teams) {
             if (!err) {
                 res.locals.teams = teams;
                 next();
@@ -32,22 +33,36 @@ var users = {
         });
     },
     getEvents: function(req, res, next) {
-        Team.find({members: req.user._id}).lean().execute(function(err, teams) {
-            if (!err) {
-                var captains = [];
-                teams.forEach(function(team, index, arr) {
-                    captains.push(team.captain);
-                });
-                var eventsParticipating = [];
-                Event.find({isTeamEvent: true, participants: {$in: captains}}).lean().exec(function(err, events) {
-                    eventsParticipating = events;
-                });
-                Event.find({isTeamEvent: false, participants: req.user._id}).lean().exec(function(err, events) {
-                    eventsParticipating.add(events);
-                });
-                req.eventList = eventsParticipating;
-            }
+        //var captains = [];
+        req.eventList = [];
+        Event.find({isTeamEvent: false, participants: req.user._id})
+            .lean().exec(function(err, events) {
+                req.eventList = events;
+                console.log(events);
+                next();
         });
+
+        //
+        //Team.find({members: req.user._id}).lean().exec( function(err, teams, next) {
+        //    if (err) {
+        //        req.eventList = [];
+        //    } else {
+        //        teams.forEach(function(team, index, arr) {
+        //            captains.push(team.captain);
+        //        });
+        //        next();
+        //    }
+        //});
+        //Event.find({isTeamEvent: true, participants: {$in: captains}}).lean().exec(function(err, events) {
+        //    eventsParticipating = events;
+        //    console.log(events);
+        //}).then(Event.find({isTeamEvent: false, participants: req.user._id}).lean().exec(function(err, events) {
+        //    console.log(events);
+        //    eventsParticipating.push.apply(eventsParticipating, events);
+        //})).then(function() {
+        //    console.log(eventsParticipating);
+        //    req.eventList = eventsParticipating;
+        //}).then(next());
     },
     isAdmin: function(req, res, next) {
         if(req.isAuthenticated()) {

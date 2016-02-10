@@ -5,8 +5,8 @@ var Event = require('../models/event');
 var userLogic = require('../logic/userLogic');
 
 
-router.get('/details', userLogic.ensureAuthenticated, function (req, res) {
-    res.render('details', {user: req.user});
+router.get('/details', userLogic.ensureAuthenticated, userLogic.getEvents, function (req, res) {
+    res.render('details', {user: req.user, events: req.eventList});
 });
 
 
