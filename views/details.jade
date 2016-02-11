@@ -6,12 +6,15 @@ block content
             h3 Register
         else
             h3 Profile
+        h6 Inno ID : #{user.inno_id}
         div.row
             form.col.s12(role='form', action='/users/details', method='post')
                 .row
                     .col.s12.m6.no-padding
                         if (edit)
                             p.col.s12 Edit successful
+                        if (user.is_new)
+                            h6.col.s12.red-text Please fill out these details
                         if(user.is_admin || user.is_em)
                             p.col.s3
                                 a(href="/events/addEvent") Add Event
@@ -23,7 +26,7 @@ block content
                             label.active(for='lastName') Last Name
                     .col.s12.m6.no-padding
                         // if user.photo
-                        img.col.s6.right#dp(src=user.photo)
+                        img.col.s5.right#dp(src=user.photo)
                         //else
                             .input-field.file-field.col.s6.right
                                 .btn.blue.darken-4.waves-effect.waves-light
@@ -37,33 +40,33 @@ block content
                         label.active(for='email') Email
 
                     .input-field.col.m6.s12
-                        input(value=user.phone_no, id='phone_no', name='phone_no',type='tel', class='validate')
+                        input(value=user.phone_no, id='phone_no', name='phone_no',type='tel', class='validate' required=true)
                         label.active(for='phone_no') Phone Number
-                if (user.provider == 'local')
+                //if (user.provider == 'local')
                     a.row(href="/changePassword")
                         .input-field.col.m6.s12
                             input(value='********', id='password', name='password', type='password', class='validate')
                             label.active(for='password') Password
                 div.row
                     div.input-field.col.m6.s12
-                        input(value=user.college, id='college', name='college', type='text', class='validate')
+                        input(value=user.college, id='college', name='college', type='text', class='validate' required=true)
                         label.active(for='college') College
                     div.input-field.col.m6.s12
-                        input(value=user.course, id='course', name='course', type='text', class='validate')
+                        input(value=user.course, id='course', name='course', type='text', class='validate' required=true)
                         label.active(for='course') Course
 
-                if(!user.is_new)
+                if(!user.is_new && events)
                     ul.collection.with-header
                         li.collection-header
                             h4 Registered Events
-                        li.collection-item.avatar
-                            a(href="/events/" + "event.name")
-                                span.title event.name
-                                p
-                                    a(href="event.fbLink") FB Event Link
-                                a.secondary-content(href="/events/" + "event.name")
-                                    i.material-icons send
-                                //each event in events*/
+                        each event in events
+                            li.collection-item.avatar
+                                a(href="/events/" + event.name)
+                                    span.title= event.name
+                                    p
+                                        a(href=event.fbLink) FB Event Link
+                                    a.secondary-content(href="/events/" + event.linkName)
+                                        i.material-icons send
                 if (user.is_new)
                     div.row.center
                         button.btn.waves-light.waves-effect(type='submit') Save

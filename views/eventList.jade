@@ -46,17 +46,22 @@ block content
                         artillery and machines used by the Indian Army.
     h3.center Events
     .container
-        .row#events
+        .row
             each event, index in events
-                .card.small.col
-                    .card-image.waves-effect.waves-block.waves.light
-                        img.activator(src="/images/inno.png")
-                    .card-content
-                        span.card-title.activator.grey-text.text-darken-4 #{event.name}
-                            i.material-icons.right more_vert
-                        p
-                            a(href="#") #{event.link}
-                    .card-reveal
-                        span.card-title.grey-text.text-darken-4 #{event.details}
-                            i.material-icons.right close
-                        p event.details
+                .events.col.s12.m6.l4
+                    .card.small
+                        .card-image.waves-effect.waves-block.waves.light
+                            img.activator(src=event.photo)
+                        .card-content
+                            span.card-title.activator.grey-text.text-darken-4 #{event.name}
+                                i.material-icons.right more_vert
+                            p
+                                a(href="#") #{event.linkName}
+                        .card-reveal
+                            span.card-title.grey-text.text-darken-4 #{event.details}
+                                i.material-icons.right close
+                            script.
+                                var det = event.details;
+                            p event.details
+                            .btn.waves-effect.waves-light.blue.darken-4
+                                a(href="/events/" + event.linkName) Details

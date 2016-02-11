@@ -2,6 +2,9 @@ var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
 var router = express.Router();
+var Hashids = require("hashids");
+
+var hashids = new Hashids("LetsINNOvade", 5, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
 
 router.get('/', function (req, res) {
     res.render('index', {user: req.user});
@@ -20,16 +23,13 @@ router.post('/register', function (req, res) {
         if (err) {
             return res.render('error', {message: err.message, error: err});
         }
-        console.log(account);
-        if(!req.isAuthenticated()) {
-            passport.authenticate('local')(req, res, function () {
-                console.log(req);
+        passport.authenticate('local')(req, res, function () {
+            account.inno_id = hashids.encode(account.accNo);;
+            account.save(function (err) {
+                if(err) console.log(err);
                 res.redirect('/users/details');
             });
-        } else {
-            console.log(req);
-            res.redirect('/users/details');
-        }
+        });
     });
 });
 
@@ -39,15 +39,11 @@ router.get('/login/fb/callback',
     passport.authenticate('facebook', {
         failureRedirect: '/login'
     }), function(req, res) {
-        console.log(req);
-        Account.findOne({'providerData.id': req.user.providerData.id},
-        function(err, user) {
-            if (user.is_new) {
-                res.redirect('/users/details');
-            } else {
-                res.redirect('/');
-            }
-        });
+        if (req.user.is_new) {
+            res.redirect('/users/details');
+        } else {
+            res.redirect('/');
+        }
     }
 );
 

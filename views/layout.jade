@@ -7,6 +7,13 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='/font/material\ icons/material-icons.css')
         link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,300', type='text/css')
+        script.
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                    ga('create', 'UA-73588354-1', 'auto');
+                    ga('send', 'pageview');
     body
         nav.z-depth-1.grey.darken-4
             div.nav-wrapper.black-text.container
@@ -15,7 +22,8 @@ html
                         if !login
                             a.modal-trigger(href="#loginModal") Login
                         else
-                            a.modal-trigger(href="/users/details") Hello #{firstName}!
+                            a.dropdown-button(href="#!" data-activates="profDrop") Hello #{firstName}!
+                                i.material-icons.white-text.right arrow_drop_down
                     li
                         a(href="/") Home
                     li
@@ -41,7 +49,8 @@ html
                         if ! login
                             a.modal-trigger(href="#loginModal") Login
                         else
-                            a.modal-trigger(href="/users/details") Hello #{firstName}!
+                            a.dropdown-button(href="#!" data-activates="profDrop") Hello #{firstName}!
+                                i.material-icons.white-text.right arrow_drop_down
 
         main
             block content
@@ -88,6 +97,12 @@ html
                         a(href='/register')
                             button.btn.waves-effect.waves-light.blue.darken-4(style="width: 200px;") Register
 
+        ul#profDrop.dropdown-content.grey.darken-4
+            li.white-text
+                a(href="/users/details") Profile
+            li.divider
+            li.white-text
+                a(href="/logout") Logout
     script(src='/javascripts/jquery.min.js')
     script(src='/javascripts/materialize.js')
     script.
@@ -97,6 +112,7 @@ html
             $('select').material_select();
             $('.modal-trigger').leanModal();
             $("input[name='is_team_event']").change(radioValueChanged);
+            $(".dropdown-button").dropdown();
         });
         function radioValueChanged() {
             radioValue = $(this).val();

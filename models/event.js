@@ -2,10 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Event = new Schema({
-    name: {type:String, unique:true, dropDups:true},
-    linkName: {type:String, unique:true, dropDups:true},
-    details: String,
-    fbLink: String,
+    name: {type:String, unique:true, dropDups:true, trim:true},
+    linkName: {type:String, unique:true, dropDups:true, trim:true},
+    details: {type:String, trim: true},
+    fbLink: {type:String, trim: true},
     photo: String,
     minParticipants: {type:Number, default:'1'},
     isTeamEvent: {type:Boolean,default:false},

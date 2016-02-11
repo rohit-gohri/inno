@@ -2,58 +2,23 @@ var express = require('express');
 var router = express.Router();
 var Account = require('../models/account');
 var Event = require('../models/event');
+var userLogic = require('../logic/userLogic');
 
-router.get('/details', function (req, res) {
-    if (req.user) {
-        Account.findOne({email: req.user.email},
-            function (err, user) {
-                if (err) {
-                    res.render('error', {message: err.message, error: err});
-                }
-                else
-                {
 
-               /* Event.find({participants: req.user._id},
-                    function(err,event){
-                         if (err) {
-                    res.render('error', {message: err.message, error: err});
-                    }
-                    else
-                    {
-                        event.
-                    }
-
-                    });
-                    
-                function(err,event){
-                    if (err) {
-                    res.render('error', {message: err.message, error: err});
-                    }
-                    
-                    event.
-                } */   
-                res.render('details', {user: user});
-                }
-
-            });
-    } 
-    else {
-        res.render('error', {message: 'Please login', error: {status: '', stack: ''}});
-    }
-
+router.get('/details', userLogic.ensureAuthenticated, userLogic.getEvents, function (req, res) {
+    res.render('details', {user: req.user, events: req.eventList});
 });
 
 
 router.post('/details', function (req, res) {
-    var firstName = req.body.firstName;
-    var lastName = req.body.lastName;
-    var phone_no = req.body.phone_no;
-    Account.findOne({email: req.user.email},
+    Account.findOne({_id: req.user._id},
         function (err, user) {
             if(err) {
                 res.render('error', {message: err.message, error: err});
             }
-            user.phone_no = phone_no;
+            user.firstName = req.body.firstName;
+            user.lastName = req.body.lastName;
+            user.phone_no = req.body.phone_no;
             user.is_new = false;
             user.dob = req.body.dob;
             user.college = req.body.college;
