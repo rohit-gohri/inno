@@ -79,7 +79,7 @@ router.post('/addEvent', userLogic.isEM, upload.single('eventPhoto'), function(r
         if(err) {
             console.log(err);
         }
-        var red = '' + event.name;
+        var red = '' + event.linkName;
         res.redirect(red);
     });
 });
