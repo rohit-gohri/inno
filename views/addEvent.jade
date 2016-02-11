@@ -10,13 +10,13 @@ block content
             form.col.s12(role='form', action="/events/addEvent", method="post", enctype="multipart/form-data")
                 .row
                     .input-field.col.s8.m7
-                        input(type='text', id="event_name" name="name" required=true)
+                        input(value=event.name type='text', id="event_name" name="name" required=true)
                         label(for="event_name") Event Name
                     .input-field.col.s8.m7
-                        textarea.materialize-textarea(id="details" name="details" required=true style="min-height:120px;")
-                        label(for="event_name") Event Details
+                        textarea.materialize-textarea(value=event.details id="details" name="details" required=true style="min-height:120px;")
+                        label(for="details") Event Details
                     .input-field.col.s8.m7
-                        input(type='text', id="fb_link" name="fbLink")
+                        input(value=event.fbLink type='text', id="fb_link" name="fbLink")
                         label(for="fb_link") Facebook Event Link
                 .row
                     .input-field.col.s8.m4
@@ -31,16 +31,16 @@ block content
                     .input-field.file-field.col.s8.m7
                         .btn.blue.darken-4.waves-effect.waves-light
                             span Photo
-                            input(type="file" name="eventPhoto" required=true)
+                            input(type="file" name="eventPhoto")
                         .file-path-wrapper
                             input.file-path.validate(type="text")
                 h6 Is the event a team event?
                 .row
                     .col.s4.m2.l1
-                        input.with-gap(name="is_team_event" type="radio" id="teamEvent" value="1")
+                        input.with-gap(name="isTeamEvent" type="radio" id="teamEvent" value="1")
                         label(for="teamEvent") Yes
                     .col.s4.m2.l1
-                        input.with-gap(name="is_team_event" type="radio" id="indEvent" checked=true value="0")
+                        input.with-gap(name="isTeamEvent" type="radio" id="indEvent" checked=true value="0")
                         label(for="indEvent") No
                 .row#minPart.hidden
                     .input-field.col.s8.m4
@@ -57,3 +57,16 @@ block content
                         button.btn.waves-effect.waves-light.blue.darken-4(type='submit', style="width: 200px;") Add
                             i.material-icons.prefix.right send
 
+block scripts
+    script.
+        $(document).ready(function () {
+            $("input[name='isTeamEvent']").change(radioValueChanged);
+        });
+        function radioValueChanged() {
+            radioValue = $(this).val();
+            if ($(this).is(":checked") && radioValue == "1") {
+                $('#minPart').toggleClass('hidden')
+            } else {
+                $('#minPart').toggleClass('hidden')
+            }
+        }

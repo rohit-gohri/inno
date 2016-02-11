@@ -33,7 +33,7 @@ router.post('/register', function (req, res) {
     });
 });
 
-router.get('/login/fb', passport.authenticate('facebook', {authType: 'rerequest', scope: 'email'}));
+router.get('/login/fb', passport.authenticate('facebook', {authType: 'rerequest', scope: ['email', 'user_birthday']}));
 
 router.get('/login/fb/callback',
     passport.authenticate('facebook', {
@@ -43,6 +43,11 @@ router.get('/login/fb/callback',
             res.redirect('/users/details');
         } else {
             res.redirect('/');
+        }
+    }, function(err, req, res) {
+        if(err) {
+            req.logout();
+            res.redirect('/login');
         }
     }
 );

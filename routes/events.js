@@ -32,7 +32,7 @@ router.post('/:eventLink/register/', userLogic.ensureAuthenticated, function (re
                 event.save(function (err, event) {
                     if(err)
                         console.log(err);
-                    res.render('event', {event: event});
+                    res.render('event', {event: event, msg: "Successfully Registered Team " + team.name});
                 });
             });
         } else {
@@ -65,22 +65,26 @@ router.get('/addEvent', userLogic.isEM, function (req, res) {
 router.post('/addEvent', userLogic.isEM, upload.single('eventPhoto'), function(req, res) {
     var linkName = req.body.name;
     linkName = linkName.replace(/\s+/g, '-').toLowerCase();
+    var trimmedDetails = req.body.details.substr(0, 15);
+    trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
+    trimmedDetails = trimmedDetails + '...';
     event = new Event({
         name: req.body.name,
         linkName: linkName,
+        shortDetails: trimmedDetails,
         details: req.body.details,
         fbLink: req.body.fbLink,
         minParticipants: req.body.minParticipants,
         managers: [req.user._id],
         category: req.body.category,
-        photo: '/uploads/' + req.file.filename
+        photo: '/uploads/' + req.file.filename,
+        isTeamEvent: req.body.isTeamEvent == 1
     });
     event.save(function (err, event) {
         if(err) {
             console.log(err);
         }
-        var red = '' + event.name;
-        res.redirect(red);
+        res.redirect(event.linkName);
     });
 });
 

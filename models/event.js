@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var Event = new Schema({
     name: {type:String, unique:true, dropDups:true, trim:true},
     linkName: {type:String, unique:true, dropDups:true, trim:true},
+    shortDetails: String,
     details: {type:String, trim: true},
     fbLink: {type:String, trim: true},
     photo: String,

@@ -105,24 +105,15 @@ html
                 a(href="/logout") Logout
     script(src='/javascripts/jquery.min.js')
     script(src='/javascripts/materialize.js')
+    block scripts
     script.
         $(document).ready(function () {
             $('.parallax').parallax();
             $('.slider').slider({full_width: true});
             $('select').material_select();
             $('.modal-trigger').leanModal();
-            $("input[name='is_team_event']").change(radioValueChanged);
             $(".dropdown-button").dropdown();
         });
-        function radioValueChanged() {
-            radioValue = $(this).val();
-            if ($(this).is(":checked") && radioValue == "1") {
-                $('#minPart').toggleClass('hidden')
-            }
-            else {
-                $('#minPart').toggleClass('hidden')
-            }
-        }
         // Initialize collapse button
         $(".button-collapse").sideNav();
 
