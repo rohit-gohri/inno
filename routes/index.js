@@ -26,8 +26,10 @@ router.post('/register', function (req, res) {
         passport.authenticate('local')(req, res, function () {
             account.inno_id = hashids.encode(account.accNo);;
             account.save(function (err) {
-                if(err) console.log(err);
-                res.redirect('/users/details');
+                if(err)
+                    console.log(err);
+                else
+                    res.redirect('/users/details');
             });
         });
     });

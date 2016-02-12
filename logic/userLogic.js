@@ -19,10 +19,7 @@ var users = {
     },
     ensureAuthenticated: function(req, res, next) {
         if(req.isAuthenticated()) {
-            if (req.user.is_new)
-                res.redirect('/users/details');
-            else
-                return next();
+            return next();
         } else {
             res.redirect('/login');
         }

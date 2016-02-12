@@ -46,14 +46,42 @@ router.post('/:eventLink/register/', userLogic.ensureAuthenticated, function (re
     });
 });
 
-router.get('/:eventName/edit', userLogic.isEM, function (req, res) {
-    Event.find({managers: req.user._id }, function (err, event) {
+router.get('/:eventLink/edit', userLogic.isEM, function (req, res) {
+    Event.findOne({linkName: req.params.eventLink}, function (err, event) {
         if(err)
             console.log(err);
-        else if (event.name = req.params.eventName) {
+        else if (event.managers.indexOf(req.user._id) > -1 || event.is_admin) {
             res.render('addEvent', {event: event, edit: true});
         } else {
             res.render('error', {message:"You don't have permission to view this", err: {status:"", stack:""}});
+        }
+    })
+});
+
+router.post('/:eventLink/edit', userLogic.isEM, function(req, res) {
+    Event.findOne({linkName: req.params.eventLink}, function (err, event) {
+        if (err)
+            console.log(err);
+        else if (event.managers.indexOf(req.user._id) > -1 || event.is_admin) {
+            var linkName = req.body.name;
+            linkName = linkName.replace(/\s+/g, '-').toLowerCase();
+            var trimmedDetails = req.body.details.substr(0, 15);
+            trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
+            trimmedDetails = trimmedDetails + '...';
+
+            event.name = req.body.name;
+            event.linkName = linkName;
+            event.shortDetails = trimmedDetails;
+            event.details = req.body.details;
+            event.fbLink = req.body.fbLink;
+            event.minParticipants = req.body.minParticipants;
+            event.category = req.body.category;
+            event.isTeamEvent = req.body.isTeamEvent == 1;
+
+            event.save();
+            res.redirect('/events/' + linkName);
+        } else {
+            res.render('error', {message: "You don't have permission to view this", err: {status: "", stack: ""}});
         }
     })
 });
@@ -92,7 +120,7 @@ router.get('/:eventLink', function (req, res) {
     Event.findOne({linkName: req.params.eventLink},
         function (err, event) {
             if(!event || err ) {
-                res.render('error', {message: "Event not found!", error: {status: '', stack: ''}});
+                res.render('error', {message: "Event not found!" + req.params.eventLink, error: {status: '', stack: ''}});
             }
             else {
                 res.render('event', {event: event});

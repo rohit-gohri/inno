@@ -56,12 +56,10 @@ block content
                             span.card-title.activator.grey-text.text-darken-4 #{event.name}
                                 i.material-icons.right more_vert
                             p
-                                a(href="#") #{event.linkName}
+                                a(href="#!") #{event.shortDetails}
                         .card-reveal
-                            span.card-title.grey-text.text-darken-4 #{event.details}
+                            span.card-title.grey-text.text-darken-4 #{event.name}
                                 i.material-icons.right close
-                            script.
-                                var det = event.details;
-                            p event.details
+                            p #{event.details}
                             .btn.waves-effect.waves-light.blue.darken-4
                                 a(href="/events/" + event.linkName) Details

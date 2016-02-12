@@ -7,55 +7,72 @@ block content
         else
             h3 Add Event
         .row
-            form.col.s12(role='form', action="/events/addEvent", method="post", enctype="multipart/form-data")
-                .row
-                    .input-field.col.s8.m7
-                        input(value=event.name type='text', id="event_name" name="name" required=true)
-                        label(for="event_name") Event Name
-                    .input-field.col.s8.m7
-                        textarea.materialize-textarea(value=event.details id="details" name="details" required=true style="min-height:120px;")
-                        label(for="details") Event Details
-                    .input-field.col.s8.m7
-                        input(value=event.fbLink type='text', id="fb_link" name="fbLink")
-                        label(for="fb_link") Facebook Event Link
-                .row
-                    .input-field.col.s8.m4
-                        select(name="category")
-                            option(value="" disabled=true selected=true) Choose your option
-                            option(value="technical") Technical Events
-                            option(value="workshops") Workshops
-                            option(value="megaEvents") Mega Events
-                            option(value="managerial") Managerial Events
-                        label Select Category
-                .row
-                    .input-field.file-field.col.s8.m7
-                        .btn.blue.darken-4.waves-effect.waves-light
-                            span Photo
-                            input(type="file" name="eventPhoto")
-                        .file-path-wrapper
-                            input.file-path.validate(type="text")
-                h6 Is the event a team event?
-                .row
-                    .col.s4.m2.l1
-                        input.with-gap(name="isTeamEvent" type="radio" id="teamEvent" value="1")
-                        label(for="teamEvent") Yes
-                    .col.s4.m2.l1
-                        input.with-gap(name="isTeamEvent" type="radio" id="indEvent" checked=true value="0")
-                        label(for="indEvent") No
-                .row#minPart.hidden
-                    .input-field.col.s8.m4
-                        select(name="minParticipants")
-                            option(value="" disabled=true selected=true) Choose your option
-                            option(value="2") 2
-                            option(value="3") 3
-                            option(value="4") 4
-                            option(value="5") 5
-                        label Minimum Participants
-                .row
-                    .col.s12
-                        //&nbsp; &nbsp;
-                        button.btn.waves-effect.waves-light.blue.darken-4(type='submit', style="width: 200px;") Add
-                            i.material-icons.prefix.right send
+            if edit
+                form.col.s12(role='form', action="/events/" + event.linkName + '/edit', method="post")
+                    mixin form
+            else
+                form.col.s12(role='form', action="/events/addEvent", method="post", enctype="multipart/form-data")
+                    mixin form
+mixin form
+    .row
+        .input-field.col.s8.m7
+            input(value=event.name type='text', id="event_name" name="name" required=true)
+            label(for="event_name") Event Name
+        .input-field.col.s8.m7
+            textarea.materialize-textarea(id="details" name="details" required=true style="min-height:120px;") #{event.details}
+            label(for="details") Event Details
+        .input-field.col.s8.m7
+            input(value=event.fbLink type='text', id="fb_link" name="fbLink")
+            label(for="fb_link") Facebook Event Link
+    .row
+        .input-field.col.s8.m4
+            select(name="category")
+                option(value="" disabled=true) Choose your option
+                option(value="technical" selected=event.category=='technical') Technical Events
+                option(value="workshops" selected=event.category=='workshops') Workshops
+                option(value="megaEvents" selected=event.category=='megaEvents') Mega Events
+            label Select Category
+    .row
+        .input-field.file-field.col.s8.m7
+            .btn.blue.darken-4.waves-effect.waves-light
+                span Photo
+                input(type="file" name="eventPhoto")
+            .file-path-wrapper
+                input.file-path.validate(type="text")
+    h6 Is the event a team event?
+    .row
+        .col.s4.m2.l1
+            input.with-gap(name="isTeamEvent" type="radio" id="teamEvent" checked=event.isTeamEvent==true value="1")
+            label(for="teamEvent") Yes
+        .col.s4.m2.l1
+            input.with-gap(name="isTeamEvent" type="radio" id="indEvent" checked=event.isTeamEvent==false value="0")
+            label(for="indEvent") No
+    if event.isTeamEvent
+        .row#minPart
+            mixin minPart
+    else
+        .row#minPart.hidden
+            mixin minPart
+
+    .row
+        .col.s12
+            //&nbsp; &nbsp;
+            button.btn.waves-effect.waves-light.blue.darken-4(type='submit', style="width: 200px;")
+                if edit
+                    | Save
+                else
+                    | Add
+                i.material-icons.prefix.right send
+
+mixin minPart
+    .input-field.col.s8.m4
+        select(name='minParticipants')
+            option(value="" disabled=true selected=event.minParticipants == '1') Choose your option
+            option(value="2" selected=event.minParticipants == '2') 2
+            option(value="3" selected=event.minParticipants == '3') 3
+            option(value="4" selected=event.minParticipants == '4') 4
+            option(value="5" selected=event.minParticipants == '5') 5
+        label Minimum Participants
 
 block scripts
     script.
