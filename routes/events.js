@@ -59,7 +59,7 @@ router.get('/:eventName/edit', userLogic.isEM, function (req, res) {
 });
 
 router.get('/addEvent', userLogic.isEM, function (req, res) {
-    res.render('addEvent')
+    res.render('addEvent', {event:{}})
 });
 
 router.post('/addEvent', userLogic.isEM, upload.single('eventPhoto'), function(req, res) {
