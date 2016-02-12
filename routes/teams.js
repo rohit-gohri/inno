@@ -1,8 +1,9 @@
 var express = require('express');
 var Event = require('../models/event');
 var router = express.Router();
-var Account = require('../models/account')
-var Team = require('../models/team')
+var Account = require('../models/account');
+var Team = require('../models/team');
+var userLogic = require('../logic/userLogic');
 
 router.get('/myteams', function(req, res) {
     Account.findOne({_id: req.user._id}, function(err, user) {
@@ -18,22 +19,8 @@ router.get('/myteams', function(req, res) {
     })
 });
 
-router.get('/api/myteams', function(req, res) {
-    Account.findOne({_id: req.user._id}, function(err, user) {
-        if (err) {
-            res.render('error');
-        } else {
-            Team.find({members: user._id}).lean().execute(function(err, teams) {
-                if(err)
-                    res.send({message:"Sorry!", error: err});
-                res.send({teams: teams});
-            })
-        }
-    })
-});
-
-router.get('/newTeam', function(req, res) {
-    res.render('addTeam');
+router.get('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
+    res.render('addTeam', {user: {inno_id: req.user.inno_id}});
 });
 
 router.post('/newTeam', function(req, res) {
@@ -43,7 +30,7 @@ router.post('/newTeam', function(req, res) {
     var id4 = req.body.name4;
     var id5 = req.body.name5;
     var id5 = req.body.name5;
-    var tname = req.body.teamname;
+    var tname = req.body.name;
     console.log(id1);
     console.log(id2);
     console.log(id3);
