@@ -1,0 +1,48 @@
+{
+  "name": "jquery-lazyload",
+  "version": "1.9.7",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tuupola/jquery_lazyload.git"
+  },
+  "author": {
+    "name": "Mika Tuupola",
+    "email": "tuupola@appelsiini.net"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-jasmine": "~0.5.2",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "description": "Lazyload images with jQuery",
+  "bugs": {
+    "url": "https://github.com/tuupola/jquery_lazyload/issues"
+  },
+  "homepage": "http://www.appelsiini.net/projects/lazyload",
+  "main": "jquery.lazyload.js",
+  "files": [
+    "jquery.lazyload.js",
+    "jquery.scrollstop.js"
+  ],
+  "keywords": [
+    "jquery-plugin",
+    "ecosystem:jquery"
+  ],
+  "license": "MIT",
+  "readme": "# Lazy Load Plugin for jQuery\n\nLazy Load delays loading of images in long web pages. Images outside of viewport wont be loaded before user scrolls to them. This is opposite of image preloading.\n\nUsing Lazy Load on long web pages containing many large images makes the page load faster. Browser will be in ready state after loading visible images. In some cases it can also help to reduce server load.\n\nLazy Load is inspired by [YUI ImageLoader](http://developer.yahoo.com/yui/imageloader/) Utility by Matt Mlinac.\n\n## How to Use?\n\nLazy Load depends on jQuery. Include them both in end of your HTML code:\n\n```html\n<script src=\"jquery.js\" type=\"text/javascript\"></script>\n<script src=\"jquery.lazyload.js\" type=\"text/javascript\"></script>\n```\n\nYou must alter your HTML code. URL of the real image must be put into data-original attribute. It is good idea to give Lazy Loaded image a specific class. This way you can easily control which images plugin is binded to. Note that you should have width and height attributes in your image tag.\n\n```html\n<img class=\"lazy\" data-original=\"img/example.jpg\" width=\"640\" height=\"480\">\n```\n\nthen in your code do:\n\n```js\n$(\"img.lazy\").lazyload();\n```\n\nThis causes all images of class lazy to be lazy loaded.\n\nMore information on [Lazy Load](http://www.appelsiini.net/projects/lazyload) project page.\n\n## Install\n\nYou can install with [bower](http://bower.io/) or [npm](https://www.npmjs.com/).\n\n\n```sh\n$ bower install jquery.lazyload\n$ npm install jquery-lazyload\n```\n\n\n# License\n\nAll code licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php). All images licensed under [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/deed.en_US). In other words you are basically free to do whatever you want. Just don't remove my name from the source.\n\n",
+  "readmeFilename": "README.md",
+  "_id": "jquery-lazyload@1.9.7",
+  "dist": {
+    "shasum": "76f67a4450c3949cae13993964b13abcc4de7639"
+  },
+  "_from": "jquery-lazyload@",
+  "_resolved": "https://registry.npmjs.org/jquery-lazyload/-/jquery-lazyload-1.9.7.tgz"
+}
