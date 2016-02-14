@@ -4,15 +4,23 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background: #fff;
 }
 
-#nav {
-    background-color: #f9bd38 !important;
+#nav{
+    color: white !important;
+    background-color: #0b96b4 !important;
     padding: 10px;
     border-radius: 10px;
 }
 
-
+#foot, footer {
+    color: white !important;
+    background-color: #096d82 !important;
+}
+nav {
+    background-color: #0b96b4 !important;
+}
 
 h1,h2,h3,h4,h5,h6 {
     font-family: "Open Sans", sans-serif;
