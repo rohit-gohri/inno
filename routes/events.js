@@ -8,7 +8,7 @@ var userLogic = require('../logic/userLogic');
 var upload = multer({
     dest: 'public/uploads/',
     limits: {fileSize: 10000000, files:1},
-});
+}).single('eventPhoto');
 
 router.get('/', function (req, res) {
     Event.find({}).lean().exec(function (err, events) {
@@ -58,62 +58,77 @@ router.get('/:eventLink/edit', userLogic.isEM, function (req, res) {
     })
 });
 
-router.post('/:eventLink/edit', userLogic.isEM, function(req, res) {
-    Event.findOne({linkName: req.params.eventLink}, function (err, event) {
-        if (err)
-            console.log(err);
-        else if (event.managers.indexOf(req.user._id) > -1 || event.is_admin) {
-            var linkName = req.body.name;
-            linkName = linkName.replace(/\s+/g, '-').toLowerCase();
-            var trimmedDetails = req.body.details.substr(0, 15);
-            trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
-            trimmedDetails = trimmedDetails + '...';
+router.post('/:eventLink/edit', userLogic.isEM,
+    function (req, res, next) {
+        upload(req, res, function (err) {
+            if (err) {
+                next();
+            }
+        })
+    },
+    function(req, res) {
+        Event.findOne({linkName: req.params.eventLink}, function (err, event) {
+            if (err)
+                console.log(err);
+            else if (event.managers.indexOf(req.user._id) > -1 || event.is_admin) {
+                var linkName = req.body.name;
+                linkName = linkName.replace(/\s+/g, '-').toLowerCase();
+                var trimmedDetails = req.body.details.substr(0, 15);
+                trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
+                trimmedDetails = trimmedDetails + '...';
 
-            event.name = req.body.name;
-            event.linkName = linkName;
-            event.shortDetails = trimmedDetails;
-            event.details = req.body.details;
-            event.fbLink = req.body.fbLink;
-            event.minParticipants = req.body.minParticipants;
-            event.category = req.body.category;
-            event.isTeamEvent = req.body.isTeamEvent == 1;
+                event.name = req.body.name;
+                event.linkName = linkName;
+                event.shortDetails = trimmedDetails;
+                event.details = req.body.details;
+                event.fbLink = req.body.fbLink;
+                event.minParticipants = req.body.minParticipants;
+                event.category = req.body.category;
+                event.isTeamEvent = req.body.isTeamEvent == 1;
 
-            event.save();
-            res.redirect('/events/' + linkName);
-        } else {
-            res.render('error', {message: "You don't have permission to view this", err: {status: "", stack: ""}});
-        }
-    })
+                event.save();
+                res.redirect('/events/' + linkName);
+            } else {
+                res.render('error', {message: "You don't have permission to view this", err: {status: "", stack: ""}});
+            }
+        })
 });
 
 router.get('/addEvent', userLogic.isEM, function (req, res) {
     res.render('addEvent', {event:{}})
 });
 
-router.post('/addEvent', userLogic.isEM, upload.single('eventPhoto'), function(req, res) {
-    var linkName = req.body.name;
-    linkName = linkName.replace(/\s+/g, '-').toLowerCase();
-    var trimmedDetails = req.body.details.substr(0, 15);
-    trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
-    trimmedDetails = trimmedDetails + '...';
-    event = new Event({
-        name: req.body.name,
-        linkName: linkName,
-        shortDetails: trimmedDetails,
-        details: req.body.details,
-        fbLink: req.body.fbLink,
-        minParticipants: req.body.minParticipants,
-        managers: [req.user._id],
-        category: req.body.category,
-        photo: '/uploads/' + req.file.filename,
-        isTeamEvent: req.body.isTeamEvent == 1
-    });
-    event.save(function (err, event) {
-        if(err) {
-            console.log(err);
-        }
-        res.redirect(event.linkName);
-    });
+router.post('/addEvent', userLogic.isEM,
+    function (req, res, next) {
+        upload(req, res, function (err) {
+            if (err) {
+                next();
+            }
+        })
+    }, function(req, res) {
+        var linkName = req.body.name;
+        linkName = linkName.replace(/\s+/g, '-').toLowerCase();
+        var trimmedDetails = req.body.details.substr(0, 15);
+        trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
+        trimmedDetails = trimmedDetails + '...';
+        event = new Event({
+            name: req.body.name,
+            linkName: linkName,
+            shortDetails: trimmedDetails,
+            details: req.body.details,
+            fbLink: req.body.fbLink,
+            minParticipants: req.body.minParticipants,
+            managers: [req.user._id],
+            category: req.body.category,
+            photo: '/uploads/' + req.file.filename,
+            isTeamEvent: req.body.isTeamEvent == 1
+        });
+        event.save(function (err, event) {
+            if(err) {
+                console.log(err);
+            }
+            res.redirect(event.linkName);
+        });
 });
 
 router.get('/:eventLink', function (req, res) {

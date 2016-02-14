@@ -12,7 +12,7 @@ var Account = require('./models/account');
 var paginate = require('express-paginate');
 var Hashids = require("hashids");
 
-var hashids = new Hashids("LetsINNOvade", 5, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
+var hashids = new Hashids("LetsINNOvade", 4, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
 
 
 var routes = require('./routes/index');
@@ -80,7 +80,7 @@ passport.use(new FacebookStrategy({
                     });
                     user.save(function (err) {
                         if (err) console.log(err);
-                        user.inno_id = hashids.encode(user.accNo);
+                        user.inno_id = 'I' + hashids.encode(user.accNo);
                         user.save(function(err) {
                             return done(err, user);
                         });

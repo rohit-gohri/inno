@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    .container
+        h3 Contact Us
+        if err
+            h5.red-text #{msg}
+        else
+            h5.blue-text #{msg}
+        form.col(action='/contact' method='post' role='form')
+            .row
+                .input-field.col.s10.offset-s1.m8
+                    input(value=user.email, id='email', name='email', type='email', class='validate')
+                    label.active(for='email') Your Email
+                .input-field.col.s10.offset-s1.m8
+                    input(value=user.firstName, id='name', name='name')
+                    label.active(for='name') Your Name
+                .input-field.col.s10.offset-s1.m8
+                    input(id='subject', name='subject')
+                    label.active(for='subject') Subject
+                .input-field.col.s10.offset-s1.m8
+                    textarea.materialize-textarea(id='mail', name='mail' style="min-height:200px")
+                    label.active(for='mail') Message
+            .row
+                button.btn.waves-effect.waves-light(type="submit") Submit

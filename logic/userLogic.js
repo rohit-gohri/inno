@@ -2,6 +2,8 @@ var express = require('express');
 var Event = require('../models/event');
 var Account = require('../models/account');
 var Team = require('../models/team');
+var emailer  = require('nodemailer');
+
 
 var users = {
     setLoginStatus: function(req, res, next) {
@@ -83,6 +85,9 @@ var users = {
         } else {
             res.redirect('/login');
         }
+    },
+    sendMail: function(req, res, next) {
+
     }
 };
 
