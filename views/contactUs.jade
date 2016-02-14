@@ -10,16 +10,16 @@ block content
         form.col(action='/contact' method='post' role='form')
             .row
                 .input-field.col.s10.offset-s1.m8
-                    input(value=user.email, id='email', name='email', type='email', class='validate')
+                    input(value=user.email, id='email', name='email', type='email', class='validate' required)
                     label.active(for='email') Your Email
                 .input-field.col.s10.offset-s1.m8
-                    input(value=user.firstName, id='name', name='name')
+                    input(value=user.firstName, id='name', name='name' required)
                     label.active(for='name') Your Name
                 .input-field.col.s10.offset-s1.m8
-                    input(id='subject', name='subject')
+                    input(id='subject', name='subject' required)
                     label.active(for='subject') Subject
                 .input-field.col.s10.offset-s1.m8
-                    textarea.materialize-textarea(id='mail', name='mail' style="min-height:200px")
+                    textarea.materialize-textarea(id='mail', name='mail' style="min-height:200px" required)
                     label.active(for='mail') Message
             .row
                 button.btn.waves-effect.waves-light(type="submit") Submit

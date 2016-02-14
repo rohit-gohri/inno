@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "exec_mode": "fork_mode",
+      "script": "./bin/www",
+      "name": "inno",
+      "node_args": [  ],
+      "env": {
+        "PORT": 80,
+        "NODE_ENV": "debug"
+      },
+      "error_file": "./logs/inno-debug.err.log",
+      "out_file": "./logs/inno-debug.out.log"
+    }
+  ]
+}
