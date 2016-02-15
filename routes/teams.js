@@ -24,24 +24,17 @@ router.get('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
 });
 
 router.post('/newTeam', function(req, res) {
-    var id1 = req.body.name1;
-    var id2 = req.body.name2;
-    var id3 = req.body.name3;
-    var id4 = req.body.name4;
-    var id5 = req.body.name5;
-    var id5 = req.body.name5;
+    var id1 = req.user.inno_id;
+    var id2 = req.body.mem2;
+    var id3 = req.body.mem3;
+    var id4 = req.body.mem4;
+    var id5 = req.body.mem5;
     var tname = req.body.name;
-    console.log(id1);
-    console.log(id2);
-    console.log(id3);
-    console.log(id4);
-    console.log(id5);
 
     var captain = null;
 
     var mem = [];
     var err = [];
-
     Account.findOne({_id: req.user._id}, function(err, user) {
         if (err) {
             console.log(err);
@@ -50,31 +43,20 @@ router.post('/newTeam', function(req, res) {
                 res.render('error', {message: "Please login",
                     err: {status: error.statusCode, stack: error.stack}});
             }
+
             captain = req.user._id;
         }
     });
-    Account.findOne({inno_id: id1}, function(err, user) {
-        if (err) {
-            console.log(err);
-        } else {
-            if (user) {
-                mem.push(user._id);
-                
-            } else {
-                err.push('1');
-            }
-        }
-    });
-
     Account.findOne({inno_id: id2}, function(err, user) {
         if (err) {
             console.log(err);
         } else {
             if (user) {
-                mem.push(user._id);
-                
+
+                console.log(mem);
+
             } else {
-                err.push('2');
+                err.push('1');
             }
         }
     });
@@ -84,9 +66,11 @@ router.post('/newTeam', function(req, res) {
             console.log(err);
         } else {
             if (user) {
-               mem.push(user._id);
+
+                mem.push(user._id);
+
             } else {
-                err.push('3');
+                err.push('2');
             }
         }
     });
@@ -96,9 +80,10 @@ router.post('/newTeam', function(req, res) {
             console.log(err);
         } else {
             if (user) {
+
                 mem.push(user._id);
             } else {
-                err.push('4');
+                err.push('3');
             }
         }
     });
@@ -108,27 +93,31 @@ router.post('/newTeam', function(req, res) {
             console.log(err);
         } else {
             if (user) {
+
                 mem.push(user._id);
             } else {
-                err.push('5');
+                err.push('4');
             }
+
+
+            team = new Team({
+                name: tname,
+                members: mem,
+                captain: captain
+            });
+
+            team.save(function (err, Team) {
+                if(err) {
+                    console.log(err);
+                }
+                //render here
+                //  var red = '' + Team.name;
+                //res.redirect(red);
+            });
+
         }
     });
-    console.log(mem);
 
-    team = new Team({
-        name: tname,
-        members: mem,
-        captain: captain
-    });
-    console.log(team);
-     team.save(function (err, Team) {
-                    if(err) {
-                        console.log(err);
-                    }
-                    var red = '' + Team.name;
-                    res.redirect(red);
-                });
 
 });
 
