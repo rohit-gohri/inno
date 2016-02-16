@@ -24,24 +24,39 @@ router.get('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
 });
 
 router.post('/newTeam', function(req, res) {
-    var id1 = req.body.name1;
-    var id2 = req.body.name2;
-    var id3 = req.body.name3;
-    var id4 = req.body.name4;
-    var id5 = req.body.name5;
-    var id5 = req.body.name5;
+    //console.log(req.body.category);
+    var count=req.body.category;
+    count--;
+    var inno = [];
+    if(count){
+    var id2 = req.body.mem2;
+        count--;
+        inno.push(id2);
+    }
+    if(count){
+    var id3 = req.body.mem3;
+        count--;
+        inno.push(id3);
+    }
+    if(count){
+    var id4 = req.body.mem4;
+        count--;
+        inno.push(id4);
+    }
+    if(count){
+    var id5 = req.body.mem5;
+        count--;
+        inno.push(id5);
+    }
+    console.log(inno);
+    var id1 = req.user.inno_id;
     var tname = req.body.name;
-    console.log(id1);
-    console.log(id2);
-    console.log(id3);
-    console.log(id4);
-    console.log(id5);
 
     var captain = null;
 
     var mem = [];
     var err = [];
-
+    
     Account.findOne({_id: req.user._id}, function(err, user) {
         if (err) {
             console.log(err);
@@ -50,86 +65,46 @@ router.post('/newTeam', function(req, res) {
                 res.render('error', {message: "Please login",
                     err: {status: error.statusCode, stack: error.stack}});
             }
+
             captain = req.user._id;
+            
         }
     });
-    Account.findOne({inno_id: id1}, function(err, user) {
-        if (err) {
+
+    Account.find({inno_id:{ $in: inno }},function(err, users) {
+        console.log("in");
+       if (err) {
             console.log(err);
-        } else {
-            if (user) {
-                mem.push(user._id);
-                
-            } else {
-                err.push('1');
+        } 
+        else
+        {
+            if(users)
+            {
+                console.log(users);
+                for(var i=0;i<users.length;i++)
+                {
+                    console.log(users[i]._id);
+                    mem.push(users[i]._id);
+                    console.log("mem is");
+                    console.log(mem);
+                }
+                team = new Team({
+                name: tname,
+                members: mem,
+                captain: captain
+            });
+
+            team.save(function (err, Team) {
+                if(err) {
+                    console.log(err);
+                }
+                //render here
+                //  var red = '' + Team.name;
+               // res.render('addTeam');
+            });
             }
         }
-    });
-
-    Account.findOne({inno_id: id2}, function(err, user) {
-        if (err) {
-            console.log(err);
-        } else {
-            if (user) {
-                mem.push(user._id);
-                
-            } else {
-                err.push('2');
-            }
-        }
-    });
-
-    Account.findOne({inno_id: id3}, function(err, user) {
-        if (err) {
-            console.log(err);
-        } else {
-            if (user) {
-               mem.push(user._id);
-            } else {
-                err.push('3');
-            }
-        }
-    });
-
-    Account.findOne({inno_id: id4}, function(err, user) {
-        if (err) {
-            console.log(err);
-        } else {
-            if (user) {
-                mem.push(user._id);
-            } else {
-                err.push('4');
-            }
-        }
-    });
-
-    Account.findOne({inno_id: id5}, function(err, user) {
-        if (err) {
-            console.log(err);
-        } else {
-            if (user) {
-                mem.push(user._id);
-            } else {
-                err.push('5');
-            }
-        }
-    });
-    console.log(mem);
-
-    team = new Team({
-        name: tname,
-        members: mem,
-        captain: captain
-    });
-    console.log(team);
-     team.save(function (err, Team) {
-                    if(err) {
-                        console.log(err);
-                    }
-                    var red = '' + Team.name;
-                    res.redirect(red);
-                });
-
 });
-
+         });
+    
 module.exports = router;
