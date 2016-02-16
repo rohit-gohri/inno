@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Intro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Intro'),
+       url(Intro.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Intro Inline';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Intro Inline'),
+  url(IntroInline.otf) format('opentype');
+}
+
+.intro {
+  font-family: 'Intro', sans-serif;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.intro-inline {
+    font-family: 'Intro Inline', sans-serif;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}

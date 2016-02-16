@@ -1,0 +1,59 @@
+extends layout
+
+block content
+    .container
+        .row
+            h3.center Categories
+        .row
+            .card.row
+                div.materialboxed
+                .col.s10.offset-s1
+                    h3.center ROBOTICA
+                    p.
+
+        .row
+            .card.row
+                div.materialboxed
+                .col.s10.offset-s1
+                    h3.center CODING
+                    p.
+
+        .row
+            .card.row
+                div.materialboxed
+                .col.s10.offset-s1
+                    h3.center BIO-VISION
+                    p.
+
+        .row
+            .card.row
+                div.materialboxed
+                .col.s10.offset-s1
+                    h3.center ROBOTICA
+                    p.
+
+
+block style
+    style.
+        body, .btn {
+            background-color: #3F51B5;
+        }
+        .card, #slide-out {
+            background-color: #303F9F !important;
+        }
+        .materialboxed {
+            height: 300px;
+            background: url(/images/robo.jpg) no-repeat center;
+            background-size: cover;
+        }
+
+block scripts
+    script.
+        $(document).ready(function () {
+            $('.materialboxed').materialbox().click(function () {
+                if ($(this).css('background-size') == 'cover')
+                    $(this).css('background-size', 'contain')
+                else
+                    $(this).css('background-size', 'cover')
+            });
+        });

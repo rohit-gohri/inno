@@ -4,22 +4,13 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background: #fff;
+    color: #fff;
 }
-
-#nav{
-    color: white !important;
-    background-color: #0b96b4 !important;
-    padding: 10px;
-    border-radius: 10px;
+main {
+    flex: 1 0 auto;
 }
-
-#foot, footer {
-    color: white !important;
-    background-color: #096d82 !important;
-}
-nav {
-    background-color: #0b96b4 !important;
+h1,h2,h3,h4,h5,h6,a,p {
+    color: #fff;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -27,38 +18,37 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: 800;
 }
 
-#eventPhoto.parallax-container {
-    height: 300px;
-}
-
 .row.equal {
     display: flex; /* equal height of the children */
 }
 
+.hidden {
+    display: none;
+}
+
+.zero {
+    margin: 0 !important;
+}
+
+footer {
+    margin-top: 0 !important;
+}
+
+.brand-logo {
+    font-size: x-large !important;
+}
+
+.title {
+    font-size: xx-large;
+}
+
+.brand-logo img {
+    height:auto;
+    width: 120px !important;
+}
+
 .slides img {
     opacity: 0.5;
-}
-
-main {
-    flex: 1 0 auto;
-}
-
-a {
-    color: #00B7FF;
-}
-#form,#dp
-{
-    border:5px;
-    border-style: solid;
-    border-radius: 5px;
-    border-color: black;
-}
-#dp
-{
-    border:5px;
-    border-style: solid;
-    border-radius: 5px;
-    border-color: white;
 }
 
 .events {
@@ -80,23 +70,6 @@ a {
     margin: 0.8%;
 }
 
-.input-field label{
-    color: #0D47A6;
-}
-
-.brand-logo {
-    font-size: x-large !important;
-}
-
-.title {
-    font-size: xx-large;
-}
-
-.brand-logo img {
-    height:auto;
-    width: 100px !important;
-}
-
 .black-text a {
     color: #000;
 }
@@ -105,54 +78,18 @@ a {
     color: #fff;
 }
 
+.input-field label{
+    color: #fff;
+}
+
 .slider .indicators .indicator-item.active {
-    background-color: #0D47A1 !important;
-}
-
-.zero {
-    margin: 0 !important;
-}
-
-footer {
-    margin-top: 0 !important;
+    background-color: #fff !important;
 }
 
 .white-text a {
     color: #fff;
 }
 
-.image {
-    position: relative;
-}
-
-.image #theme {
-    font-family: "Open Sans Extrabold";
-    line-height: 42px;
-    color: #fff;
-    position: absolute;
-    top: 40%;
-    left: 8%;
-}
-
-.image #dates {
-    font-family: "Open Sans Extrabold";
-    line-height: 42px;
-    color: #fff;
-    text-align: right;
-    position: absolute;
-    top: 40%;
-    right: 14%;
-}
-
-.image .edit {
-    top:30% !important;
-}
-
-
-.blue-text a {
-    color: #0D47A1;
-}
-
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
 input[type=password]:focus:not([readonly]) + label,
@@ -165,24 +102,20 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A1;
+    color: #fff;
 }
 .input-field span {
-    color: #0D47A6;
+    color: #fff;
 }
 
 .active span {
-    color: #0D47A6 !important;
+    color: #fff !important;
 }
 
 .btn span {
     color: #fff;
 }
 
-.hidden {
-    display: none;
-}
-
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
 input[type=password]:focus:not([readonly]) + label,
@@ -195,7 +128,7 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A1;
+    color: #fff;
 }
 input:not([type]),
 input[type=text],
@@ -209,11 +142,8 @@ input[type=tel],
 input[type=number],
 input[type=search],
 textarea.materialize-textarea {
-    border-bottom: 1px solid #0D47A6;
+    border-bottom: 1px solid #fff;
 }
-
-
-
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
 input[type=password]:focus:not([readonly]) + label,
@@ -226,32 +156,15 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A1;
+    color: #fff;
 }
 
 input[type]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
-    border-bottom: 1px solid #0D47A6;
-    box-shadow: 0 1px 0 0 #0D47A6;
+    border-bottom: 1px solid #fff;
+    box-shadow: 0 1px 0 0 #fff;
 }
 
-.input-field label i{color:rgba(13,71,166,0.7);transition:color .3s}
-
-                                                                                                                 input:not([type]):focus:not([readonly]) + label,
-input[type=text]:focus:not([readonly]) + label,
-input[type=password]:focus:not([readonly]) + label,
-input[type=email]:focus:not([readonly]) + label,
-input[type=url]:focus:not([readonly]) + label,
-input[type=time]:focus:not([readonly]) + label,
-input[type=date]:focus:not([readonly]) + label,
-input[type=datetime-local]:focus:not([readonly]) + label,
-input[type=tel]:focus:not([readonly]) + label,
-input[type=number]:focus:not([readonly]) + label,
-input[type=search]:focus:not([readonly]) + label,
-textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A1;
-}
-
-
+.input-field label i{color:rgba(255,255,255, 1);transition:color .3s}
 
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
@@ -265,13 +178,27 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A1;
+    color: #fff;
 }
+
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:focus:not([readonly]) + label,
+input[type=password]:focus:not([readonly]) + label,
+input[type=email]:focus:not([readonly]) + label,
+input[type=url]:focus:not([readonly]) + label,
+input[type=time]:focus:not([readonly]) + label,
+input[type=date]:focus:not([readonly]) + label,
+input[type=datetime-local]:focus:not([readonly]) + label,
+input[type=tel]:focus:not([readonly]) + label,
+input[type=number]:focus:not([readonly]) + label,
+input[type=search]:focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #fff;
+}
+
 input[type]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) + label{
-    color: #0D47A6;
+    color: #fff;
 }
-
-
 
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
@@ -285,14 +212,13 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A1;
+    color: #fff;
 }
 /* label color */
 .input-field label, input, textarea {
-    color: #0D47A6;
+    color: #fff;
 }
 /* label focus col
-
 
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
@@ -308,12 +234,11 @@ input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
     color: #0D47A1;
 }or */
+
 .input-field input[type]:focus,textarea.materialize-textarea:focus + label {
-    color: #0D47A6;
+    color: #fff;
 }
-/* label underline
-
-
+/* label underline*/
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
 input[type=password]:focus:not([readonly]) + label,
@@ -326,14 +251,13 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A1;
-}focus color */
+    color: #fff;
+}
+/*focus color */
 .input-field input[type]:focus {
-    border-bottom: 1px solid #0D47A6;
-    box-shadow: 0 1px 0 0 #0D47A6;
+    border-bottom: 1px solid #fff;
+    box-shadow: 0 1px 0 0 #fff;
 }
-
-
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
 input[type=password]:focus:not([readonly]) + label,
@@ -346,11 +270,9 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A1;
+    color: #fff;
 }
 /* valid color */
-
-
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
 input[type=password]:focus:not([readonly]) + label,
@@ -363,14 +285,12 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A1;
+    color: #fff;
 }
 .input-field input[type].valid {
-    border-bottom: 1px solid #0D47A6;
-    box-shadow: 0 1px 0 0 #0D47A6;
+    border-bottom: 1px solid #fff;
+    box-shadow: 0 1px 0 0 #fff;
 }
-
-
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
 input[type=password]:focus:not([readonly]) + label,
@@ -383,11 +303,9 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A1;
+    color: #fff;
 }
 /* invalid color */
-
-
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
 input[type=password]:focus:not([readonly]) + label,
@@ -400,17 +318,16 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A1;
+    color: red;
 }
 .input-field input[type].invalid {
-    border-bottom: 1px solid #101010;
-    box-shadow: 0 1px 0 0 #101010;
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 red;
 }
 /* icon prefix focus color */
 .input-field .prefix.active {
-    color: #0D47A6;
+    color: #fff;
 }
-
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
 input[type=password]:focus:not([readonly]) + label,
@@ -423,5 +340,5 @@ input[type=tel]:focus:not([readonly]) + label,
 input[type=number]:focus:not([readonly]) + label,
 input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0D47A6;
+    color: #fff;
 }

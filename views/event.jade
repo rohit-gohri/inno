@@ -1,41 +1,42 @@
 extends layout
 
 block content
-    if event.photo
+    //if event.photo
         .parallax-container#eventPhoto
             .parallax
                 img(src=event.photo)
     .container
-        h6= msg
-        h3 #{event.name}
-            if (is_admin || is_em)
-                a(href="/events/" + event.linkName + "/edit")
-                    i.material-icons.prefix mode_edit
-        p #{event.details}
-        if event.fbLink
-            p
-                a(href=event.fbLink) "FB event page"
-        if(event.isTeamEvent)
-            h5 Team Event
-            p Max Participants: #{event.minParticipants}
-        if is_registered
-            p You are registered for this event
-
-        if event.isTeamEvent
-            button.btn.waves-effect.waves-light.blue.darken-4
-                a.modal-trigger(href="#eventTeamModal") Register
-        else
-            form(role='form', action='/events/' + event.linkName + "/register", method='post')
-                button.btn.waves-effect.blue.darken-4(type="submit") Register
-        if is_admin || is_em
-            h5
-                a(href='/events/' + event.name + '/participants') Participants
-            h5
-                a(href='/events/' + event.name + '/winners/') Winners
-        if is_admin
-            h5
-                a(href='/events/' + event.name + '/managers') Managers
-
+        h3.center.zero= event.category + ' Events'
+        .card.row
+            div.materialboxed
+            .col.s10.offset-s1
+                h3 #{event.name}
+                    if (is_admin || is_em)
+                        a(href="/events/" + event.linkName + "/edit")
+                            i.material-icons.prefix mode_edit
+                h6= msg
+                p #{event.details}
+                if event.fbLink
+                    p
+                        a(href=event.fbLink) "FB event page"
+                if(event.isTeamEvent)
+                    h5 Team Event
+                    p Min Participants: #{event.minParticipants}
+                if event.isTeamEvent
+                    a.modal-trigger(href="#eventTeamModal")
+                       button.btn.waves-effect.waves-light Register
+                else
+                    form(role='form', action='/events/' + event.linkName + "/register", method='post')
+                        button.btn.waves-effect(type="submit") Register
+                if is_admin || is_em
+                    h5
+                        a(href='/events/' + event.name + '/participants') Participants
+                    h5
+                        a(href='/events/' + event.name + '/winners/') Winners
+                if is_admin
+                    h5
+                        a(href='/events/' + event.name + '/managers') Managers
+                br
     #eventTeamModal.modal
         .modal-content.center
             h4 Select Team for Event
@@ -51,22 +52,22 @@ block content
                 button.btn.waves-light.waves-effect.blue.darken-4.col.s2.offset-s5.row
                     a(href="/teams/newTeam") New Team
 
+block style
+    style
+        include ../public/stylesheets/pages/robot.css
+    style.
+        .materialboxed {
+            height:300px;
+            background: url(#{event.photo}) no-repeat center;
+            background-size: cover;
+        }
 block scripts
     script.
         $(document).ready(function () {
-            console.log('no error');
-            $('.parallax').parallax();
-            $('.modal-trigger').leanModal();
+            $('.materialboxed').materialbox().click(function() {
+                if ($(this).css('background-size') == 'cover')
+                    $(this).css('background-size', 'contain')
+                else
+                    $(this).css('background-size', 'cover')
+            });
         });
-//        $.ajax({
-//            url: '/teams/api/myteams',
-//            dataType: teams,
-//            type: 'GET',
-//            success: function (teams) {
-//                /* do something with items here */
-//                // You will likely want a template so you don't have to format the string by hand
-//                for (var team in teams) {
-//                    $('#results').append('<div>' + item.interestingField + '</div>');
-//                }
-//            }
-//        });
