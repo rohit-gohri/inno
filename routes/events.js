@@ -50,29 +50,23 @@ router.get('/:eventLink/edit', userLogic.isEM, function (req, res) {
     Event.findOne({linkName: req.params.eventLink}, function (err, event) {
         if(err)
             console.log(err);
-        else if (event.managers.indexOf(req.user._id) > -1 || event.is_admin) {
+        else if (event.managers.indexOf(req.user._id) > -1 || req.user.is_admin) {
             res.render('addEvent', {event: event, edit: true});
         } else {
-            res.render('error', {message:"You don't have permission to view this", err: {status:"", stack:""}});
+            res.render('error', {message:"You don't have permission to view this", error: {status:"", stack:""}});
         }
     })
 });
 
 router.post('/:eventLink/edit', userLogic.isEM,
-    function (req, res, next) {
-        upload(req, res, function (err) {
-            if (err) {
-                next();
-            }
-        })
-    },
     function(req, res) {
         Event.findOne({linkName: req.params.eventLink}, function (err, event) {
             if (err)
                 console.log(err);
-            else if (event.managers.indexOf(req.user._id) > -1 || event.is_admin) {
+            else if (event.managers.indexOf(req.user._id) > -1 || req.user.is_admin) {
                 var linkName = req.body.name;
                 linkName = linkName.replace(/\s+/g, '-').toLowerCase();
+
                 var trimmedDetails = req.body.details.substr(0, 15);
                 trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
                 trimmedDetails = trimmedDetails + '...';
@@ -86,10 +80,11 @@ router.post('/:eventLink/edit', userLogic.isEM,
                 event.category = req.body.category;
                 event.isTeamEvent = req.body.isTeamEvent == 1;
 
-                event.save();
-                res.redirect('/events/' + linkName);
+                event.save(function() {
+                    res.redirect('/events/' + linkName);
+                });
             } else {
-                res.render('error', {message: "You don't have permission to view this", err: {status: "", stack: ""}});
+                res.render('error', {message: "You don't have permission to view this", error: {status: "", stack: ""}});
             }
         })
 });

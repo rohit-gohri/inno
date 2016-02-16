@@ -1,17 +1,123 @@
 extends layout
 
 block content
-    .row.yellow.accent-2.zero(style="padding-top: 50px; padding-bottom: 50px;")
-        h3.zero.center.
-            INNOVISION 16 <br> 9<sup>th</sup>-12<sup>th</sup> MARCH
-    .row.
+    div
+        .container
+            .row.hide-on-med-and-down
+                br
+                br
+                br
+            .row
+                .col.s12.m10.center
+                    img#logo(src="/images/inno-white.png")
+                    h3.intro.white-text.zero INNOVISION'16
+                    h5.intro.black-text.zero NSIT'S TECHNO-MANAGERIAL FESTIVAL
+                    h3.intro.white-text.zero 9th-12th MARCH
+                .col.m2.s12
+                    img#mascot.right(src="/images/mascot_shadow.png")
+                .col.s12.center.hide-on-med-and-up
+                    h3.intro-inline.white-text MEET ZERO!
+
+    //.inno
+        img#logo(src="/images/inno.png")
+        p.zero 9th<sup></sup>-12th<sup></sup><br>MARCH
+    //
+        .mascot
+                img#mascot(src="/images/mascot.png")
+                a.orange-text.lighten-2(href="meetzero")
+                    h2.zero MEET ZERO!
+                    h5.zero OUR MASCOT LOST IN TIME
+            br
+            br
+            div
+                .row.someBox
+                    h1.zero INNOVISION'16
+                    h5.zero NSIT'S ANNUAL TECHNICAL FEST
+                .row.someBox
+                    h1.zero WHEN?
+                    h5.zero 9th-12th MARCH
+
+        .row.blue.accent-2.zero(style="padding-top: 80px; padding-bottom: 80px;")
+            h3.zero.center.white-text.
+                INNOVISION 16 <br> 9<sup>th</sup>-12<sup>th</sup> MARCH
+        .row.orange.accent-2.zero(style="padding-top: 80px; padding-bottom: 80px;")
+            h3.zero.center.white-text.
+                THEME <br> BACK TO THE FUTURE
+        .row.green.accent-2.zero(style="padding-top: 80px; padding-bottom: 80px;")
+            h3.zero.center.white-text.
+                MEET <br> ZERO
+        .row.red.accent-2.zero(style="padding-top: 80px; padding-bottom: 80px;")
+            h3.zero.center.white-text.
+                GET YOUR<br>INNO ID
 
 
 block style
     style.
-        nav, footer {
-            display: none !important;
+        #logo {
+            width: 40%;
+        }
+        #nav-logo {
+            display: none;
+        }
+        #mascot {
+            position: relative;
+            left: -12%;
+            top: 20px;
+        }
+        body {
+            background: #f4511e;
+        }
+        #slide-out {
+            background: #bf360c;
+        }
+        /*#mascot {*/
+            /*position: absolute;*/
+            /*bottom: 0;*/
+            /*left: 20px;*/
+            /*width: auto;*/
+            /*height: 35%;*/
+        /*}*/
+        /*.mascot a {*/
+            /*position: absolute;*/
+            /*bottom: 50px;*/
+            /*left: 150px;*/
+        /*}*/
+        /*.mascot h5 {*/
+            /*font-weight: 400;*/
+        /*}*/
+        /*.someBox {*/
+            /*height:100px;*/
+            /*width: 52%;*/
+            /*border:3px solid #BDBDBD;*!*/
+        /*}*/
+        /*.someBox:hover {*/
+            /*background-color: #BDBDBD;*/
+            /*color: #fff;*/
+        /*}*/
+        /*h5 {*/
+            /*font-weight: 400;*/
+        /*}*/
+        /*body {*/
+            /*background: rgba(189, 189, 189, 1);*/
+            /*!* Old Browsers *!*/
+            /*background: -moz-linear-gradient(45deg, rgba(189, 189, 189, 1) 0%, rgba(189, 189, 189, 1) 31%, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 1) 100%);*/
+            /*!* FF3.6+ *!*/
+            /*background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(189, 189, 189, 1)), color-stop(31%, rgba(189, 189, 189, 1)), color-stop(31%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(255, 255, 255, 1)));*/
+            /*!* Chrome, Safari4+ *!*/
+            /*background: -webkit-linear-gradient(45deg, rgba(189, 189, 189, 1) 0%, rgba(189, 189, 189, 1) 31%, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 1) 100%);*/
+            /*!* Chrome10+,Safari5.1+ *!*/
+            /*background: -o-linear-gradient(45deg, rgba(189, 189, 189, 1) 0%, rgba(189, 189, 189, 1) 31%, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 1) 100%);*/
+            /*!* Opera 11.10+ *!*/
+            /*background: -ms-linear-gradient(45deg, rgba(189, 189, 189, 1) 0%, rgba(189, 189, 189, 1) 31%, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 1) 100%);*/
+            /*!* IE 10+ *!*/
+            /*background: linear-gradient(45deg, rgba(189, 189, 189, 1) 0%, rgba(189, 189, 189, 1) 31%, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 1) 100%);*/
+            /*!* W3C *!*/
+            /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bdbdbd', endColorstr='#ffffff', GradientType=1);*/
+            /*!* IE6-9 fallback on horizontal gradient *!*/
+        /*}*/
+        footer {
+            display: none;
         }
 
 block scripts
-    script(src="/javascript/velocity.min.js")
+    script(src="/javascripts/velocity.min.js")

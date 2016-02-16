@@ -4,8 +4,13 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background: #fff;
+    color: #fff;
 }
+
+a {
+    color: #fff;
+}
+
 
 #nav{
     color: white !important;
@@ -25,6 +30,7 @@ nav {
 h1,h2,h3,h4,h5,h6 {
     font-family: "Open Sans", sans-serif;
     font-weight: 800;
+    color: #fff;
 }
 
 #eventPhoto.parallax-container {
@@ -43,9 +49,6 @@ main {
     flex: 1 0 auto;
 }
 
-a {
-    color: #00B7FF;
-}
 #form,#dp
 {
     border:5px;
@@ -94,7 +97,7 @@ a {
 
 .brand-logo img {
     height:auto;
-    width: 100px !important;
+    width: 120px !important;
 }
 
 .black-text a {
@@ -149,9 +152,6 @@ footer {
 }
 
 
-.blue-text a {
-    color: #0D47A1;
-}
 
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,

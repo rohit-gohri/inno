@@ -6,7 +6,9 @@ html
         link(href='/stylesheets/materialize.min.css', rel='stylesheet', media='screen')
         link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='/font/material\ icons/material-icons.css')
+        link(rel='stylesheet', href='/font/intro/intro.css')
         link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,300', type='text/css')
+        block style
         script.
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -15,15 +17,15 @@ html
                     ga('create', 'UA-73588354-1', 'auto');
                     ga('send', 'pageview');
     body
-        nav.z-depth-0.grey.lighten-4
-            div.nav-wrapper.black-text.container
-                ul#slide-out.side-nav.black-text.grey.darken-4
+        nav.z-depth-0.transparent
+            div.nav-wrapper.white-text(style="padding: 8px 30px 0 30px;")
+                ul#slide-out.side-nav.white-text
                     li
                         if !login
                             a.modal-trigger(href="#loginModal") Login
                         else
                             a.dropdown-button(href="#!" data-activates="profDrop") Hello #{firstName}!
-                                i.material-icons.black-text.right arrow_drop_down
+                                i.material-icons.white-text.right arrow_drop_down
                     li
                         a(href="/") Home
                     li
@@ -32,47 +34,32 @@ html
                         a(href="/contact") Contact Us
                     li
                         a(href="/about") About Us
-                a.button-collapse(href="#" data-activates="slide-out")
-                    i.material-icons.black-text menu
-                a.brand-logo.black-text(href="/") innovision'16
-                    img.left(src="/images/inno2.png")
-                ul.right.hide-on-med-and-down.black-text
-                    li
-                        a(href="/") Home
-                    li
-                        a(href="/events") Events
-                    li
-                        a(href="/contact") Contact Us
-                    li
-                        a(href="/about") About Us
-                    li
-                        if ! login
-                            a.modal-trigger(href="#loginModal") Login
-                        else
-                            a.dropdown-button(href="#!" data-activates="profDrop") Hello #{firstName}!
-                                i.material-icons.black-text.right arrow_drop_down
+                a#menu.brand-logo.left(href="#" data-activates="slide-out")
+                    i.material-icons.white-text menu
+                a.brand-logo.white-text.right#nav-logo(href="/")
+                    img.right(src="/images/inno-white.png" style="margin-right:10px; margin-top:5px")
 
         main
             block content
 
-        footer.page-footer.grey.lighten-4
+        footer.page-footer.transparent
             .container
                 .row
                     .col.l6.s12
-                        h5.black-text Follow Us On:
+                        h5.white-text Follow Us On:
                         .container
-                            .row.black-text
+                            .row.white-text
                                 a(href="https://www.facebook.com/Innoitis")
                                     .col.s4 FB
                     div.col.l4.offset-l2.s12
-                        h5.black-text Site
+                        h5.white-text Site
                         ul
                             li
-                                a.black-text(href="/events") Events
+                                a.white-text(href="/events") Events
                             li
-                                a.black-text(href="/login") Login
+                                a.white-text(href="/login") Login
             div.footer-copyright
-                div.container.black-text © 2016 Innovision, NSIT
+                div.container.white-text © 2016 Innovision, NSIT
                     a.grey-text.text-lighten-3.right(href="#") More Links
 
         #loginModal.modal
@@ -97,15 +84,15 @@ html
                             button.btn.waves-effect.waves-light.blue.darken-4(style="width: 200px;") Register
 
         ul#profDrop.dropdown-content.grey.darken-4
-            li.black-text
+            li.white-text
                 a(href="/users/details") Profile
             li.divider
-            li.black-text
+            li.white-text
                 a(href="/logout") Logout
+
     script(src='/javascripts/jquery.min.js')
     script(src='/javascripts/materialize.js')
     block scripts
-    block style
     script.
         $(document).ready(function () {
             $('.parallax').parallax();
@@ -113,6 +100,10 @@ html
             $('select').material_select();
             $('.modal-trigger').leanModal();
             $(".dropdown-button").dropdown();
+            // Initialize collapse button
+            $("#menu").sideNav({
+                menuWidth: 300, // Default is 240
+                edge: 'left', // Choose the horizontal origin
+                closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            });
         });
-        // Initialize collapse button
-        $(".button-collapse").sideNav();
