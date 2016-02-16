@@ -9,8 +9,6 @@ html
         link(rel='stylesheet', href='/font/intro/intro.css')
         link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,300', type='text/css')
         block style
-        style
-            include ../public/stylesheets/pages/about.css
         script.
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -21,13 +19,28 @@ html
     body
         nav.z-depth-0.transparent
             div.nav-wrapper.white-text(style="padding: 8px 30px 0 30px;")
+                a#menu.brand-logo.left(href="#" data-activates="slide-out")
+                    i.material-icons.white-text menu
+                a.brand-logo.white-text.right#nav-logo.hide-on-small-and-down(href="/")
+                    img.right(src="/images/inno-white.png" style="margin-right:10px; margin-top:5px")
                 ul#slide-out.side-nav.white-text
-                    li
-                        if !login
+                    if !login
+                        li.hide-on-small-and-down
                             a.modal-trigger(href="#loginModal") Login
-                        else
-                            a.dropdown-button(href="#!" data-activates="profDrop") Hello #{firstName}!
-                                i.material-icons.white-text.right arrow_drop_down
+                        li.hide-on-med-and-up
+                            a(href="/login") Login
+                    else
+                        li#hello
+                            ul.collapsible
+                                li
+                                    a.collapsible-header.waves-effect.waves-light.zero Hello #{firstName}!
+                                        i.material-icons.white-text.right arrow_drop_down
+                                    .collapsible-body
+                                        ul
+                                            li.white-text
+                                                a(href="/users/details") Profile
+                                            li.white-text
+                                                a(href="/logout") Logout
                     li
                         a(href="/") Home
                     li
@@ -36,10 +49,6 @@ html
                         a(href="/contact") Contact Us
                     li
                         a(href="/about") About Us
-                a#menu.brand-logo.left(href="#" data-activates="slide-out")
-                    i.material-icons.white-text menu
-                a.brand-logo.white-text.right#nav-logo(href="/")
-                    img.right(src="/images/inno-white.png" style="margin-right:10px; margin-top:5px")
 
         main
             block content
@@ -75,7 +84,7 @@ html
                             .input-field.col.s8.offset-s2
                                 input(type='password', id="password" name="password")
                                 label(for="password") Password
-                            button.btn.waves-effect.waves-light.blue.darken-4(type='submit', style="width: 200px;") Login
+                            button.btn.waves-effect.waves-light(type='submit', style="width: 200px;") Login
                 form.row(role='form', action="/login/fb", method="get")
                     .col.s12.center-align.center
                         button.btn(type='submit')#fb
@@ -83,28 +92,22 @@ html
                 .row
                     .col.s12.center-align.center
                         a(href='/register')
-                            button.btn.waves-effect.waves-light.blue.darken-4(style="width: 200px;") Register
-
-        ul#profDrop.dropdown-content.grey.darken-4
-            li.white-text
-                a(href="/users/details") Profile
-            li.divider
-            li.white-text
-                a(href="/logout") Logout
+                            button.btn.waves-effect.waves-light(style="width: 200px;") Register
 
     script(src='/javascripts/jquery.min.js')
     script(src='/javascripts/materialize.js')
     block scripts
     script.
         $(document).ready(function () {
+            $('.collapsible').collapsible({
+                accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+            });
             $('.parallax').parallax();
             $('.slider').slider({full_width: true});
             $('select').material_select();
             $('.modal-trigger').leanModal();
-            $(".dropdown-button").dropdown();
             // Initialize collapse button
             $("#menu").sideNav({
-                menuWidth: 300, // Default is 240
                 edge: 'left', // Choose the horizontal origin
                 closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
             });

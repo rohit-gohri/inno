@@ -2,21 +2,24 @@ extends layout
 
 block content
     .container
-        h4 Login Page
-        p.lead Say something worthwhile here.
-        br
-        div.row
-            form.col.s12(role='form', action="/login", method="post", style='max-width: 300px;')
-                div.row
-                    div.input-field.col.s12
-                        input(type='text', id="email" name="email")
-                        label(for="email") Email
-                    div.input-field.col.s12
-                        input(type='text', id="password" name="password")
-                        label(for="password") Password
-                div.row
-                    button.btn.waves-effect.waves-light.blue.darken-4(type='submit') Submit
-            &nbsp;
-            form(role='form', action="/login/fb", method="get", style='max-width: 300px;')
-                button(type='submit')#fb
-                    img(src='http://i.stack.imgur.com/ryt6L.png', style='max-width: 200px;')
+        .card.row
+            .col.s10.offset-s1.center-on-small-only
+                form.row(role='form', action="/login", method="post", style='max-width: 300px;')
+                    h3 Login
+                    .row
+                        .input-field.col.s8.offset-s2.m4
+                            input(type='text', id="email" name="email")
+                            label(for="email") Email
+                    .row
+                        div.input-field.col.s8.offset-s2.m4
+                            input(type='password', id="password" name="password")
+                            label(for="password") Password
+                    .row.zero
+                        button.btn.waves-effect.waves-light(type='submit') Submit
+                form.row(role='form', action="/login/fb", method="get", style='max-width: 300px;')
+                    button(type='submit')#fb
+                        img.zero(src='http://i.stack.imgur.com/ryt6L.png', style='max-width: 200px;')
+
+block style
+    style
+        include ../public/stylesheets/pages/about.css

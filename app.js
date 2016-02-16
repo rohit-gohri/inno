@@ -12,6 +12,9 @@ var Account = require('./models/account');
 var paginate = require('express-paginate');
 var Hashids = require("hashids");
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
 var hashids = new Hashids("LetsINNOvade", 4, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
 
 
@@ -23,20 +26,26 @@ var userLogic = require('./logic/userLogic');
 
 var app = express();
 
+// mongoose
+mongoose.connect('mongodb://127.0.0.1:27017/innovision');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.disable('x-powered-by');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(require('express-session')({
+app.use(session({
     secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        ttl: 24 * 60 * 60 // = 1 day expiry
+    })
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -99,9 +108,6 @@ passport.deserializeUser(function(id, done) {
         done(err, user);
     });
 });
-
-// mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/innovision');
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

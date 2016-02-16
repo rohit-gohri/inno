@@ -12,9 +12,9 @@ var Event = new Schema({
     isTeamEvent: {type:Boolean,default:false},
     category: String,
     managers: [{type: Schema.ObjectId, ref: 'Account'}],
-    // In case of team events, participants and winners refer to captian of team events
-    participants: [{type: Schema.ObjectId, ref: 'Account'}],
-    winners: [{type: Schema.ObjectId, ref: 'Account'}]
+    // In case of team events, participants and winners refer to team._id of teams
+    participants: [{type: Schema.ObjectId}],
+    winners: [{type: Schema.ObjectId}]
 });
 
 

@@ -12,10 +12,11 @@ var upload = multer({
     limits: {fileSize: 10000000, files:1},
 }).single('eventPhoto');
 
+
 router.get('/', function (req, res) {
     Event.find({}).lean().exec(function (err, events) {
         console.log(events);
-        res.render('categoryList', {events: events});
+        res.render('eventList', {events: events});
     });
 });
 
