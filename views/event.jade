@@ -18,6 +18,9 @@ block content
         if(event.isTeamEvent)
             h5 Team Event
             p Max Participants: #{event.minParticipants}
+        if is_registered
+            p You are registered for this event
+
         if event.isTeamEvent
             button.btn.waves-effect.waves-light.blue.darken-4
                 a.modal-trigger(href="#eventTeamModal") Register
@@ -37,12 +40,13 @@ block content
         .modal-content.center
             h4 Select Team for Event
             .row
-                form.col.s12.row(role='form', action="/events/" + event.name + "/register/", method="post")
-                    //each team, index in teams
+                form.col.s12.row(role='form', action="/events/" + event.linkName + "/register/", method="post")
+                    each team, index in teams
                         p
-                            input.with-gap(name="teamName" type="radio" id="opt"+index)
-                            label(for="opt"+index) team.name
-                    button.btn.waves-effect.waves-light.blue.darken-4(type="submit") Select Team
+                            input.with-gap(name="teamName" type="radio" id="opt"+index value=team.name)
+                            label(for="opt"+index) #{team.name}
+                    button.btn.waves-effect.waves-light.blue.darken-4(type="submit")
+                        a(href="/teams/myTeams") Select Team
                         i.material-icons.prefix.right send
                 button.btn.waves-light.waves-effect.blue.darken-4.col.s2.offset-s5.row
                     a(href="/teams/newTeam") New Team

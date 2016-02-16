@@ -27,12 +27,18 @@ var users = {
         }
     },
     getTeams: function(req, res, next) {
-        Team.find({members: req.user._id}).lean().exec(function(err, teams) {
-            if (!err) {
-                res.locals.teams = teams;
-                next();
-            }
-        });
+        if(req.isAuthenticated()) {
+            Team.find({members: req.user._id}).lean().exec(function (err, teams) {
+                if (!err) {
+                    res.locals.teams = teams;
+                    next();
+                }
+            });
+        }
+        else {
+            res.locals.teams = [];
+            next();
+        }
     },
     getEvents: function(req, res, next) {
         //var captains = [];

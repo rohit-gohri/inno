@@ -1,0 +1,17 @@
+//
+   Created by shubham on 16/2/16.
+
+extends layout
+
+block content
+    .container
+        h3.center My Teams
+        each team in teams
+            p.
+                Team Name: #{team.name}
+            p.
+                Captain: #{team.captain}
+            br
+
+
+

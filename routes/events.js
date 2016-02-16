@@ -2,8 +2,10 @@ var express = require('express');
 var Event = require('../models/event');
 var router = express.Router();
 var Account = require('../models/account');
+var Team = require('../models/team');
 var multer = require('multer');
 var userLogic = require('../logic/userLogic');
+var eventLogic = require('../logic/eventLogic');
 
 var upload = multer({
     dest: 'public/uploads/',
@@ -18,24 +20,38 @@ router.get('/', function (req, res) {
 });
 
 router.post('/:eventLink/register/', userLogic.ensureAuthenticated, function (req, res){
+
     var elink=req.params.eventLink;
     var teamName = req.body.teamName;
     var id = req.user._id;
+
+    //console.log('teamname:'+teamName);
+
     Event.findOne({linkName: elink}, function(err, event) {
+
         if (!event || err){
             res.render('error', {message: "Event not found", error: {status: '', stack: ''}});
-        } else if (event.isTeamEvent) {
+        }
+
+
+        // team event
+        else if (event.isTeamEvent) {
             Team.findOne({name: teamName}, function(err, team){
-                if(!user || err)
+                if(!team || err)
                     res.render('error', {message: "Error", error: {status: '', stack: ''}});
-                event.participants.push(team.captain);
+                console.log(team);
+                event.participants.push(team._id);
                 event.save(function (err, event) {
                     if(err)
                         console.log(err);
-                    res.render('event', {event: event, msg: "Successfully Registered Team " + team.name});
+                    res.redirect('/events/' + event.linkName);
                 });
             });
-        } else {
+        }
+
+
+        //non team event
+        else {
             event.participants.push(id);
             event.save(function (err, event) {
                 if(err)
@@ -131,13 +147,14 @@ router.post('/addEvent', userLogic.isEM,
         });
 });
 
-router.get('/:eventLink', function (req, res) {
+router.get('/:eventLink', userLogic.getTeams, eventLogic.isRegistered, function (req, res) {
     Event.findOne({linkName: req.params.eventLink},
         function (err, event) {
             if(!event || err ) {
                 res.render('error', {message: "Event not found!" + req.params.eventLink, error: {status: '', stack: ''}});
             }
             else {
+                console.log('inside event link'+res.locals.teams);
                 res.render('event', {event: event});
             }
     });
