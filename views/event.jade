@@ -17,7 +17,7 @@ block content
                 a(href=event.fbLink) "FB event page"
         if(event.isTeamEvent)
             h5 Team Event
-            p Min Participants: #{event.minParticipants}
+            p Max Participants: #{event.minParticipants}
         if event.isTeamEvent
             button.btn.waves-effect.waves-light.blue.darken-4
                 a.modal-trigger(href="#eventTeamModal") Register
@@ -50,7 +50,9 @@ block content
 block scripts
     script.
         $(document).ready(function () {
+            console.log('no error');
             $('.parallax').parallax();
+            $('.modal-trigger').leanModal();
         });
 //        $.ajax({
 //            url: '/teams/api/myteams',
