@@ -1,5 +1,5 @@
-body, .btn {
-    background-color: #212121;
+body, .btn, ul.collection, li.collection-header, li.collection-item {
+    background-color: #212121 !important;
 }
 .card, #slide-out {
     background-color: #424242;

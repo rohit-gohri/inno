@@ -13,7 +13,7 @@ var upload = multer({
 router.get('/', function (req, res) {
     Event.find({}).lean().exec(function (err, events) {
         console.log(events);
-        res.render('eventList', {events: events});
+        res.render('categoryList', {events: events});
     });
 });
 

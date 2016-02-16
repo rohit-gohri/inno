@@ -2,13 +2,13 @@ extends layout
 
 block content
     .container
-        if (user.is_new)
-            h3 Register
-        else
-            h3 Profile
-        h6 Inno ID : #{user.inno_id}
-        div.row
-            form.col.s12(role='form', action='/users/details', method='post')
+        .card.row
+            form.col.l10.offset-l1.s12(role='form', action='/users/details', method='post')
+                if (user.is_new)
+                    h3 Register
+                else
+                    h3 Profile
+                h6 Inno ID : #{user.inno_id}
                 .row
                     .col.s12.m6.no-padding
                         if (edit)
@@ -25,20 +25,16 @@ block content
                             input(value=user.lastName, id='lastName', name='lastName', type='text', class='validate' required=true)
                             label.active(for='lastName') Last Name
                     .col.s12.m6.no-padding
-                        // if user.photo
-                        img.col.s5.right#dp(src=user.photo)
-                        //else
-                            .input-field.file-field.col.s6.right
-                                .btn.blue.darken-4.waves-effect.waves-light
-                                    span Upload Photo
-                                    input(type="file" name="photo")
-                                .file-path-wrapper
-                                    input.file-path.validate(type="text")
+                        if user.photo
+                            img.col.s5.right#dp(src=user.photo)
+                        else
+                            #dp-box.col.s5.right
+                                #overlay
+                                    input#photo-upload(type="file" name="photo")
                 .row
                     .input-field.col.m6.s12
-                        input(disabled value=user.email, id='email', name='email', type='email', class='validate')
+                        p#email= user.email
                         label.active(for='email') Email
-
                     .input-field.col.m6.s12
                         input(value=user.phone_no, id='phone_no', name='phone_no',type='tel', class='validate' required=true)
                         label.active(for='phone_no') Phone Number
@@ -54,11 +50,10 @@ block content
                     div.input-field.col.m6.s12
                         input(value=user.course, id='course', name='course', type='text', class='validate' required=true)
                         label.active(for='course') Course
-
                 if(!user.is_new && events)
                     ul.collection.with-header
                         li.collection-header
-                            h4 Registered Events
+                            h4 Registered Events :
                         each event in events
                             li.collection-item.avatar
                                 a(href="/events/" + event.name)
@@ -76,3 +71,52 @@ block content
                         button.btn.waves-light.waves-effect(type='submit') Update
                             i.material-icons.right cloud
 
+block style
+    style
+        include ../public/stylesheets/pages/about.css
+    style.
+        #dp, #dp-box {
+            box-shadow: inset 1px 1px 40px 0 rgba(0, 0, 0, .45);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #dp-box {
+            box-shadow: inset 1px 1px 40px 0 rgba(0, 0, 0, .45);
+            background: url(/images/def-prof.png);
+            background-size: cover;
+            border-radius: 5px;
+            overflow: hidden;
+            padding: 0;
+        }
+        #photo-upload {
+            color: transparent;
+        }
+        #photo-upload::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+        #photo-upload::before {
+            font-family: "Material Icons";
+            content: 'E439';
+            color: white;
+            display: inline-block;
+            background: rgba(0,0,0,0);
+            border: 0;
+            padding: 5px 8px;
+            outline: none;
+            white-space: nowrap;
+            -webkit-user-select: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        #overlay {
+            background: rgba(0, 0, 0, .75);
+            text-align: center;
+            padding: 45px 0 66px 0;
+            opacity: 0;
+            -webkit-transition: opacity .25s ease;
+            -moz-transition: opacity .25s ease;
+        }
+
+        #dp-box:hover #overlay {
+            opacity: 1;
+        }

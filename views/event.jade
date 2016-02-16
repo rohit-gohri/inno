@@ -9,7 +9,6 @@ block content
         h3.center.zero= event.category + ' Events'
         .card.row
             div.materialboxed
-
             .col.s10.offset-s1
                 h3 #{event.name}
                     if (is_admin || is_em)
@@ -64,7 +63,6 @@ block style
 block scripts
     script.
         $(document).ready(function () {
-            $('.parallax').parallax();
             $('.materialboxed').materialbox().click(function() {
                 if ($(this).css('background-size') == 'cover')
                     $(this).css('background-size', 'contain')
