@@ -18,6 +18,7 @@ block content
                         if(user.is_admin || user.is_em)
                             p.col.s3
                                 a(href="/events/addEvent") Add Event
+                        if(user.is_admin)
                             p.col.s3
                                 a(href="/addEM") Add EM
                         .input-field.col.s12
