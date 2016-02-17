@@ -31,14 +31,14 @@ block content
                             button.btn.waves-effect(type="submit") Register
                 else
                     h5 Registered for this Event
-                if is_admin || is_em
-                    h5
-                        a(href='/events/' + event.name + '/participants') Participants
-                    h5
-                        a(href='/events/' + event.name + '/winners/') Winners
-                if is_admin
-                    h5
-                        a(href='/events/' + event.name + '/managers') Managers
+                //if is_admin || is_em
+                //    h5
+                //        a(href='/events/' + event.name + '/participants') Participants
+                //    h5
+                //        a(href='/events/' + event.name + '/winners/') Winners
+                //if is_admin
+                //    h5
+                //        a(href='/events/' + event.name + '/managers') Managers
                 br
     #eventTeamModal.modal
         .modal-content.center
