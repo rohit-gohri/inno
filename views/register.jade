@@ -1,5 +1,4 @@
 extends layout
-
 block content
     .container
         h3 REGISTER
@@ -26,9 +25,11 @@ block content
                     button.btn.waves-effect.waves-light.blue.darken-4(type="button") Cancel
 script.
     $('#register').submit(function () {
+
         if ($('#pass1').val() == $('#pass2').val())
             return true;
         else {
             return true;
         }
+
     });
