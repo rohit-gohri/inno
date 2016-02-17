@@ -179,7 +179,7 @@ router.get('/:eventLink/participants', function (req, res) {
                 //        });
                 //    });
             }
-        }
+        })
 });
 
 module.exports = router;
