@@ -28,12 +28,10 @@ mixin form
         .input-field.col.s8.m4
             select(name="category")
                 option(value="" disabled=true) Choose your option
-                option(value="robotica" selected=event.category=='robotica') Robotica
-                option(value="coding" selected=event.category=='coding') Coding Competitions
-                option(value="megaEvents" selected=event.category=='megaEvents') Mega Events
-                option(value="bio" selected=event.category == 'bio') Bio Vision
-
-
+                option(value="Robotica" selected=event.category=='Robotica') Robotica
+                option(value="Coding" selected=event.category=='Coding') Coding Competitions
+                option(value="Mega" selected=event.category=='Mega') Mega Events
+                option(value="Bio" selected=event.category == 'Bio') Bio Vision
             label Select Category
     .row
         .input-field.file-field.col.s8.m7

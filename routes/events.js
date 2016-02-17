@@ -84,7 +84,7 @@ router.post('/:eventLink/edit', userLogic.isEM,
                 var linkName = req.body.name;
                 linkName = linkName.replace(/\s+/g, '-').toLowerCase();
 
-                var trimmedDetails = req.body.details.substr(0, 15);
+                var trimmedDetails = req.body.details.substr(0, 50);
                 trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
                 trimmedDetails = trimmedDetails + '...';
 
@@ -120,7 +120,7 @@ router.post('/addEvent', userLogic.isEM,
     }, function(req, res) {
         var linkName = req.body.name;
         linkName = linkName.replace(/\s+/g, '-').toLowerCase();
-        var trimmedDetails = req.body.details.substr(0, 15);
+        var trimmedDetails = req.body.details.substr(0, 50);
         trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
         trimmedDetails = trimmedDetails + '...';
         event = new Event({

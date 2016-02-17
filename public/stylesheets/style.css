@@ -90,6 +90,15 @@ footer {
     color: #fff;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active, textarea:-webkit-autofill, select:-webkit-autofill {
+    transition: background-color 5000s ease-in-out 0s;
+    color: inherit;
+    -webkit-text-fill-color: white !important;
+}
+
 input:not([type]):focus:not([readonly]) + label,
 input[type=text]:focus:not([readonly]) + label,
 input[type=password]:focus:not([readonly]) + label,

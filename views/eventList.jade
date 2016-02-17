@@ -38,7 +38,7 @@ block content
                         artillery and machines used by the Indian Army.
     .container
         .row
-            h3.center.zero Events
+            h3.center.zero.intro Events
         .row
             each event, index in events
                 .events.col.s12.m6.l4
@@ -48,13 +48,15 @@ block content
                         .card-content
                             span.card-title.activator.white-text #{event.name}
                                 i.material-icons.right more_vert
-                            p.white-text #{event.shortDetails}
+                            if event.fbLink
+                                a(href=event.fbLink)
+                                    p.white-text FB Event Page
                         .card-reveal.event
                             span.card-title.white-text #{event.name}
                                 i.material-icons.right close
-                            p #{event.details}
+                            p #{event.shortDetails}
                             a(href="/events/" + event.linkName)
-                                button.btn.waves-effect.waves-light Details
+                                button.btn.waves-effect.waves-light More Details
 
 block style
     style.
