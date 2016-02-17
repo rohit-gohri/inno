@@ -22,12 +22,15 @@ block content
                 if(event.isTeamEvent)
                     h5 Team Event
                     p Min Participants: #{event.minParticipants}
-                if event.isTeamEvent
-                    a.modal-trigger(href="#eventTeamModal")
-                       button.btn.waves-effect.waves-light Register
+                if is_registered
+                    if event.isTeamEvent
+                        a.modal-trigger(href="#eventTeamModal")
+                           button.btn.waves-effect.waves-light Register
+                    else
+                        form(role='form', action='/events/' + event.linkName + "/register", method='post')
+                            button.btn.waves-effect(type="submit") Register
                 else
-                    form(role='form', action='/events/' + event.linkName + "/register", method='post')
-                        button.btn.waves-effect(type="submit") Register
+                    h5 Registered for this Event
                 if is_admin || is_em
                     h5
                         a(href='/events/' + event.name + '/participants') Participants
