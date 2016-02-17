@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .container
+        .row
+            h3.intro Add Event Managers
+            form.col.s12(role="form" action="/addEM" method="post")
+                if msg
+                    h5= msg
+                .input-field.col.s8.m7
+                    input(type='text', id="inno_ids" name="inno_ids" required=true)
+                    label(for="inno_ids") Enter INNO IDs(comma seperated)
+
+                button.btn.waves-effect.waves-light(type="submit") Add
+block style
+    style
+        include ../public/stylesheets/pages/about.css

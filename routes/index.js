@@ -5,6 +5,8 @@ var router = express.Router();
 var Hashids = require("hashids");
 var nodemailer = require('nodemailer');
 var mailgun = require('nodemailer-mailgun-transport');
+var userLogic = require('../logic/userLogic.js');
+
 
 var auth = {
     auth: {
@@ -88,6 +90,25 @@ router.get('/contact', function(req, res) {
 
 router.get('/about', function(req, res) {
     res.render('about');
+});
+
+router.get('/addEM', userLogic.isAdmin, function (req, res) {
+    res.render('makeEM');
+});
+
+router.post('/addEM', userLogic.isAdmin, function(req, res) {
+    var array = req.body.inno_ids.split(',');
+    for(var i = 0; i < array.length; i++) {
+        Account.findOne({inno_id: array[i]}, function(err, user) {
+            if (err || !user)
+                res.render('makeEM', {msg: "Failure"});
+            user.is_em = true;
+            user.save(function(err) {
+                if (!err)
+                    res.render('makeEM', {msg: "Success"})
+            });
+        })
+    }
 });
 
 router.post('/contact', function(req, res) {
