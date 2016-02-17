@@ -1,0 +1,132 @@
+<!DOCTYPE html><html><head><title>Innovision'16</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="/stylesheets/materialize.min.css" rel="stylesheet" media="screen"><link rel="stylesheet" href="/stylesheets/style.css"><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="/font/material icons/material-icons.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" type="text/css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-73588354-1', 'auto');
+        ga('send', 'pageview');</script></head><body><nav class="z-depth-1 grey darken-4"><div class="nav-wrapper black-text container"><ul id="slide-out" class="side-nav white-text grey darken-4"><li><a href="#loginModal" class="modal-trigger">Login</a></li><li><a href="/">Home</a></li><li><a href="/events">Events</a></li><li><a href="/contact">Contact Us</a></li><li><a href="/about">About Us</a></li></ul><a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons white-text">menu</i></a><a href="/" class="brand-logo white-text">innovision'16<img src="/images/inno3.png" class="left"></a><ul class="right hide-on-med-and-down white-text"><li><a href="/">Home</a></li><li><a href="/events">Events</a></li><li><a href="/contact">Contact Us</a></li><li><a href="/about">About Us</a></li><li><a href="#loginModal" class="modal-trigger">Login</a></li></ul></div></nav><main><div class="container"><div class="row"><h3 class="center-on-small-only">About Innovision</h3><p class="col s10 offset-s1 m12">Innovision is the annual techno-managerial fest of NSIT. It was conceived in 2002 as a purely technological fest, but with the advent of scope in the area of management, the vision expanded to contain managerial events as well. We believe in keeping up the spirit of a tech fest while amalgamating it with a carnival atmosphere.</p></div></div></main><footer class="page-footer grey darken-4"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">Follow Us On:</h5><div class="container"><div class="row white-text"><a href="https://www.facebook.com/Innoitis"><div class="col s4">FB</div></a></div></div></div><div class="col l4 offset-l2 s12"><h5 class="white-text">Site</h5><ul><li><a href="/events" class="white-text">Events</a></li><li><a href="/login" class="white-text">Login</a></li></ul></div></div></div><div class="footer-copyright"><div class="container white-text">© 2016 Innovision, NSIT<a href="#" class="grey-text text-lighten-3 right">More Links</a></div></div></footer><div id="loginModal" class="modal"><div class="modal-content center"><h4>Login</h4><div class="row"><form role="form" action="/login" method="post" class="col s12"><div class="input-field col s8 offset-s2"><input type="text" id="email" name="email"><label for="email">Email</label></div><div class="input-field col s8 offset-s2"><input type="password" id="password" name="password"><label for="password">Password</label></div><button type="submit" style="width: 200px;" class="btn waves-effect waves-light blue darken-4">Login</button></form></div><form role="form" action="/login/fb" method="get" class="row"><div class="col s12 center-align center"><button type="submit" id="fb" class="btn"><img src="http://i.stack.imgur.com/ryt6L.png" style="max-width: 200px;"></button></div></form><div class="row"><div class="col s12 center-align center"><a href="/register"><button style="width: 200px;" class="btn waves-effect waves-light blue darken-4">Register</button></a></div></div></div></div><ul id="profDrop" class="dropdown-content grey darken-4"><li class="white-text"><a href="/users/details">Profile</a></li><li class="divider"></li><li class="white-text"><a href="/logout">Logout</a></li></ul></body><script src="/javascripts/jquery.min.js"></script><script src="/javascripts/materialize.js"></script><script src="/javascripts/push.js"></script><script>$(document).ready(function () {
+    $('.parallax').parallax();
+    $('.slider').slider({full_width: true});
+    $('select').material_select();
+    $('.modal-trigger').leanModal();
+    $(".dropdown-button").dropdown();
+});
+// Initialize collapse button
+$(".button-collapse").sideNav();
+</script></html><!--doctype html
+html
+    head
+        title= "Innovision'16"
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(href='/stylesheets/materialize.min.css', rel='stylesheet', media='screen')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/font/material\ icons/material-icons.css')
+        link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,300', type='text/css')
+        script.
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                    ga('create', 'UA-73588354-1', 'auto');
+                    ga('send', 'pageview');
+    body
+        br
+        #nav.container
+            ul#profDrop.dropdown-content
+                li
+                    a(href="/users/details") Profile
+                li.divider
+                li
+                    a(href="/logout") Logout
+            nav.z-depth-0
+                div.nav-wrapper
+                    ul#slide-out.side-nav.grey.darken-4
+                        li
+                            if !login
+                                a.modal-trigger(href="#loginModal") Login
+                            else
+                                a.dropdown-button(href="#!" data-activates="profDrop") Hello !
+                                    i.material-icons.right arrow_drop_down
+                        li
+                            a(href="/") Home
+                        li
+                            a(href="/events") Events
+                        li
+                            a(href="/contact") Contact Us
+                        li
+                            a(href="/about") About Us
+                    a.button-collapse(href="#" data-activates="slide-out")
+                        i.material-icons menu
+                    a.brand-logo(href="/") innovision'16
+                        img.left(src="/images/inno3.png")
+                    ul.right.hide-on-med-and-down
+                        li
+                            a(href="/") Home
+                        li
+                            a(href="/events") Events
+                        li
+                            if !login
+                                a.modal-trigger(href="#loginModal") Login
+                            else
+                                a.dropdown-button(href="#!" data-activates="profDrop") Hello !
+                                    i.material-icons.right arrow_drop_down
+        br
+
+        main
+            block content
+
+        #foot
+            footer.page-footer
+                .container
+                    .row
+                        .col.l6.s12
+                            h5 Follow Us On:
+                            .container
+                                .row
+                                    .col.s4 FB
+                                    .col.s4 Twitter
+                                    .col.s4 Google+
+                        .col.l4.offset-l2.s12
+                            h5 Site
+                            ul
+                                li
+                                    a.white-text(href="/events") Events
+                                li
+                                    a.white-text(href="/login") Login
+                .footer-copyright
+                    .container © 2016 Innovision, NSIT
+                        a.white-text.right(href="#") More Links
+
+        #loginModal.modal
+            .modal-content.center
+                h4 Login
+                .row
+                    form.col.s12(role='form', action="/login", method="post")
+                            .input-field.col.s8.offset-s2
+                                input(type='text', id="email" name="email")
+                                label(for="email") Email
+                            .input-field.col.s8.offset-s2
+                                input(type='password', id="password" name="password")
+                                label(for="password") Password
+                            button.btn.waves-effect.waves-light.blue.darken-4(type='submit', style="width: 200px;") Login
+                form.row(role='form', action="/login/fb", method="get")
+                    .col.s12.center-align.center
+                        button.btn(type='submit')#fb
+                            img(src='http://i.stack.imgur.com/ryt6L.png', style='max-width: 200px;')
+                .row
+                    .col.s12.center-align.center
+                        a(href='/register')
+                            button.btn.waves-effect.waves-light.blue.darken-4(style="width: 200px;") Register
+
+    script(src='/javascripts/jquery.min.js')
+    script(src='/javascripts/materialize.js')
+    block scripts
+    script.
+        $(document).ready(function () {
+            $('.parallax').parallax();
+            $('.slider').slider({full_width: true});
+            $('select').material_select();
+            $('.modal-trigger').leanModal();
+            $(".dropdown-button").dropdown({hover: true});
+        });
+        // Initialize collapse button
+        $(".button-collapse").sideNav();-->

@@ -1,5 +1,4 @@
 extends layout
-
 block content
     .container
         h3 REGISTER
@@ -24,6 +23,7 @@ block content
                 button.btn.waves-effect.waves-light.blue.darken-4(type='submit') Submit &nbsp; &nbsp;
                 a(href='/')
                     button.btn.waves-effect.waves-light.blue.darken-4(type="button") Cancel
+<<<<<<< HEAD
 block scripts
     script.
         $('#register').submit(function () {
@@ -37,3 +37,15 @@ block scripts
 block style
     style
         include ../public/stylesheets/pages/about.css
+=======
+script.
+    $('#register').submit(function () {
+
+        if ($('#pass1').val() == $('#pass2').val())
+            return true;
+        else {
+            return true;
+        }
+
+    });
+>>>>>>> 8c7215c89cedcb13fc0c47ed52637f88a07c44fb
