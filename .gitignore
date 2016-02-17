@@ -6,3 +6,5 @@
 ## Directory-based project format:
 .idea/
 node_modules/
+logs/
+public/uploads/

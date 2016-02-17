@@ -42,6 +42,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({
     secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
     store: new MongoStore({
         mongooseConnection: mongoose.connection,
         ttl: 24 * 60 * 60 // = 1 day expiry
