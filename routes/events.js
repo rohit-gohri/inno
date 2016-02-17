@@ -10,7 +10,7 @@ var eventLogic = require('../logic/eventLogic');
 var upload = multer({
     dest: 'public/uploads/',
     limits: {fileSize: 10000000, files:1},
-}).single('eventPhoto');
+});
 
 
 router.get('/', function (req, res) {
