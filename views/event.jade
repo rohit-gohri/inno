@@ -6,7 +6,8 @@ block content
             .parallax
                 img(src=event.photo)
     .container
-        h3.center.zero= event.category + ' Events'
+        a(href="/events/category/" + event.category)
+            h3.center.zero.intro= event.category + ' Events'
         .card.row
             div.materialboxed
             .col.s10.offset-s1
@@ -17,8 +18,9 @@ block content
                 h6= msg
                 p #{event.details}
                 if event.fbLink
-                    p
-                        a(href=event.fbLink) "FB event page"
+                    h6.intro
+                        a(href=event.fbLink).black-text FB event page  &nbsp;
+                            i#fb.material-icons send
                 if(event.isTeamEvent)
                     h5 Team Event
                     p Max Participants: #{event.minParticipants}
@@ -40,6 +42,7 @@ block content
                 //    h5
                 //        a(href='/events/' + event.name + '/managers') Managers
                 br
+                br
     #eventTeamModal.modal
         .modal-content.center
             h4 Select Team for Event
@@ -49,11 +52,13 @@ block content
                         p
                             input.with-gap(name="teamName" type="radio" id="opt"+index value=team.name)
                             label(for="opt"+index) #{team.name}
-                    button.btn.waves-effect.waves-light.blue.darken-4(type="submit")
-                        a(href="/teams/myTeams") Select Team
-                        i.material-icons.prefix.right send
-                button.btn.waves-light.waves-effect.blue.darken-4.col.s2.offset-s5.row
-                    a(href="/teams/newTeam") New Team
+                    .row
+                        button.btn.waves-effect.waves-light(type="submit" disabled=teams.length==0)
+                            a(href="/teams/myTeams") Select Team
+                            i.material-icons.prefix.right send
+                    .row
+                        button.btn.waves-light.waves-effect.row
+                            a(href="/teams/newTeam") New Team
 
 block style
     style
@@ -63,6 +68,9 @@ block style
             height:300px;
             background: url(#{event.photo}) no-repeat center;
             background-size: cover;
+        }
+        #fb {
+            font-size: 12px;
         }
 block scripts
     script.

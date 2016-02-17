@@ -5,10 +5,10 @@ block content
         .card.row
             form.col.l10.offset-l1.s12(role='form', action='/users/details', method='post')
                 if (user.is_new)
-                    h3 Register
+                    h3.intro Register
                 else
-                    h3 Profile
-                h6 Inno ID : #{user.inno_id}
+                    h3.intro Profile
+                h4.black-text.intro Inno ID : #{user.inno_id}
                 .row
                     .col.s12.m6.no-padding
                         if (edit)
@@ -16,10 +16,10 @@ block content
                         if (user.is_new)
                             h6.col.s12.red-text Please fill out these details
                         if(user.is_admin || user.is_em)
-                            p.col.s3
+                            h6.col.intro
                                 a(href="/events/addEvent") Add Event
                         if(user.is_admin)
-                            p.col.s3
+                            h6.col.intro
                                 a(href="/addEM") Add EM
                         .input-field.col.s12
                             input(value=user.firstName, id='firstName', name='firstName', type='text', class='validate' required=true)
@@ -33,7 +33,7 @@ block content
                         else
                             #dp-box.col.s5.right
                                 #overlay
-                                    input#photo-upload(type="file" name="photo")
+                                    //input#photo-upload(type="file" name="photo")
                 .row
                     .input-field.col.m6.s12
                         p#email= user.email
@@ -90,31 +90,32 @@ block style
             border-radius: 5px;
             overflow: hidden;
             padding: 0;
+            height: 150px;
         }
-        #photo-upload {
-            color: transparent;
-        }
-        #photo-upload::-webkit-file-upload-button {
-            visibility: hidden;
-        }
-        #photo-upload::before {
-            font-family: "Material Icons";
-            content: 'E439';
-            color: white;
-            display: inline-block;
-            background: rgba(0,0,0,0);
-            border: 0;
-            padding: 5px 8px;
-            outline: none;
-            white-space: nowrap;
-            -webkit-user-select: none;
-            cursor: pointer;
-            font-size: 24px;
-        }
+        /*#photo-upload {*/
+            /*color: transparent;*/
+        /*}*/
+        /*#photo-upload::-webkit-file-upload-button {*/
+            /*visibility: hidden;*/
+        /*}*/
+        /*#photo-upload::before {*/
+            /*font-family: "Material Icons";*/
+            /*content: 'E439';*/
+            /*color: white;*/
+            /*display: inline-block;*/
+            /*background: rgba(0,0,0,0);*/
+            /*border: 0;*/
+            /*padding: 5px 8px;*/
+            /*outline: none;*/
+            /*white-space: nowrap;*/
+            /*-webkit-user-select: none;*/
+            /*cursor: pointer;*/
+            /*font-size: 24px;*/
+        /*}*/
         #overlay {
             background: rgba(0, 0, 0, .75);
             text-align: center;
-            padding: 45px 0 66px 0;
+            padding: 75px 0 75px 0;
             opacity: 0;
             -webkit-transition: opacity .25s ease;
             -moz-transition: opacity .25s ease;

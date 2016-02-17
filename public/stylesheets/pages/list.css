@@ -1,6 +1,6 @@
 body, .btn {
     background-color: #b0bec5;
 }
-.card, .event, #slide-out, #hello, #hello .collapsible-body, #hello .collapsible-header, #loginModal {
+.card, .event, #slide-out, #hello, #hello .collapsible-body, #hello .collapsible-header, .modal, .select-wrapper ul, .select-wrapper ul li  {
     background-color: #78909c !important;
 }

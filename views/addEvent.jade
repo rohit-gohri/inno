@@ -3,9 +3,9 @@ extends layout
 block content
     .container
         if edit
-            h3 Edit Event
+            h3.intro Edit Event
         else
-            h3 Add Event
+            h3.intro Add Event
         .row
             if edit
                 form.col.s12(role='form', action="/events/" + event.linkName + '/edit', method="post")
@@ -32,6 +32,10 @@ mixin form
                 option(value="Coding" selected=event.category=='Coding') Coding Competitions
                 option(value="Mega" selected=event.category=='Mega') Mega Events
                 option(value="Bio" selected=event.category == 'Bio') Bio Vision
+                option(value="Quiz" selected=event.category == 'Quiz') Quiz Fest
+                option(value="Hardware" selected=event.category == 'Hardware') Hardware
+                option(value="Online" selected=event.category == 'Online') Online
+                option(value="Miscellaneous" selected=event.category == 'Miscellaneous') Miscellaneous
             label Select Category
     .row
         .input-field.file-field.col.s8.m7
@@ -74,7 +78,7 @@ mixin minPart
             option(value="4" selected=event.minParticipants == '4') 4
             option(value="5" selected=event.minParticipants == '5') 5
             option(value="6" selected=event.minParticipants == '6') 6
-        label Maximum Participants
+        label Maximum Team Size
 
 block scripts
     script.

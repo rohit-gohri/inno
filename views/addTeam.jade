@@ -2,7 +2,7 @@ extends layout
 
 block content
     .container
-        h3 New Team
+        h3.intro New Team
         .row
             form.col.s12(role='form', action="/teams/newTeam", method="post")
                 .row
@@ -34,7 +34,6 @@ block content
                     #m5.input-field.col.s8.m7.hidden
                         input#mem5(type="text" name="mem5")
                         label(for="mem5") Member 5 INNO ID
-
 
                 .row
                     .col.s12

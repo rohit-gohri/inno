@@ -38,7 +38,10 @@ block content
                         artillery and machines used by the Indian Army.
     .container
         .row
-            h3.center.zero.intro Events
+            if category
+                h3.center.zero.intro= category + ' Events'
+            else
+                h3.center.zero.intro Events
         .row
             each event, index in events
                 .events.col.s12.m6.l4

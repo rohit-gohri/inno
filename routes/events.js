@@ -9,7 +9,7 @@ var eventLogic = require('../logic/eventLogic');
 
 var upload = multer({
     dest: 'public/uploads/',
-    limits: {fileSize: 10000000, files:1},
+    limits: {fileSize: 10000000, files:1}
 });
 
 
@@ -17,6 +17,13 @@ router.get('/', function (req, res) {
     Event.find({}).lean().exec(function (err, events) {
         console.log(events);
         res.render('eventList', {events: events});
+    });
+});
+
+router.get('/category/:category', function (req, res) {
+    Event.find({category: req.params.category}).lean().exec(function (err, events) {
+        console.log(events);
+        res.render('eventList', {events: events, category: req.params.cetegory});
     });
 });
 
@@ -50,14 +57,13 @@ router.post('/:eventLink/register/', userLogic.ensureAuthenticated, function (re
             });
         }
 
-
         //non team event
         else {
             event.participants.push(id);
             event.save(function (err, event) {
                 if(err)
                     console.log(err);
-                res.render('event', {event: event, msg: "Successfully Registered"});
+                res.render('event', {event: event, msg: "Successfully Registered", teams:{}});
             });
         }
     });
@@ -149,8 +155,8 @@ router.get('/:eventLink', userLogic.getTeams, eventLogic.isRegistered, function 
     });
 });
 
-router.get('/:eventName/participants', function (req, res) {
-    Event.findOne({name: req.params.eventName}),
+router.get('/:eventLink/participants', function (req, res) {
+    Event.findOne({linkName: req.params.eventLink},
         function (err, event) {
             if(!event || err ) {
                 res.render('error', {message: "Event not found!!!", error: {status: '', stack: ''}});

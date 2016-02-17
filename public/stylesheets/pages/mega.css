@@ -1,6 +1,6 @@
-body, .btn {
+body, .btn, ul.collection, li.collection-header, li.collection-item, .dropdown-content li.selected {
     background-color: #2196F3;
 }
-.card, #slide-out, #hello, #hello .collapsible-body, #hello .collapsible-header, #loginModal {
+.card, #slide-out, #hello, #hello .collapsible-body, #hello .collapsible-header, .modal, .select-wrapper ul, .select-wrapper ul li {
     background-color: #1976D2;
 }
