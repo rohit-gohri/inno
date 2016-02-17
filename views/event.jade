@@ -22,7 +22,7 @@ block content
                 if(event.isTeamEvent)
                     h5 Team Event
                     p Min Participants: #{event.minParticipants}
-                if is_registered
+                if !is_registered
                     if event.isTeamEvent
                         a.modal-trigger(href="#eventTeamModal")
                            button.btn.waves-effect.waves-light Register
