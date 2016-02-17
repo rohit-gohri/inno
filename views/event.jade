@@ -21,7 +21,7 @@ block content
                         a(href=event.fbLink) "FB event page"
                 if(event.isTeamEvent)
                     h5 Team Event
-                    p Min Participants: #{event.minParticipants}
+                    p Max Participants: #{event.minParticipants}
                 if !is_registered
                     if event.isTeamEvent
                         a.modal-trigger(href="#eventTeamModal")

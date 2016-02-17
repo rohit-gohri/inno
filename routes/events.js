@@ -67,10 +67,10 @@ router.get('/:eventLink/edit', userLogic.isEM, function (req, res) {
     Event.findOne({linkName: req.params.eventLink}, function (err, event) {
         if(err)
             console.log(err);
-        else if (event.managers.indexOf(req.user._id) > -1 || req.user.is_admin) {
+        else {//if (event.managers.indexOf(req.user._id) > -1 || req.user.is_admin) {
             res.render('addEvent', {event: event, edit: true});
-        } else {
-            res.render('error', {message:"You don't have permission to view this", error: {status:"", stack:""}});
+        //} else {
+        //    res.render('error', {message:"You don't have permission to view this", error: {status:"", stack:""}});
         }
     })
 });
