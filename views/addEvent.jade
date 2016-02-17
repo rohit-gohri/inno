@@ -37,7 +37,7 @@ mixin form
         .input-field.file-field.col.s8.m7
             .btn.blue.darken-4.waves-effect.waves-light
                 span Photo
-                input(type="file" name="eventPhoto")
+                input(type="file" name="eventPhoto" required=edit==false)
             .file-path-wrapper
                 input.file-path.validate(type="text")
     h6 Is the event a team event?
@@ -48,11 +48,11 @@ mixin form
         .col.s4.m2.l1
             input.with-gap(name="isTeamEvent" type="radio" id="indEvent" checked=event.isTeamEvent==false value="0")
             label(for="indEvent") No
-    if event.isTeamEvent
-        .row#minPart
+    if !event.isTeamEvent
+        .row#minPart.hidden
             mixin minPart
     else
-        .row#minPart.hidden
+        .row#minPart
             mixin minPart
 
     .row

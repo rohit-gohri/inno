@@ -107,17 +107,10 @@ router.post('/:eventLink/edit', userLogic.isEM,
 });
 
 router.get('/addEvent', userLogic.isEM, function (req, res) {
-    res.render('addEvent', {event:{}})
+    res.render('addEvent', {event:{}, edit: false})
 });
 
-router.post('/addEvent', userLogic.isEM,
-    function (req, res, next) {
-        upload(req, res, function (err) {
-            if (err) {
-                next();
-            }
-        })
-    }, function(req, res) {
+router.post('/addEvent', userLogic.isEM, upload.single('eventPhoto'), function(req, res) {
         var linkName = req.body.name;
         linkName = linkName.replace(/\s+/g, '-').toLowerCase();
         var trimmedDetails = req.body.details.substr(0, 50);
