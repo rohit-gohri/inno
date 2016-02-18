@@ -88,29 +88,6 @@ router.get('/contact', function(req, res) {
     }
 });
 
-router.get('/about', function(req, res) {
-    res.render('about');
-});
-
-router.get('/addEM', userLogic.isAdmin, function (req, res) {
-    res.render('makeEM');
-});
-
-router.post('/addEM', userLogic.isAdmin, function(req, res) {
-    var array = req.body.inno_ids.split(',');
-    for(var i = 0; i < array.length; i++) {
-        Account.findOne({inno_id: array[i]}, function(err, user) {
-            if (err || !user)
-                res.render('makeEM', {msg: "Failure"});
-            user.is_em = true;
-            user.save(function(err) {
-                if (!err)
-                    res.render('makeEM', {msg: "Success"})
-            });
-        })
-    }
-});
-
 router.post('/contact', function(req, res) {
     var mailOpts;
 
@@ -132,6 +109,31 @@ router.post('/contact', function(req, res) {
             res.render('contactUs', { msg: 'Message Sent! Thank You.', err: false, user: {}});
         }
     })
+});
+
+router.get('/about', function(req, res) {
+    res.render('about');
+});
+
+router.get('/addEM', userLogic.isAdmin, function (req, res) {
+    res.render('makeEM');
+});
+
+router.post('/addEM', userLogic.isAdmin, function(req, res) {
+    var array = req.body.inno_ids.split(',');
+    for(var i = 0; i < array.length; i++) {
+        Account.findOne({inno_id: array[i]}, function(err, user) {
+            if (err || !user)
+                res.render('makeEM', {msg: "Failure"});
+            else {
+                user.is_em = true;
+                user.save(function (err) {
+                    if (!err)
+                        res.render('makeEM', {msg: "Success"})
+                });
+            }
+        })
+    }
 });
 
 module.exports = router;

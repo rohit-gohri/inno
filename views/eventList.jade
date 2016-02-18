@@ -63,4 +63,15 @@ block content
 
 block style
     style
-        include ../public/stylesheets/pages/list.css
+        if category == "Robotica" || category == "Hardware"
+            include ../public/stylesheets/pages/robot.css
+        else if category == "Bio"
+            include ../public/stylesheets/pages/bio.css
+        else if category == "Coding" || category == "Online"
+            include ../public/stylesheets/pages/code.css
+        else if category == "Mega"
+            include ../public/stylesheets/pages/mega.css
+        else if category == "Quiz"
+            include ../public/stylesheets/pages/misc.css
+        else
+            include ../public/stylesheets/pages/list.css

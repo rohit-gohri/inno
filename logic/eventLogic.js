@@ -12,6 +12,7 @@ var events = {
                 if(err || !event) {
                     console.log(err);
                     //res.redirect('/');
+                    next();
                 }
                 else {
                     res.locals.is_registered = false;

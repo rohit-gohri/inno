@@ -60,10 +60,20 @@ footer {
     border-radius: 10px;
 }
 
-#fb {
+#fb-icon {
+    background-image: url(../images/fb.png);
+    width: 10px;
+    height: 10px;
+}
+
+#fbLogin {
     padding:0;
     border: none;
     background-color: white;
+}
+
+.bold {
+    font-weight:700;
 }
 
 #reel {

@@ -1,16 +1,18 @@
 extends layout
 
 block content
-    //if event.photo
-        .parallax-container#eventPhoto
-            .parallax
-                img(src=event.photo)
+    if event.nxtEvent
+        a(href="/events/" + event.nxtEvent)
+            h3#nxt.zero.intro >
+        a(href="/events/" + event.prevEvent)
+            h3#prev.zero.intro <
+
     .container
         a(href="/events/category/" + event.category)
-            h3.center.zero.intro= event.category + ' Events'
+            h3.center.intro= event.category + ' Events'
         .card.row
             div.materialboxed
-            .col.s10.offset-s1
+            .col.s12.m10.offset-m1
                 h3 #{event.name}
                     if (is_admin || is_em)
                         a(href="/events/" + event.linkName + "/edit")
@@ -21,18 +23,36 @@ block content
                     h6.intro
                         a(href=event.fbLink).black-text FB event page  &nbsp;
                             i#fb.material-icons send
-                if(event.isTeamEvent)
-                    h5 Team Event
-                    p Max Participants: #{event.minParticipants}
-                if !is_registered
-                    if event.isTeamEvent
-                        a.modal-trigger(href="#eventTeamModal")
-                           button.btn.waves-effect.waves-light Register
+                .col.s6.m4.no-padding
+                    h5 Contact Details:
+                    p= event.contact
+                .col.s6.m4
+                    if event.category != "Online"
+                        h5 Venue:
                     else
-                        form(role='form', action='/events/' + event.linkName + "/register", method='post')
-                            button.btn.waves-effect(type="submit") Register
-                else
-                    h5 Registered for this Event
+                        h5 Online Platform:
+                    p= event.venue
+                .col.s6.m4
+                    h5 Date & Timings:
+                    p= event.timings
+                .col.s6.m12.no-padding
+                    if(event.isTeamEvent)
+                        h5 Team Event
+                        p Max Team Size: #{event.minParticipants}
+                .col.s12.no-padding
+                    if !is_registered
+                        if event.isTeamEvent
+                            a.modal-trigger(href="#eventTeamModal")
+                                button.btn.waves-effect.waves-light Register
+                        else
+                            form(role='form', action='/events/' + event.linkName + "/register", method='post')
+                                button.btn.waves-effect(type="submit") Register
+                    else
+                        h6 Registered for this Event
+                div.
+                    &nbsp; &nbsp;
+                br
+                //TODO: Admin Panel
                 //if is_admin || is_em
                 //    h5
                 //        a(href='/events/' + event.name + '/participants') Participants
@@ -41,8 +61,9 @@ block content
                 //if is_admin
                 //    h5
                 //        a(href='/events/' + event.name + '/managers') Managers
-                br
-                br
+        br
+        br
+
     #eventTeamModal.modal
         .modal-content.center
             h4 Select Team for Event
@@ -62,7 +83,18 @@ block content
 
 block style
     style
-        include ../public/stylesheets/pages/robot.css
+        if event.category=="Robotica" || event.category=="Hardware"
+            include ../public/stylesheets/pages/robot.css
+        else if event.category == "Bio"
+            include ../public/stylesheets/pages/bio.css
+        else if event.category == "Coding" || event.category=="Online"
+            include ../public/stylesheets/pages/code.css
+        else if event.category == "Mega"
+            include ../public/stylesheets/pages/mega.css
+        else if event.category == "Quiz"
+            include ../public/stylesheets/pages/misc.css
+        else
+            include ../public/stylesheets/pages/list.css
     style.
         .materialboxed {
             height:300px;
@@ -72,6 +104,7 @@ block style
         #fb {
             font-size: 12px;
         }
+
 block scripts
     script.
         $(document).ready(function () {

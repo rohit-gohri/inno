@@ -9,6 +9,10 @@ html
         link(rel='stylesheet', href='/font/intro/intro.css')
         link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,300', type='text/css')
         block style
+        style.
+            #listicon {
+                margin-right:0;
+            }
         script.
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -26,43 +30,103 @@ html
                 ul#slide-out.side-nav.white-text
                     if !login
                         li.hide-on-small-and-down
-                            a.modal-trigger(href="#loginModal") Login
+                            a.modal-trigger.row.zero(href="#loginModal")
+                                .col.no-padding Login
+                                i.material-icons.col.right account_circle
                         li.hide-on-med-and-up
-                            a(href="/login") Login
+                            a.modal-trigger.row.zero(href="/login")
+                                .bold.col.no-padding Login
+                                i.material-icons.col.right account_circle
                     else
                         li#hello
                             ul.collapsible
                                 li
-                                    a.collapsible-header.waves-effect.waves-light.zero Hello #{firstName}!
-                                        i.material-icons.white-text.right arrow_drop_down
+                                    a.bold.collapsible-header.waves-effect.waves-light.zero Hello #{firstName}!
+                                        i.material-icons.col.white-text.right#listicon arrow_drop_down
                                     .collapsible-body
                                         ul
-                                            li.white-text
-                                                a(href="/users/details") Profile
-                                            li.white-text
-                                                a(href="/logout") Logout
-                    li
-                        a(href="/") Home
-                    li
-                        a(href="/events") Events
-                    li
-                        a(href="/contact") Contact Us
-                    li
-                        a(href="/about") About Us
+                                            li
+                                                a.zero.row(href="/users/details")
+                                                    .col.no-padding Profile
+                                                    i.material-icons.col.right account_circle
+                                            li
+                                                a.zero.modal-trigger.row(href="/logout")
+                                                    .col.no-padding Logout
+                                                    i.material-icons.col.right exit_to_app
 
+                    li
+                        a.row.zero(href="/")
+                            .bold.col.no-padding Home
+                            i.material-icons.col.right home
+                    li.collapse
+                        ul.collapsible.collapsible-accordion(data-collapsible="accordion")
+                            li
+                                a.row.zero.collapsible-header.waves-effect.waves-light
+                                    .col.no-padding.bold Events
+                                    i.material-icons.col.right#listicon  list
+                                .collapsible-body
+                                    ul
+                                        li
+                                            a.row.zero(href="/events/category/Mega")
+                                                .col.no-padding Mega Events
+                                                i.material-icons.col.right aspect_ratio
+                                        li
+                                            a.row.zero(href="/events/category/Coding")
+                                                .col.no-padding Coding Events
+                                                i.material-icons.col.right keyboard
+                                        li
+                                            a.row.zero(href="/events/category/Hardware")
+                                                .col.no-padding Hardware Events
+                                                i.material-icons.col.right developer_board
+                                        li
+                                            a.row.zero(href="/events/category/Robotica")
+                                                .col.no-padding Robotica
+                                                i.material-icons.col.right android
+                                        li
+                                            a.row.zero(href="/events/category/Quiz")
+                                                .col.no-padding Quiz Fest
+                                                i.material-icons.col.right question_answer
+                                        li
+                                            a.row.zero(href="/events/category/Bio")
+                                                .col.no-padding Bio Vision
+                                                i.material-icons.col.right polymer
+                                        li
+                                            a.row.zero(href="/events/category/Online")
+                                                .col.no-padding Online
+                                                i.material-icons.col.right wifi_tethering
+                                        li
+                                            a.row.zero(href="/events/category/Miscelleneous")
+                                                .col.no-padding Misc.
+                                                i.material-icons.col.right blur_on
+                    li
+                        a.row.zero(href="/schedule")
+                            .bold.col.no-padding Schedule
+                            i.material-icons.col.right date_range
+                    li
+                        a.row.zero(href="/sponsors")
+                            .bold.col.no-padding Sponsors
+                            i.material-icons.col.right all_out
+                    li
+                        a.row.zero(href="/contact")
+                            .bold.col.no-padding Contact Us
+                            i.material-icons.col.right contact_mail
+                    li
+                        a.row.zero(href="/about")
+                            .bold.col.no-padding About Us
+                            i.material-icons.col.right change_history
         main
             block content
 
-        footer.page-footer.transparent
+        footer.page-footer#footer
             .container
                 .row
-                    .col.l6.s12
+                    .col.l6.s12.center-on-small-only
                         h5.white-text Follow Us On:
                         .container
                             .row.white-text
                                 a(href="https://www.facebook.com/Innoitis")
-                                    .col.s4 FB
-                    div.col.l4.offset-l2.s12
+                                    .col.s4#fb-icon
+                    div.col.l4.offset-l2.s12.center-on-small-only
                         h5.white-text Site
                         ul
                             li
@@ -86,7 +150,7 @@ html
                             button.btn.waves-effect.waves-light(type='submit', style="width: 200px;") Login
                 form.row(role='form', action="/login/fb", method="get")
                     .col.s12.center-align.center
-                        button.btn(type='submit')#fb
+                        button.btn(type='submit')#fbLogin
                             img(src='http://i.stack.imgur.com/ryt6L.png', style='max-width: 200px;')
                 .row
                     .col.s12.center-align.center
@@ -105,8 +169,12 @@ html
             $('.slider').slider({full_width: true});
             $('select').material_select();
             $('.modal-trigger').leanModal();
+            $('.collapsible').collapsible({
+                accordion: true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+            });
             // Initialize collapse button
             $("#menu").sideNav({
+                menuWidth: 280,
                 edge: 'left', // Choose the horizontal origin
                 closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
             });

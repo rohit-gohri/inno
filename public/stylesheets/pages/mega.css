@@ -1,6 +1,7 @@
 body, .btn, ul.collection, li.collection-header, li.collection-item, .dropdown-content li.selected {
-    background-color: #2196F3;
+    background-color: #2196F3 !important;
 }
-.card, #slide-out, #hello, #hello .collapsible-body, #hello .collapsible-header, .modal, .select-wrapper ul, .select-wrapper ul li {
-    background-color: #1976D2;
+.card, #slide-out, #hello, #hello .collapsible-body, #hello .collapsible-header, .modal,
+.select-wrapper ul, .select-wrapper ul li, footer, .event {
+    background-color: #1976D2 !important;
 }

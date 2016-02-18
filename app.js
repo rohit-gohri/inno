@@ -33,8 +33,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/innovision');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.disable('x-powered-by');
 app.use(logger('dev'));
 app.use(bodyParser.json());
