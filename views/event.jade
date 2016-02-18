@@ -83,11 +83,11 @@ block content
 
 block style
     style
-        if event.category=="Robotica" || event.category=="Hardware"
+        if event.category=="Hardware" || event.category=="Online"
             include ../public/stylesheets/pages/robot.css
         else if event.category == "Bio"
             include ../public/stylesheets/pages/bio.css
-        else if event.category == "Coding" || event.category=="Online"
+        else if event.category == "Coding" || event.category=="Robotica"
             include ../public/stylesheets/pages/code.css
         else if event.category == "Mega"
             include ../public/stylesheets/pages/mega.css
