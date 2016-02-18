@@ -13,6 +13,10 @@ h1,h2,h3,h4,h5,h6,a,p {
     color: #fff;
 }
 
+p {
+    white-space: pre-wrap;
+}
+
 h1,h2,h3,h4,h5,h6 {
     font-family: "Open Sans", sans-serif;
     font-weight: 800;

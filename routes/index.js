@@ -6,15 +6,11 @@ var Hashids = require("hashids");
 var nodemailer = require('nodemailer');
 var mailgun = require('nodemailer-mailgun-transport');
 var userLogic = require('../logic/userLogic.js');
+var config = require('config');
 
+var auth = config.get('mailgun');
 
-var auth = {
-    auth: {
-        api_key: 'key-6e52fb517206b563dfbe87f3aee097ca',
-        domain: 'mg.innovisionnsit.in'
-    }
-};
-var hashids = new Hashids("LetsINNOvade", 4, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
+var hashids = new Hashids(config.get('hashids').secret, config.get('hashids').no_chars, config.get('hashids').chars);
 var mgMailer = nodemailer.createTransport(mailgun(auth));
 
 router.get('/', function (req, res) {
@@ -93,7 +89,7 @@ router.post('/contact', function(req, res) {
 
     mailOpts = {
         from: req.body.name + ' <' + req.body.email + '>', //grab form data from the request body object
-        to: 'gohri.rohit@gmail.com',
+        to: config.get('contactEmail'),
         subject: 'Inno Website Contact Form: ' + req.body.subject,
         text: req.body.mail
     };
@@ -113,6 +109,10 @@ router.post('/contact', function(req, res) {
 
 router.get('/about', function(req, res) {
     res.render('about');
+});
+
+router.get('/campus', function(req, res) {
+    res.render('campus');
 });
 
 router.get('/addEM', userLogic.isAdmin, function (req, res) {

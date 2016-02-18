@@ -115,7 +115,7 @@ router.post('/:eventLink/register/', userLogic.ensureAuthenticated, function (re
             event.save(function (err, event) {
                 if(err)
                     console.log(err);
-                res.render('event', {event: event, msg: "Successfully Registered", teams:{}});
+                res.redirect('/events/' + event.linkName);
             });
         }
     });

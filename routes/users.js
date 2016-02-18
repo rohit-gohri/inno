@@ -27,6 +27,7 @@ router.post('/details', function (req, res) {
             user.save(function (err, data) {
                 if (err) {
                     console.log(err);
+                    res.render('details', {user: data, edit: 'failure'})
                 } else {
                     res.render('details', {user: data, edit: 'success'})
                 }

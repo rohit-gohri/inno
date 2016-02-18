@@ -1,9 +1,15 @@
 extends layout
 
 block content
-    h3.intro= message
-    h3= error.status
-    pre #{error.stack}
+    .container
+        if error.status==404
+            h3.intro= 'Sorry!'
+            h4 The page you were looking for is lost in time.
+        else
+            h4.intro= error.status
+            h5= message
+        if is_admin
+            pre #{error.stack}
 
 block style
     style

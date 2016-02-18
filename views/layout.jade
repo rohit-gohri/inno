@@ -69,7 +69,7 @@ html
                                         li
                                             a.row.zero(href="/events/category/Mega")
                                                 .col.no-padding Mega Events
-                                                i.material-icons.col.right aspect_ratio
+                                                i.material-icons.col.right stars
                                         li
                                             a.row.zero(href="/events/category/Coding")
                                                 .col.no-padding Coding Events
@@ -85,7 +85,7 @@ html
                                         li
                                             a.row.zero(href="/events/category/Quiz")
                                                 .col.no-padding Quiz Fest
-                                                i.material-icons.col.right question_answer
+                                                i.material-icons.col.right help_outline
                                         li
                                             a.row.zero(href="/events/category/Bio")
                                                 .col.no-padding Bio Vision
@@ -102,10 +102,14 @@ html
                         a.row.zero(href="/schedule")
                             .bold.col.no-padding Schedule
                             i.material-icons.col.right date_range
+                    //li
+                    //    a.row.zero(href="/sponsors")
+                    //        .bold.col.no-padding Sponsors
+                    //        i.material-icons.col.right all_out
                     li
-                        a.row.zero(href="/sponsors")
-                            .bold.col.no-padding Sponsors
-                            i.material-icons.col.right all_out
+                        a.row.zero(href="/campus")
+                            .bold.col.no-padding Campus Ambassador
+                            i.material-icons.col.right person_pin
                     li
                         a.row.zero(href="/contact")
                             .bold.col.no-padding Contact Us
@@ -113,7 +117,7 @@ html
                     li
                         a.row.zero(href="/about")
                             .bold.col.no-padding About Us
-                            i.material-icons.col.right change_history
+                            i.material-icons.col.right info
         main
             block content
 
@@ -174,7 +178,7 @@ html
             });
             // Initialize collapse button
             $("#menu").sideNav({
-                menuWidth: 280,
+                menuWidth: 300,
                 edge: 'left', // Choose the horizontal origin
                 closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
             });

@@ -14,11 +14,11 @@ var Hashids = require("hashids");
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+var config = require('config');
 
-var hashids = new Hashids("LetsINNOvade", 4, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
+var hashids = new Hashids(config.get('hashids').secret, config.get('hashids').no_chars, config.get('hashids').chars);
 
-
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var users = require('./routes/users');
 var events = require('./routes/events');
 var teams = require('./routes/teams');
@@ -27,7 +27,7 @@ var userLogic = require('./logic/userLogic');
 var app = express();
 
 // mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/innovision');
+mongoose.connect(config.get('dbhost'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,7 +41,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({
-    secret: 'keyboard cat',
+    secret: config.get('sessionSecret'),
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({
@@ -56,7 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(paginate.middleware(10, 50));
 
 app.get('*', userLogic.setLoginStatus);
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
 app.use('/events', events);
 app.use('/teams', teams);
@@ -64,10 +64,10 @@ app.use('/teams', teams);
 // passport config
 passport.use(Account.createStrategy());
 passport.use(new FacebookStrategy({
-        clientID: '1682265012051455',
-        clientSecret: '2e4238e0e2da29509fb8beb48126d2bf',
-        callbackURL: "http://www.innovisionnsit.in/login/fb/callback",
-        profileFields: ['id', 'displayName', 'picture.type(large)', 'emails', 'name', 'birthday', 'gender']
+        clientID: config.get('fb').clientID,
+        clientSecret: config.get('fb').clientSecret,
+        callbackURL: config.get('fb').callbackURL,
+        profileFields: ['id', 'displayName', 'picture.type(large)', 'emails', 'name', 'gender']
     },
     function (accessToken, refreshToken, profile, done) {
         Account.findOne({'providerData.id': profile.id},
@@ -83,7 +83,6 @@ passport.use(new FacebookStrategy({
                         gender: profile.gender,
                         email: profile.emails[0].value,
                         photo: profile.photos[0].value,
-                        dob: profile.birthday,
                         provider: 'facebook',
                         providerData: profile._json,
                         accessToken: accessToken,

@@ -12,7 +12,10 @@ block content
                 .row
                     .col.s12.m6.no-padding
                         if (edit)
-                            p.col.s12 Edit successful
+                            if edit=='success'
+                                p.col.s12.blue-text Edit Successful
+                            else
+                                p.col.s12.red-text Edit Failed
                         if (user.is_new)
                             h6.col.s12.red-text Please fill out these details
                         if(user.is_admin || user.is_em)

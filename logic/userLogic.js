@@ -4,7 +4,6 @@ var Account = require('../models/account');
 var Team = require('../models/team');
 var emailer  = require('nodemailer');
 
-
 var users = {
     setLoginStatus: function(req, res, next) {
         if(req.isAuthenticated()) {
@@ -12,6 +11,9 @@ var users = {
             res.locals.firstName = req.user.firstName;
             res.locals.is_admin = req.user.is_admin;
             res.locals.is_em = req.user.is_em;
+            if (req.user.is_new && (req.path.indexOf('users/details') == -1 && req.path.indexOf('logout') == -1)) {
+                res.redirect('/users/details');
+            }
         } else {
             res.locals.login = false;
             res.locals.is_admin = false;
