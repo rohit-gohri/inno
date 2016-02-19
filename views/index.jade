@@ -268,19 +268,26 @@ html
         footer.page-footer#footer
             .container
                 .row
-                    .col.l6.s12.center-on-small-only
-                        h5.black-text Follow Us On:
-                        .container
-                            .row.black-text
-                                a(href="https://www.facebook.com/Innoitis")
-                                    .col.s4#fb-icon
-                    div.col.l4.offset-l2.s12.center-on-small-only
+                    .col.m4.s12.center-on-small-only
+                        h5.black-text Follow Us On
+                        .container.zero
+                            .row.black-text.center-on-small-only
+                                a(target="_blank" href="https://www.facebook.com/Innoitis")
+                                    img(src='/images/fb-black.png', width='20px', height='20px' style="margin-left:10px;")
+                    div.col.m3.s12.center-on-small-only
                         h5.black-text Site
                         ul
                             li
                                 a.black-text(href="/events") Events
                             li
                                 a.black-text(href="/login") Login
+                    div.col.m5.s12.center-on-small-only
+                        p.right-align.black-text.bold.
+                            Netaji Subhas Institute Of Technology
+                            (University Of Delhi)
+                            Azad Hind Fauj Marg
+                            Sector-3, Dwarka
+                            New Delhi - 110078
             div.footer-copyright
                 div.container.black-text © 2016 Innovision, NSIT
 
@@ -343,16 +350,16 @@ html
             });
         });
         $(window).load(function () { // makes sure the whole site is loaded
-            if (readCookie('referer') == null) {
+            //if (readCookie('referer') == null) {
                 $('#status').delay(4000).fadeOut('slow'); // will first fade out the loading animation
                 $('#preloader').delay(4500).fadeOut('slow'); // will fade out the white DIV that covers the website.
                 setTimeout(function () {
                     $('main').removeClass('hidden');
-                }, 5000);
-            } else {
-                $('#status').fadeOut('slow'); // will first fade out the loading animation
-                $('#preloader').fadeOut('slow'); // will fade out the white DIV that covers the website.
-                $('main').removeClass('hidden');
-            }
+                }, 4400);
+             //} else {
+             //   $('#status').fadeOut(); // will first fade out the loading animation
+               // $('#preloader').fadeOut(); // will fade out the white DIV that covers the website.
+                //$('main').removeClass('hidden');
+            //}
             createCookie('referer', 1, 0);
         })

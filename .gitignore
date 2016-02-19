@@ -8,3 +8,5 @@
 node_modules/
 logs/
 public/uploads/
+config/
+npm-debug.log
