@@ -3,8 +3,7 @@ html
     head
         title= "Innovision'16"
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
-        meta(name="ROBOTS", content="INDEX,FOLLOW")
-        meta(name="keywords" content="Innovision, nsit,inno, innovision nsit, FEST")
+        meta(name="keywords" content="Innovision, nsit, inno, innovision nsit, FEST")
         meta(name="description" content="Innovision is the annual inter-college, techno-managerial fest of Netaji Subhas Institute of Technology.")
         meta(name="abstract" content="Innovision is the annual inter-college, techno-managerial fest of Netaji Subhas Institute of Technology.")
         meta(name="google-site-verification" content="Tzhk7vRbXHdEpxjypyYRiNrULoebtNFiAXTb33LIDc4")
@@ -13,7 +12,6 @@ html
         meta(name="copyright" content="https://www.facebook.com/Innoitis/")
         meta(name="revisit-after" content="1 day")
         meta(name="title" content="Innovision - An annual inter-college, techno-managerial fest of NSIT.")
-        meta(name="ROBOTS" content="Index, follow")
         meta(property="fb:app_id" content="")
         meta(property="og:title" content="Innovision - An annual inter-college, techno-managerial fest of NSIT.")
         meta(property="og:type" content="website")
@@ -73,9 +71,6 @@ html
                 background-color: #e72b48 !important;
                 padding-top: 30px;
             }
-            .card_center {
-                margin: 0 auto;
-            }
             #zero {
                 padding-bottom: 0;
             }
@@ -99,6 +94,12 @@ html
                 height:100%;
                 position: absolute;
                 top:0;
+            }
+            #right, #left {
+                width:10% !important;
+                height: 100% !important;
+                background-color: #e72b48 !important;
+                margin: 0 !important;
             }
             .mobile img {
                 width: 300px;
@@ -211,16 +212,18 @@ html
 
         #preloader.white(style='text-align:centre; padding-top: 200px; padding-left: 550px; padding-bottom: 250px; padding-right: 250px;')
             #status
-                object
-                    embed(src='/assets/inno_icon.svg', width='50%', height='50%')
+                object(type="image/svg+xml" data="/assets/inno_icon.svg" width='50%' height='50%')
+                    img#no-svg(src="/images/inno2.png" alt="No SVG support" width='50%', height='50%')
         main.hidden
             .robot.hide-on-small-and-down
-                #left.col
+                #left
+                    .pipe &nbsp;
                 .wrapper
                     .h_iframe
                         img.ratio(src="/assets/robot/Untitled-1.png")
                         iframe(src="/assets/robot/robot.html" frameborder="0" allowfullscreen)
                 #right
+                    .pipe &nbsp;
             .mobile.hide-on-med-and-up.zero
                 .container
                     .row
@@ -229,6 +232,7 @@ html
                             h3.intro.white-text.zero INNOVISION'16
                             h5.intro.black-text.zero NSIT's Science And Technical Festival
                             h3.intro.white-text.zero 9th-12th March
+                            h5.intro.black-text.zero BACK TO THE FUTURE
 
             #countdown.grey.lighten-3.white-text.zero
                 .container
@@ -367,16 +371,9 @@ html
             });
         });
         $(window).load(function () { // makes sure the whole site is loaded
-            //if (readCookie('referer') == null) {
                 $('#status').delay(4000).fadeOut('slow'); // will first fade out the loading animation
                 $('#preloader').delay(4500).fadeOut('slow'); // will fade out the white DIV that covers the website.
                 setTimeout(function () {
                     $('main').removeClass('hidden');
                 }, 4400);
-             //} else {
-             //   $('#status').fadeOut(); // will first fade out the loading animation
-               // $('#preloader').fadeOut(); // will fade out the white DIV that covers the website.
-                //$('main').removeClass('hidden');
-            //}
-            createCookie('referer', 1, 0);
         })
