@@ -19,7 +19,7 @@ html
             }
             #mascot {
                 position: relative;
-                left: -10%;
+                margin: 0 auto;
                 top: -30px;
             }
             body, #footer, .btn, #slide-out, .collapsible-body, .collapsible-header,.collapse {
@@ -95,12 +95,12 @@ html
             ga('create', 'UA-73588354-1', 'auto');
             ga('send', 'pageview');
     body
-        nav.z-depth-0.transparent.hidden
+        nav.z-depth-0.transparent
             div.nav-wrapper.black-text(style="padding: 8px 30px 0 30px;")
                 a#menu.brand-logo.left(href="#" data-activates="slide-out")
                     i.material-icons.black-text menu
                 a.brand-logo.black-text.center(href="/")
-                    img#big.hidden.hide-on-small-and-down(src="/images/inno_full_logo_poster_.png")
+                    img#big.hide-on-small-and-down(src="/images/inno_full_logo_poster_.png")
                 ul#slide-out.side-nav.black-text
                     if !login
                         li.hide-on-small-and-down
@@ -198,7 +198,7 @@ html
                     embed(src='/assets/inno_icon.svg', width='50%', height='50%')
         main.hidden
             .robot.hide-on-small-and-down
-                #left
+                #left.col
                 .wrapper
                     .h_iframe
                         img.ratio(src="/assets/robot/Untitled-1.png")
@@ -214,36 +214,43 @@ html
                             h3.intro.white-text.zero 9th-12th March
 
             #countdown.grey.lighten-3.white-text.zero
-                h3.intro.center.white-text Days to go
-                .card_center.
-                  <div class="clock">
-                    <svg class="hands" viewBox="0 0 32 32">
-                      <circle class="days" cy="16" cx="16" r="16"></circle>
-                      <circle class="hours" cy="16" cx="16" r="16"></circle>
-                      <circle class="minutes" cy="16" cx="16" r="16"></circle>
-                      <circle class="seconds" cy="16" cx="16" r="16"></circle>
-                    </svg>
-                  </div>
-                  <div class="fabs">
-                    <div class="fab">
-                      <div>day</div>
-                      <div class="time day"></div>
-                    </div>
-                    <div class="fab">
-                      <div>hour</div>
-                      <div class="time hour"></div>
-                    </div>
-                    <div class="fab">
-                      <div>minute</div>
-                      <div class="time minute"></div>
-                    </div>
-                    <div class="fab">
-                      <div>second</div>
-                      <div class="time second"></div>
-                    </div>
-                  </div>
-                  <h6 class="greeting"><h6>
-                </div>
+                .container
+                    h3.intro.center.white-text Days to go:
+                    .row.zero
+                        .col.s12
+                            div
+                                <div class="clock">
+                                <svg class="hands" viewBox="0 0 32 32">
+                                <circle class="days" cy="16" cx="16" r="16"></circle>
+                                <circle class="hours" cy="16" cx="16" r="16"></circle>
+                                <circle class="minutes" cy="16" cx="16" r="16"></circle>
+                                <circle class="seconds" cy="16" cx="16" r="16"></circle>
+                                </svg>
+                                </div>
+                                <div class="fabs center">
+                                <div class="fab">
+                                <div class="time day"></div>
+                                <div>day</div>
+                                </div>
+                                <div class="fab">
+                                <div class="time hour"></div>
+                                <div>hour</div>
+                                </div>
+                                <div class="fab">
+                                <div class="time minute"></div>
+                                <div>minute</div>
+                                </div>
+                                <div class="fab">
+                                <div class="time second"></div>
+                                <div>second</div>
+                                </div>
+                                </div>
+                                <h6 class="greeting"><h6>
+                        .col.s12.hide-on-med-and-up
+                            br
+                            br
+                            br
+                            br
             #zero.orange
                 .container
                     .row.hide-on-med-and-down
@@ -254,11 +261,11 @@ html
                         .col.s12.m10.center
                             h6 &nbsp;
                             h1.intro.white-text.zero MEET ZERO
-                            h5.intro.black-text.zero OUR MASCOT LOST IN TIME
+                            h5.intro.black-text.zero OUR MASCOT, LOST IN TIME
                         .col.m2.s12
                             img#mascot.right(src="/images/mascot_shadow.png")
 
-        footer.page-footer#footer.hidden
+        footer.page-footer#footer
             .container
                 .row
                     .col.l6.s12.center-on-small-only
@@ -313,7 +320,14 @@ html
             document.cookie = name+"="+value+expires+"; path=/";
         }
         function readCookie(name) {
-            var name
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
         }
         $(document).ready(function () {
             $('select').material_select();
@@ -329,12 +343,16 @@ html
             });
         });
         $(window).load(function () { // makes sure the whole site is loaded
-            $('#status').delay(4500).fadeOut('slow'); // will first fade out the loading animation
-            $('#preloader').delay(5000).fadeOut('slow'); // will fade out the white DIV that covers the website.
-            setTimeout(function () {
+            if (readCookie('referer') == null) {
+                $('#status').delay(4000).fadeOut('slow'); // will first fade out the loading animation
+                $('#preloader').delay(4500).fadeOut('slow'); // will fade out the white DIV that covers the website.
+                setTimeout(function () {
+                    $('main').removeClass('hidden');
+                }, 5000);
+            } else {
+                $('#status').fadeOut('slow'); // will first fade out the loading animation
+                $('#preloader').fadeOut('slow'); // will fade out the white DIV that covers the website.
                 $('main').removeClass('hidden');
-                $('footer').removeClass('hidden');
-                $('#big').removeClass('hidden');
-                $('nav').removeClass('hidden');
-            }, 5000);
+            }
+            createCookie('referer', 1, 0);
         })
