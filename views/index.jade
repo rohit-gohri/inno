@@ -1,90 +1,340 @@
-extends layout
+doctype html
+html
+    head
+        title= "Innovision'16"
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(rel='stylesheet', href='/font/material\ icons/material-icons.css')
+        link(href='/stylesheets/materialize.min.css', rel='stylesheet', media='screen')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/style_countdown.css')
+        link(rel='stylesheet', href='/font/intro/intro.css')
+        link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,300', type='text/css')
+        style.
+            main, #big, footer, nav {
+                -webkit-transition: all 0.3s 1s ease-out;
+                transition: all 0.3s 1s ease-out;
+            }
+            #menu {
+                z-index: 2;
+            }
+            #mascot {
+                position: relative;
+                left: -10%;
+                top: -30px;
+            }
+            body, #footer, .btn, #slide-out, .collapsible-body, .collapsible-header,.collapse {
+                background: #fff !important;
+            }
+            #hello, #loginModal {
+                background: grey !important;
+            }
+            html, body {
+                height:100%;
+            }
+            .wrapper {
+                width: 80%;
+                height: 100%;
+                margin: -60px auto 10px auto !important;
+                background: #fff
+            }
+            .h_iframe {
+                position: relative;
+            }
+            .h_iframe .ratio {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+            .h_iframe iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #countdown {
+                background-color: #e72b48 !important;
+                padding-top: 30px;
+            }
+            .card_center {
+                margin: 0 auto;
+            }
+            #zero {
+                padding-bottom: 0;
+            }
+            #listicon {
+                margin-right: 0;
+            }
+            .brand-logo {
+                z-index: 10;
+            }
+            .brand-logo #big {
+                width: auto !important;
+                height:75px !important;
+            }
+            .mobile {
+                background-color: #4898cf;
+                padding:30px 0;
+            }
+            #preloader {
+                z-index: 11111;
+                width:100%;
+                height:100%;
+                position: absolute;
+                top:0;
+            }
+            .mobile img {
+                width: 300px;
+            }
 
-block content
-    div
-        .container
-            .row.hide-on-med-and-down
-                br
-                br
-                br
-            .row
-                .col.s12.m10.center
-                    img#logo(src="/images/inno-white.png")
-                    h3.intro.white-text.zero INNOVISION'16
-                    h5.intro.black-text.zero NSIT'S TECHNO-MANAGERIAL FESTIVAL
-                    h3.intro.white-text.zero 9th-12th MARCH
-                .col.m2.s12
-                    img#mascot.right(src="/images/mascot_shadow.png")
-                .col.s12.center.hide-on-med-and-up
-                    h3.intro-inline.white-text MEET ZERO!
+        script.
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-73588354-1', 'auto');
+            ga('send', 'pageview');
+    body
+        nav.z-depth-0.transparent.hidden
+            div.nav-wrapper.black-text(style="padding: 8px 30px 0 30px;")
+                a#menu.brand-logo.left(href="#" data-activates="slide-out")
+                    i.material-icons.black-text menu
+                a.brand-logo.black-text.center(href="/")
+                    img#big.hidden.hide-on-small-and-down(src="/images/inno_full_logo_poster_.png")
+                ul#slide-out.side-nav.black-text
+                    if !login
+                        li.hide-on-small-and-down
+                            a.modal-trigger.row.zero(href="#loginModal")
+                                .bold.col.no-padding Login
+                                i.material-icons.col.right account_circle
+                        li.hide-on-med-and-up
+                            a.modal-trigger.row.zero(href="/login")
+                                .bold.col.no-padding Login
+                                i.material-icons.col.right account_circle
+                    else
+                        li#hello
+                            ul.collapsible
+                                li
+                                    a.bold.collapsible-header.waves-effect.waves-light.zero Hello #{firstName}!
+                                        i.material-icons.col.black-text.right#listicon arrow_drop_down
+                                    .collapsible-body
+                                        ul
+                                            li
+                                                a.zero.row(href="/users/details")
+                                                    .col.no-padding Profile
+                                                    i.material-icons.col.right account_circle
+                                            li
+                                                a.zero.modal-trigger.row(href="/logout")
+                                                    .col.no-padding Logout
+                                                    i.material-icons.col.right exit_to_app
+                    li
+                        a.row.zero(href="/")
+                            .bold.col.no-padding Home
+                            i.material-icons.col.right home
+                    li.collapse
+                        ul.collapsible.collapsible-accordion(data-collapsible="accordion")
+                            li
+                                a.row.zero.collapsible-header.waves-effect.waves-light
+                                    .col.no-padding.bold Events
+                                    i.material-icons.col.right#listicon  list
+                                .collapsible-body
+                                    ul
+                                        li
+                                            a.row.zero(href="/events/category/Mega")
+                                                .col.no-padding Mega Events
+                                                i.material-icons.col.right stars
+                                        li
+                                            a.row.zero(href="/events/category/Coding")
+                                                .col.no-padding Coding Events
+                                                i.material-icons.col.right keyboard
+                                        li
+                                            a.row.zero(href="/events/category/Hardware")
+                                                .col.no-padding Hardware Events
+                                                i.material-icons.col.right developer_board
+                                        li
+                                            a.row.zero(href="/events/category/Robotica")
+                                                .col.no-padding Robotica
+                                                i.material-icons.col.right android
+                                        li
+                                            a.row.zero(href="/events/category/Quiz")
+                                                .col.no-padding Quiz Fest
+                                                i.material-icons.col.right help_outline
+                                        li
+                                            a.row.zero(href="/events/category/Bio")
+                                                .col.no-padding Bio Vision
+                                                i.material-icons.col.right polymer
+                                        li
+                                            a.row.zero(href="/events/category/Online")
+                                                .col.no-padding Online
+                                                i.material-icons.col.right wifi_tethering
+                                        li
+                                            a.row.zero(href="/events/category/Miscelleneous")
+                                                .col.no-padding Misc.
+                                                i.material-icons.col.right blur_on
+                    li
+                        a.row.zero(href="/schedule")
+                            .bold.col.no-padding Schedule
+                            i.material-icons.col.right date_range
+                    //li
+                    //    a.row.zero(href="/sponsors")
+                    //        .bold.col.no-padding Sponsors
+                    //        i.material-icons.col.right all_out
+                    li
+                        a.row.zero(href="/campus")
+                            .bold.col.no-padding Campus Ambassador
+                            i.material-icons.col.right person_pin
+                    li
+                        a.row.zero(href="/contact")
+                            .bold.col.no-padding Contact Us
+                            i.material-icons.col.right contact_mail
+                    li
+                        a.row.zero(href="/about")
+                            .bold.col.no-padding About Us
+                            i.material-icons.col.right info
 
-block style
-    style.
-        #logo {
-            width: 40%;
-        }
-        #nav-logo {
-            display: none;
-        }
-        #mascot {
-            position: relative;
-            left: -12%;
-            top: 20px;
-        }
-        body, .btn {
-            background: #f4511e;
-        }
-        #slide-out, #hello, .collapsible-body, .collapsible-header, #loginModal, .collapse {
-            background: #bf360c !important;
-        }
-        /*#mascot {*/
-            /*position: absolute;*/
-            /*bottom: 0;*/
-            /*left: 20px;*/
-            /*width: auto;*/
-            /*height: 35%;*/
-        /*}*/
-        /*.mascot a {*/
-            /*position: absolute;*/
-            /*bottom: 50px;*/
-            /*left: 150px;*/
-        /*}*/
-        /*.mascot h5 {*/
-            /*font-weight: 400;*/
-        /*}*/
-        /*.someBox {*/
-            /*height:100px;*/
-            /*width: 52%;*/
-            /*border:3px solid #BDBDBD;*!*/
-        /*}*/
-        /*.someBox:hover {*/
-            /*background-color: #BDBDBD;*/
-            /*color: #fff;*/
-        /*}*/
-        /*h5 {*/
-            /*font-weight: 400;*/
-        /*}*/
-        /*body {*/
-            /*background: rgba(189, 189, 189, 1);*/
-            /*!* Old Browsers *!*/
-            /*background: -moz-linear-gradient(45deg, rgba(189, 189, 189, 1) 0%, rgba(189, 189, 189, 1) 31%, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 1) 100%);*/
-            /*!* FF3.6+ *!*/
-            /*background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(189, 189, 189, 1)), color-stop(31%, rgba(189, 189, 189, 1)), color-stop(31%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(255, 255, 255, 1)));*/
-            /*!* Chrome, Safari4+ *!*/
-            /*background: -webkit-linear-gradient(45deg, rgba(189, 189, 189, 1) 0%, rgba(189, 189, 189, 1) 31%, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 1) 100%);*/
-            /*!* Chrome10+,Safari5.1+ *!*/
-            /*background: -o-linear-gradient(45deg, rgba(189, 189, 189, 1) 0%, rgba(189, 189, 189, 1) 31%, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 1) 100%);*/
-            /*!* Opera 11.10+ *!*/
-            /*background: -ms-linear-gradient(45deg, rgba(189, 189, 189, 1) 0%, rgba(189, 189, 189, 1) 31%, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 1) 100%);*/
-            /*!* IE 10+ *!*/
-            /*background: linear-gradient(45deg, rgba(189, 189, 189, 1) 0%, rgba(189, 189, 189, 1) 31%, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 1) 100%);*/
-            /*!* W3C *!*/
-            /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bdbdbd', endColorstr='#ffffff', GradientType=1);*/
-            /*!* IE6-9 fallback on horizontal gradient *!*/
-        /*}*/
-        footer {
-            display: none;
-        }
+        #preloader.white(style='text-align:centre; padding-top: 200px; padding-left: 550px; padding-bottom: 250px; padding-right: 250px;')
+            #status
+                object
+                    embed(src='/assets/inno_icon.svg', width='50%', height='50%')
+        main.hidden
+            .robot.hide-on-small-and-down
+                #left
+                .wrapper
+                    .h_iframe
+                        img.ratio(src="/assets/robot/Untitled-1.png")
+                        iframe(src="/assets/robot/robot.html" frameborder="0" allowfullscreen)
+                #right
+            .mobile.hide-on-med-and-up.zero
+                .container
+                    .row
+                        .col.s12.center
+                            img(src="/images/inno-white.png")
+                            h3.intro.white-text.zero INNOVISION'16
+                            h5.intro.black-text.zero NSIT's Science And Technical Festival
+                            h3.intro.white-text.zero 9th-12th March
 
-block scripts
-    script(src="/javascripts/velocity.min.js")
+            #countdown.grey.lighten-3.white-text.zero
+                h3.intro.center.white-text Days to go
+                .card_center.
+                  <div class="clock">
+                    <svg class="hands" viewBox="0 0 32 32">
+                      <circle class="days" cy="16" cx="16" r="16"></circle>
+                      <circle class="hours" cy="16" cx="16" r="16"></circle>
+                      <circle class="minutes" cy="16" cx="16" r="16"></circle>
+                      <circle class="seconds" cy="16" cx="16" r="16"></circle>
+                    </svg>
+                  </div>
+                  <div class="fabs">
+                    <div class="fab">
+                      <div>day</div>
+                      <div class="time day"></div>
+                    </div>
+                    <div class="fab">
+                      <div>hour</div>
+                      <div class="time hour"></div>
+                    </div>
+                    <div class="fab">
+                      <div>minute</div>
+                      <div class="time minute"></div>
+                    </div>
+                    <div class="fab">
+                      <div>second</div>
+                      <div class="time second"></div>
+                    </div>
+                  </div>
+                  <h6 class="greeting"><h6>
+                </div>
+            #zero.orange
+                .container
+                    .row.hide-on-med-and-down
+                        br
+                        br
+                        br
+                    .row
+                        .col.s12.m10.center
+                            h6 &nbsp;
+                            h1.intro.white-text.zero MEET ZERO
+                            h5.intro.black-text.zero OUR MASCOT LOST IN TIME
+                        .col.m2.s12
+                            img#mascot.right(src="/images/mascot_shadow.png")
+
+        footer.page-footer#footer.hidden
+            .container
+                .row
+                    .col.l6.s12.center-on-small-only
+                        h5.black-text Follow Us On:
+                        .container
+                            .row.black-text
+                                a(href="https://www.facebook.com/Innoitis")
+                                    .col.s4#fb-icon
+                    div.col.l4.offset-l2.s12.center-on-small-only
+                        h5.black-text Site
+                        ul
+                            li
+                                a.black-text(href="/events") Events
+                            li
+                                a.black-text(href="/login") Login
+            div.footer-copyright
+                div.container.black-text © 2016 Innovision, NSIT
+
+        #loginModal.modal
+            .modal-content.center
+                h4.intro Login
+                .row
+                    form.col.s12(role='form', action="/login", method="post")
+                        .input-field.col.s8.offset-s2
+                            input(type='text', id="email" name="email")
+                            label(for="email") Email
+                        .input-field.col.s8.offset-s2
+                            input(type='password', id="password" name="password")
+                            label(for="password") Password
+                        button.btn.waves-effect.waves-light.black-text(type='submit', style="width: 200px;") Login
+                form.row(role='form', action="/login/fb", method="get")
+                    .col.s12.center-align.center
+                        button.btn(type='submit')#fbLogin
+                            img(src='http://i.stack.imgur.com/ryt6L.png', style='max-width: 200px;')
+                .row
+                    .col.s12.center-align.center
+                        a(href='/register')
+                            button.btn.waves-effect.waves-light.black-text(style="width: 200px;") Register
+
+    script(src='/javascripts/jquery.min.js')
+    script(src='/javascripts/materialize.js')
+    script(src='/javascripts/jquery.countdown.min.js')
+    script(src='/javascripts/index_countdown.js')
+    script.
+        function createCookie(name, value, days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (2*24*60*60*1000));
+                var expires = "; expires=" + date.toGMTString();
+            } else
+                var expires = "";
+            document.cookie = name+"="+value+expires+"; path=/";
+        }
+        function readCookie(name) {
+            var name
+        }
+        $(document).ready(function () {
+            $('select').material_select();
+            $('.modal-trigger').leanModal();
+            $('.collapsible').collapsible({
+                accordion: true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+            });
+            // Initialize collapse button
+            $("#menu").sideNav({
+                menuWidth: 300,
+                edge: 'left', // Choose the horizontal origin
+                closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            });
+        });
+        $(window).load(function () { // makes sure the whole site is loaded
+            $('#status').delay(4500).fadeOut('slow'); // will first fade out the loading animation
+            $('#preloader').delay(5000).fadeOut('slow'); // will fade out the white DIV that covers the website.
+            setTimeout(function () {
+                $('main').removeClass('hidden');
+                $('footer').removeClass('hidden');
+                $('#big').removeClass('hidden');
+                $('nav').removeClass('hidden');
+            }, 5000);
+        })
