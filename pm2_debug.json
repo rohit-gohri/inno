@@ -11,7 +11,8 @@
       },
       "error_file": "./logs/inno-debug.err.log",
       "out_file": "./logs/inno-debug.out.log",
-      "watch": true
+      "watch": true,
+      "ignore_watch": ["logs", "node_modules", "public/uploads"]
     }
   ]
 }

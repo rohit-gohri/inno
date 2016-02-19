@@ -6,12 +6,12 @@
       "name": "inno-0",
       "node_args": "--harmony",
       "env": {
-        "PORT": 3333,
-        "NODE_ENV": "production"
+        "PORT": 3333
       },
       "error_file": "./logs/inno-0.err.log",
       "out_file": "./logs/inno-0.out.log",
-      "watch": true
+      "watch": true,
+      "ignore_watch": ["node_modules", "logs", ".git", "public/uploads"]
     },
     {
       "exec_mode": "fork_mode",
@@ -19,12 +19,12 @@
       "name": "inno-1",
       "node_args": "--harmony",
       "env": {
-        "PORT": 3334,
-        "NODE_ENV": "production"
+        "PORT": 3334
       },
       "error_file": "./logs/inno-1.err.log",
       "out_file": "./logs/inno-1.out.log",
-      "watch": true
+      "watch": true,
+      "ignore_watch": ["node_module", "logs", ".git", "public/uploads"]
     }
   ]
 }
