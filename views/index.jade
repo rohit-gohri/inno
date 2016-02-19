@@ -350,16 +350,16 @@ html
             });
         });
         $(window).load(function () { // makes sure the whole site is loaded
-            if (readCookie('referer') == null) {
+            //if (readCookie('referer') == null) {
                 $('#status').delay(4000).fadeOut('slow'); // will first fade out the loading animation
                 $('#preloader').delay(4500).fadeOut('slow'); // will fade out the white DIV that covers the website.
                 setTimeout(function () {
                     $('main').removeClass('hidden');
-                }, 5000);
-            } else {
-                $('#status').fadeOut('slow'); // will first fade out the loading animation
-                $('#preloader').fadeOut('slow'); // will fade out the white DIV that covers the website.
-                $('main').removeClass('hidden');
-            }
+                }, 4400);
+             //} else {
+             //   $('#status').fadeOut(); // will first fade out the loading animation
+               // $('#preloader').fadeOut(); // will fade out the white DIV that covers the website.
+                //$('main').removeClass('hidden');
+            //}
             createCookie('referer', 1, 0);
         })
