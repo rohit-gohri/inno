@@ -3,6 +3,10 @@ extends layout
 block content
     .container
         h3.intro New Team
+        if error
+            h5.red-text= error
+        if message
+            h5.blue-text= message
         .row
             form.col.s12(role='form', action="/teams/newTeam", method="post")
                 .row
@@ -17,6 +21,7 @@ block content
                             option(value="3") 3
                             option(value="4") 4
                             option(value="5") 5
+                            option(value="5") 6
                         label How many members?
                 .row
                     .input-field.col.s8.m7
@@ -34,7 +39,9 @@ block content
                     #m5.input-field.col.s8.m7.hidden
                         input#mem5(type="text" name="mem5")
                         label(for="mem5") Member 5 INNO ID
-
+                    #m6.input-field.col.s8.m7.hidden
+                        input#mem6(type="text" name="mem6")
+                        label(for="mem6") Member 6 INNO ID
                 .row
                     .col.s12
                         //&nbsp; &nbsp;
@@ -58,6 +65,12 @@ block scripts
             }
             if (m >= '5') {
                 $('#m5').removeClass('hidden').attr('required', true);
+            }
+            if (m >= '6') {
+                $('#m6').removeClass('hidden').attr('required', true);
+            }
+            if (m < '6') {
+                $('#m6').addClass('hidden').attr('required', false);
             }
             if (m < '5') {
                 $('#m5').addClass('hidden').attr('required', false);

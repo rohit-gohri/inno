@@ -9,9 +9,9 @@ router.get('/myTeams', userLogic.ensureAuthenticated, function(req, res) {
 
     Team.find({members: req.user._id}).lean().exec(function(err, teams) {
         if(err)
-            res.render('error', {message:"Sorry!", error: err});
+            res.render('error', {message:"Sorry! No teams found.", error: err});
         else
-            res.render('team', { teams: teams});
+            res.render('team', {teams: teams});
     })
 
 
@@ -43,10 +43,15 @@ router.post('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
     }
     if(count){
     var id5 = req.body.mem5;
+        count--;
         inno.push(id5);
     }
-    console.log(inno);
+    if(count){
+        var id6 = req.body.mem6;
+        inno.push(id6);
+    }
     var id1 = req.user.inno_id;
+    console.log(inno);
     var tname = req.body.name;
 
     var captain = req.user._id;
@@ -57,8 +62,8 @@ router.post('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
         console.log("in");
        if (err) {
             console.log(err);
-            res.render('errorTeam');
-        } 
+            res.render('addTeam', {error: 'Some of the users were not found, please check the INNO IDs'});
+        }
         else
         {
             if(users)
@@ -82,10 +87,10 @@ router.post('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
                 team.save(function (err, Team) {
                     if(err) {
                         console.log(err);
-                        res.render('errorTeam');
+                        res.render('addTeam', {error: 'There was some problem adding the team, please try again'});
                     }
                     else {
-                        res.render('teamAdded', {team: Team});
+                        res.render('addTeam', {message: 'Team ' + tname + ' added successfully. Please return to the event to complete the registration'});
                     }
 
                 });

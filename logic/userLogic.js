@@ -33,17 +33,17 @@ var users = {
             Team.find({members: req.user._id}).lean().exec(function (err, teams) {
                 if (!err) {
                     res.locals.teams = teams;
-                    next();
+                } else {
+                    res.locals.teams = [];
                 }
+                next();
             });
-        }
-        else {
+        } else {
             res.locals.teams = [];
             next();
         }
     },
     getEvents: function(req, res, next) {
-        //var captains = [];
         req.eventList = [];
         Event.find({isTeamEvent: false, participants: req.user._id})
             .lean().exec(function(err, events) {

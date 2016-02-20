@@ -62,10 +62,11 @@ block content
                             h4 Registered Events :
                         each event in events
                             li.collection-item.avatar
-                                a(href="/events/" + event.name)
+                                a(href="/events/" + event.linkName)
                                     span.title= event.name
                                     p
-                                        a(href=event.fbLink) FB Event Link
+                                        a(target="_blank" href=event.fbLink)
+                                            img(src='/images/fb.png', width='20px', height='20px' style="margin-left:10px;")
                                     a.secondary-content(href="/events/" + event.linkName)
                                         i.material-icons send
                 if (user.is_new)

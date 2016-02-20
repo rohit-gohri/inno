@@ -21,8 +21,8 @@ block content
                 p #{event.details}
                 if event.fbLink
                     h6.intro
-                        a(href=event.fbLink).black-text FB event page  &nbsp;
-                            i#fb.material-icons send
+                        a(target="_blank" href=event.fbLink).black-text
+                            img(src='/images/fb.png', width='20px', height='20px' style="margin-left:10px;")
                 .col.s6.m4.no-padding
                     h5 Contact Details:
                     p= event.contact

@@ -14,14 +14,12 @@ var upload = multer({
 
 router.get('/', function (req, res) {
     Event.find({}).lean().exec(function (err, events) {
-        console.log(events);
         res.render('eventList', {events: events});
     });
 });
 
 router.get('/category/:category', function (req, res) {
     Event.find({category: req.params.category}).lean().exec(function (err, events) {
-        console.log(events);
         res.render('eventList', {events: events, category: req.params.category});
     });
 });
@@ -173,7 +171,7 @@ router.get('/:eventLink/participants', function (req, res) {
     Event.findOne({linkName: req.params.eventLink},
         function (err, event) {
             if(!event || err ) {
-                res.render('error', {message: "Event not found!!!", error: {status: '', stack: ''}});
+                res.render('error', {message: "Event not found!", error: {status: 404, stack: ''}});
             } else {
                 //if(req.params.listType == 'participants') {
                     var list = event.participants;
