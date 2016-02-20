@@ -3,7 +3,7 @@ extends layout
 block content
     .container
         if error.status==404
-            h3.intro= 'Sorry!'
+            h4.intro= 'Sorry!'
             h4 The page you were looking for is lost in time.
         else
             h4.intro= error.status

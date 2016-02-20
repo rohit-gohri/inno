@@ -42,7 +42,7 @@ router.post('/register', function (req, res) {
     });
 });
 
-router.get('/login/fb', passport.authenticate('facebook', {authType: 'rerequest', scope: 'email'}));
+router.get('/login/fb', passport.authenticate('facebook', {authType: 'rerequest', scope: ['email']}));
 
 router.get('/login/fb/callback',
     passport.authenticate('facebook', {
