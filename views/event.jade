@@ -21,8 +21,8 @@ block content
                 p #{event.details}
                 if event.fbLink
                     h6.intro
-                        a(target="_blank" href=event.fbLink).black-text
-                            img(src='/images/fb.png', width='20px', height='20px' style="margin-left:10px;")
+                        a(target="_blank" href=event.fbLink) Event Page   &nbsp;
+                            img(src='/images/fb.png', width='20px', height='20px' style="margin-bottom:-5px;")
                 .col.s6.m4.no-padding
                     h5 Contact Details:
                     p= event.contact
@@ -72,10 +72,9 @@ block content
                     each team, index in teams
                         p
                             input.with-gap(name="teamName" type="radio" id="opt"+index value=team.name)
-                            label(for="opt"+index) #{team.name}
+                            label.white-text(for="opt"+index) #{team.name}
                     .row
-                        button.btn.waves-effect.waves-light(type="submit" disabled=teams.length==0)
-                            a(href="/teams/myTeams") Select Team
+                        button.btn.waves-effect.waves-light(type="submit" disabled=teams.length==0) Select Team
                             i.material-icons.prefix.right send
                     .row
                         button.btn.waves-light.waves-effect.row

@@ -64,9 +64,8 @@ block content
                             li.collection-item.avatar
                                 a(href="/events/" + event.linkName)
                                     span.title= event.name
-                                    p
-                                        a(target="_blank" href=event.fbLink)
-                                            img(src='/images/fb.png', width='20px', height='20px' style="margin-left:10px;")
+                                    p: a(target="_blank" href=event.fbLink)
+                                        img(src='/images/fb.png', width='20px', height='20px')
                                     a.secondary-content(href="/events/" + event.linkName)
                                         i.material-icons send
                 if (user.is_new)

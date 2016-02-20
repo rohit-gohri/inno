@@ -18,7 +18,7 @@ router.get('/myTeams', userLogic.ensureAuthenticated, function(req, res) {
 });
 
 router.get('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
-    res.render('addTeam', {user: {inno_id: req.user.inno_id}});
+    res.render('addTeam', {inno_id: req.user.inno_id});
 });
 
 router.post('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
@@ -27,27 +27,27 @@ router.post('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
     count--;
     var inno = [];
     if(count){
-    var id2 = req.body.mem2;
+    var id2 = req.body.mem2.trim().toUpperCase();
         count--;
         inno.push(id2);
     }
     if(count){
-    var id3 = req.body.mem3;
+    var id3 = req.body.mem3.trim().toUpperCase();
         count--;
         inno.push(id3);
     }
     if(count){
-    var id4 = req.body.mem4;
+    var id4 = req.body.mem4.trim().toUpperCase();
         count--;
         inno.push(id4);
     }
     if(count){
-    var id5 = req.body.mem5;
+    var id5 = req.body.mem5.trim().toUpperCase();
         count--;
         inno.push(id5);
     }
     if(count){
-        var id6 = req.body.mem6;
+        var id6 = req.body.mem6.trim().toUpperCase();
         inno.push(id6);
     }
     var id1 = req.user.inno_id;
@@ -62,7 +62,7 @@ router.post('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
         console.log("in");
        if (err) {
             console.log(err);
-            res.render('addTeam', {error: 'Some of the users were not found, please check the INNO IDs'});
+            res.render('addTeam', {error: 'Some of the users were not found, please check the INNO IDs', inno_id: req.user.inno_id});
         }
         else
         {
@@ -87,12 +87,12 @@ router.post('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
                 team.save(function (err, Team) {
                     if(err) {
                         console.log(err);
-                        res.render('addTeam', {error: 'There was some problem adding the team, please try again'});
+                        res.render('addTeam', {error: 'There was some problem adding the team, please try again.', inno_id: req.user.inno_id});
                     }
                     else {
-                        res.render('addTeam', {message: 'Team ' + tname + ' added successfully. Please return to the event to complete the registration'});
+                        res.render('addTeam',
+                            {message: 'Team ' + tname + ' added successfully. Please return to the event to complete the registration.', inno_id: req.user.inno_id});
                     }
-
                 });
             }
         }
