@@ -20,6 +20,7 @@ block content
                     //i.material-icons.blue-text.darken-4.prefix star
                     input#pass2(type='password', name="password2" required=true)
                     label(for="pass2") Confirm Password
+                    input#endpoint(type="hidden" name="endpoint" value="" required=true)
             div.row &nbsp; &nbsp;
                 button.btn.waves-effect.waves-light.blue.darken-4(type='submit') Submit &nbsp; &nbsp;
                 a(href='/')
@@ -33,6 +34,10 @@ block scripts
                 return true;
             }
         });
+
+        document.getElementById('endpoint').value = endpoint;
+
+
 
 block style
     style

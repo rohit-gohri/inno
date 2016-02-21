@@ -39,6 +39,7 @@ var Account = new Schema({
     email: {type:String, validator:emailValidator, unique:true, dropDups:true, trim: true},
     firstName: String,
     lastName: String,
+    endpoint:String,
     photo: String,
     dob: Date,
     gender: String,
