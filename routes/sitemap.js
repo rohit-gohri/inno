@@ -4,30 +4,31 @@ var router = express.Router();
 var config = require('config');
 
 var URL = config.get('url');
+var defURLs = [
+    {url: '/'},
+    {url: '/events', priority: 1.0},
+    {url: '/events/category/Mega', priority: 0.8},
+    {url: '/events/category/Coding', priority: 0.7},
+    {url: '/events/category/Hardware', priority: 0.7},
+    {url: '/events/category/Robotica', priority: 0.7},
+    {url: '/events/category/Quiz', priority: 0.7},
+    {url: '/events/category/Bio', priority: 0.7},
+    {url: '/events/category/Online', priority: 0.7},
+    {url: '/events/category/Miscellaneous', priority: 0.7},
+    {url: '/schedule', priority: 0.8},
+    {url: '/sponsors', priority: 0.7},
+    {url: '/campus', priority: 0.7},
+    {url: '/contact', priority: 0.8},
+    {url: '/about', priority: 0.7},
+    {url: '/login', priority: 0.9},
+    {url: '/register', priority: 0.7}
+];
 
 var sitemap = require('sitemap'),
     sm = sitemap.createSitemap({
         hostname : URL,
         cacheTime : 1000 * 60 * 24,  //keep the sitemap cached for 24 hours
-        urls : [
-            {url: '/'},
-            {url: '/events', priority: 1.0},
-            {url: '/events/category/Mega', priority: 0.8},
-            {url: '/events/category/Coding', priority: 0.7},
-            {url: '/events/category/Hardware', priority: 0.7},
-            {url: '/events/category/Robotica', priority: 0.7},
-            {url: '/events/category/Quiz', priority: 0.7},
-            {url: '/events/category/Bio', priority: 0.7},
-            {url: '/events/category/Online', priority: 0.7},
-            {url: '/events/category/Miscellaneous', priority: 0.7},
-            {url: '/schedule', priority: 0.8},
-            {url: '/sponsors', priority: 0.7},
-            {url: '/campus', priority: 0.7},
-            {url: '/contact', priority: 0.8},
-            {url: '/about', priority: 0.7},
-            {url: '/login', priority: 0.9},
-            {url: '/register', priority: 0.7}
-        ]
+        urls : defURLs
     });
 
 function addEventsToSitemap(events){
@@ -52,23 +53,7 @@ router.get('/sitemap.xml', function(req, res){
     }
     else{
         //reset sitemap to include defaults
-        sm.urls = [
-            {url: '/events/category/Mega'},
-            {url: '/events/category/Coding'},
-            {url: '/events/category/Hardware'},
-            {url: '/events/category/Robotica'},
-            {url: '/events/category/Quiz'},
-            {url: '/events/category/Bio'},
-            {url: '/events/category/Online'},
-            {url: '/events/category/Miscellaneous'},
-            {url: '/schedule'},
-            {url: '/sponsors'},
-            {url: '/campus'},
-            {url: '/contact'},
-            {url: '/about'},
-            {url: '/login'},
-            {url: '/register'}
-        ];
+        sm.urls = defURLs;
 
         //get every post from the database
         Events.find({}).lean().exec(function(err, events){
