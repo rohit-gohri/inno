@@ -26,12 +26,14 @@ router.get('/register', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
+    inno_id = '';
     Account.register(new Account({email: req.body.email,endpoint:req.body.endpoint}), req.body.password, function (err, account) {
         if (err) {
             return res.render('error', {message: err.message, error: err});
         }
         passport.authenticate('local')(req, res, function () {
-            account.inno_id = 'I' + hashids.encode(account.accNo);;
+            account.inno_id = 'I' + hashids.encode(account.accNo);
+            inno_id = account.inno_id;
             account.save(function (err) {
                 if(err)
                     console.log(err);
@@ -40,6 +42,8 @@ router.post('/register', function (req, res) {
             });
         });
     });
+
+    userLogic.sendMail("User",req.body.email,"Congratulations you have registered, your Inno ID is: " + inno_id);
 });
 
 router.get('/login/fb', passport.authenticate('facebook', {authType: 'rerequest', scope: ['email']}));
@@ -115,8 +119,48 @@ router.get('/campus', function(req, res) {
     res.render('campus');
 });
 
-router.get('/sponsors', function(req, res) {
-    res.render('sponsors');
+router.get('/addEM', userLogic.isAdmin, function (req, res) {
+    res.render('makeEM');
+});
+
+router.get('/emailBlast',userLogic.isAdmin,function(req,res){
+    res.render('emailBlast');
+});
+
+router.post('/emailBlast',function(req,res) {
+
+    Account.find({}, function (err, user){
+        for(i in user){
+
+            userLogic.sendMail(user[i].firstName,user[i].email,req.body.message);
+
+            if(user[i].endpoint != '') {
+                userLogic.sendPushNotif(user[i].endpoint,req.body.message);
+            }
+        };
+
+    });
+
+
+
+    res.redirect('/');
+});
+
+router.post('/addEM', userLogic.isAdmin, function(req, res) {
+    var array = req.body.inno_ids.split(',');
+    for(var i = 0; i < array.length; i++) {
+        Account.findOne({inno_id: array[i]}, function(err, user) {
+            if (err || !user)
+                res.render('makeEM', {msg: "Failure"});
+            else {
+                user.is_em = true;
+                user.save(function (err) {
+                    if (!err)
+                        res.render('makeEM', {msg: "Success"})
+                });
+            }
+        })
+    }
 });
 
 module.exports = router;
