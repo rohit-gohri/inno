@@ -38,14 +38,12 @@ router.post('/register', function (req, res) {
                 if(err)
                     console.log(err);
                 else {
-                    userLogic.sendMail("User", req.body.email, "Congratulations you have registered, your Inno ID is: " + inno_id);
+                    //userLogic.sendMail("User",req.body.email,"Congratulations you have registered, your Inno ID is: " + inno_id);
                     res.redirect('/users/details');
                 }
             });
         });
     });
-
-
 });
 
 router.get('/login/fb', passport.authenticate('facebook', {authType: 'rerequest', scope: ['email']}));
@@ -121,10 +119,6 @@ router.get('/campus', function(req, res) {
     res.render('campus');
 });
 
-router.get('/addEM', userLogic.isAdmin, function (req, res) {
-    res.render('makeEM');
-});
-
 router.get('/emailBlast',userLogic.isAdmin,function(req,res){
     res.render('emailBlast');
 });
@@ -146,23 +140,6 @@ router.post('/emailBlast',function(req,res) {
 
 
     res.redirect('/');
-});
-
-router.post('/addEM', userLogic.isAdmin, function(req, res) {
-    var array = req.body.inno_ids.split(',');
-    for(var i = 0; i < array.length; i++) {
-        Account.findOne({inno_id: array[i]}, function(err, user) {
-            if (err || !user)
-                res.render('makeEM', {msg: "Failure"});
-            else {
-                user.is_em = true;
-                user.save(function (err) {
-                    if (!err)
-                        res.render('makeEM', {msg: "Success"})
-                });
-            }
-        })
-    }
 });
 
 module.exports = router;

@@ -21,9 +21,9 @@ block content
                         if(user.is_admin || user.is_em)
                             h6.col.intro
                                 a(href="/events/addEvent") Add Event
+                        if(user.is_admin)
                             h6.col.intro
                                 a(href="/emailBlast") Email Blast
-                        if(user.is_admin)
                             h6.col.intro
                                 a(href="/users/addEM") Add EM
                         .input-field.col.s12
