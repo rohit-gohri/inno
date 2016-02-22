@@ -37,13 +37,15 @@ router.post('/register', function (req, res) {
             account.save(function (err) {
                 if(err)
                     console.log(err);
-                else
+                else {
+                    userLogic.sendMail("User", req.body.email, "Congratulations you have registered, your Inno ID is: " + inno_id);
                     res.redirect('/users/details');
+                }
             });
         });
     });
 
-    userLogic.sendMail("User",req.body.email,"Congratulations you have registered, your Inno ID is: " + inno_id);
+
 });
 
 router.get('/login/fb', passport.authenticate('facebook', {authType: 'rerequest', scope: ['email']}));
