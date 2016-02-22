@@ -25,7 +25,6 @@ block style
         #menu {
             z-index: 2;
         }
-
         #mascot {
             position: relative;
             margin: 0 auto;
@@ -102,6 +101,23 @@ block style
         .fab div{
             color: #fff !important;
         }
+
+        #get-id {
+            position: absolute;
+            top: 100px;
+            width: 200px;
+            margin-left: -100px;
+            left: 50%;
+        }
+
+        #get-id button {
+            background-color: #0D47A1 !important;
+            font-size: small !important;
+            color: #fff !important;
+        }
+        #padd {
+            margin: 5px 0 !important;
+        }
         #preloader {
             z-index: 11111;
             width: 100%;
@@ -150,18 +166,13 @@ block content
                         h5.intro.black-text.zero NSIT's Science And Technical Festival
                         h3.intro.white-text.zero 9th-12th March
                         h5.intro.black-text.zero BACK TO THE FUTURE
-                .row
-                    .col.s12.center
-                        a(href="/register")
-                        button.btn.waves-effect.waves-light
-                            h3.intro.white-text GET YOUR INNO ID
+                        a#padd(href="/register")
+                            button.btn.waves-effect.waves-light.intro.grey-text GET YOUR INNO ID
 
-        #register.blue.darken-3.hide-on-small-and-down
-            .container
-                .row.zero
-                    .col.s12.center
-                        a(href="/register")
-                           button.btn-large.waves-effect.waves-light.blue.accent-3.intro.white-text GET YOUR INNO ID
+        .row.center.hide-on-small-and-down
+            #get-id.transparent
+                a(href="/register")
+                    button.btn.waves-effect.waves-light.intro.grey-text GET YOUR INNO ID
 
         #countdown.white-text.zero
             .container

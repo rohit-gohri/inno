@@ -115,6 +115,10 @@ router.get('/about', function(req, res) {
     res.render('about');
 });
 
+router.get('/sponsors', function(req, res) {
+    res.render('sponsors');
+});
+
 router.get('/campus', function(req, res) {
     res.render('campus');
 });
@@ -127,18 +131,13 @@ router.post('/emailBlast',function(req,res) {
 
     Account.find({}, function (err, user){
         for(i in user){
-
             userLogic.sendMail(user[i].firstName,user[i].email,req.body.message);
 
             if(user[i].endpoint != '') {
                 userLogic.sendPushNotif(user[i].endpoint,req.body.message);
             }
-        };
-
+        }
     });
-
-
-
     res.redirect('/');
 });
 
