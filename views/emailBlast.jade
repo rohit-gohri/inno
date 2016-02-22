@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    .container
+        .row
+            h3.intro Email Blast
+            form.col.s12(role="form" action="/emailBlast" method="post")
+                .input-field.col.s8.m7
+                    textarea.materialize-textarea(id="message" name="message" required=true style="min-height:120px;")
+                    label(for="message") Email Blast
+
+                button.btn.waves-effect.waves-light(type="submit") Send
+block style
+    style
+        include ../public/stylesheets/pages/about.css

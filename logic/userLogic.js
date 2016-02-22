@@ -2,7 +2,12 @@ var express = require('express');
 var Event = require('../models/event');
 var Account = require('../models/account');
 var Team = require('../models/team');
-var emailer  = require('nodemailer');
+var nodemailer  = require('nodemailer');
+var mailgun = require('nodemailer-mailgun-transport');
+var config = require('config');
+var auth = config.get('mailgun');
+var webPush = require('web-push');
+var mgMailer = nodemailer.createTransport(mailgun(auth));
 
 var users = {
     setLoginStatus: function(req, res, next) {
@@ -94,7 +99,31 @@ var users = {
             res.redirect('/login');
         }
     },
-    sendMail: function(req, res, next) {
+    sendMail: function(name,to,text){
+        var mailOpts;
+        console.log('hey');
+
+        mailOpts = {
+            from: config.get('contactEmail'), //grab form data from the request body object
+            to: to,
+            subject: 'Inno Website Update',
+            text: text
+        };
+
+        mgMailer.sendMail(mailOpts, function(err, response) {
+
+            if (err) {
+                console.log('Error occured, message not sent.');
+            } else {
+                console.log('Message Sent! Thank You.');
+            }
+        })
+
+    },
+    sendPushNotif: function(endpoint,notification){
+
+        webPush.setGCMAPIKey("AIzaSyALCXuOzNamMKIMSIXnf9lq26vajjyFU1w");
+        webPush.sendNotification(endpoint, 5);
 
     }
 };
