@@ -13,9 +13,9 @@ block content
                     .col.s12.m6.no-padding
                         if (edit)
                             if edit=='success'
-                                p.col.s12.blue-text Edit Successful
+                                h6.col.s12.blue-text Edit Successful
                             else
-                                p.col.s12.red-text Edit Failed
+                                h6.col.s12.red-text Edit Failed. Please enter a valid email address and phone number.
                         if (user.is_new)
                             h6.col.s12.red-text Please fill out these details
                         if(user.is_admin || user.is_em)
@@ -23,7 +23,7 @@ block content
                                 a(href="/events/addEvent") Add Event
                         if(user.is_admin)
                             h6.col.intro
-                                a(href="/addEM") Add EM
+                                a(href="/users/addEM") Add EM
                         .input-field.col.s12
                             input(value=user.firstName, id='firstName', name='firstName', type='text', class='validate' required=true)
                             label.active(for='firstName') First Name

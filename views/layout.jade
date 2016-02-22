@@ -10,11 +10,17 @@ html
         link(rel='stylesheet', href='/font/intro/intro.css')
         link(rel='manifest' href='/manifest.json')
         link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,300', type='text/css')
-        block style
         style.
             #listicon {
                 margin-right:0;
             }
+            h1, h2, h3, h4, h5, h6, p, li, i, div, .btn {
+                color: #fff !important;
+            }
+            #big {
+                display: none;
+            }
+        block style
         script.
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -24,12 +30,15 @@ html
                     ga('send', 'pageview');
     body
         nav.z-depth-0.transparent
-            div.nav-wrapper.white-text(style="padding: 8px 30px 0 30px;")
+            div.nav-wrapper(style="padding: 8px 30px 0 30px;")
                 a#menu.brand-logo.left(href="#" data-activates="slide-out")
-                    i.material-icons.white-text menu
-                a.brand-logo.white-text.right#nav-logo.hide-on-small-and-down(href="/")
-                    img#big.right(src="/images/inno-white.png" style="margin-right:10px; margin-top:5px")
-                ul#slide-out.side-nav.white-text
+                    i.material-icons menu
+                a.brand-logo.hide-on-small-and-down.center.hide-on-small-and-down(href="/")
+                    img#big(src="/images/inno_full_logo_poster_.png")
+                a.brand-logo.hide-on-small-and-down.right(href="/")
+                    img#inno-logo-top.right(src="/images/inno-white.png" style="margin-right:10px; margin-top:5px")
+
+                ul#slide-out.side-nav
                     if !login
                         li.hide-on-small-and-down
                             a.modal-trigger.row.zero(href="#loginModal")
@@ -44,7 +53,7 @@ html
                             ul.collapsible
                                 li
                                     a.bold.collapsible-header.waves-effect.waves-light.zero Hello #{firstName}!
-                                        i.material-icons.col.white-text.right#listicon arrow_drop_down
+                                        i.material-icons.col.right#listicon arrow_drop_down
                                     .collapsible-body
                                         ul
                                             li
@@ -104,10 +113,10 @@ html
                         a.row.zero(href="/schedule")
                             .bold.col.no-padding Schedule
                             i.material-icons.col.right date_range
-                    //li
-                    //    a.row.zero(href="/sponsors")
-                    //        .bold.col.no-padding Sponsors
-                    //        i.material-icons.col.right all_out
+                    li
+                        a.row.zero(href="/sponsors")
+                            .bold.col.no-padding Sponsors
+                            i.material-icons.col.right all_out
                     li
                         a.row.zero(href="/campus")
                             .bold.col.no-padding Campus Ambassador
@@ -127,18 +136,18 @@ html
             .container
                 .row
                     .col.m4.s12.center-on-small-only
-                        h5.white-text Follow Us On
+                        h5 Follow Us On
                         .container.zero
-                            .row.white-text.center-on-small-only
+                            .row.center-on-small-only
                                 a(target="_blank" href="https://www.facebook.com/Innoitis")
                                     img(src='/images/fb.png', width='20px', height='20px' style="margin-left:10px;")
                     div.col.m3.s12.center-on-small-only
-                        h5.white-text Site
+                        h5 Site
                         ul
                             li
-                                a.white-text(href="/events") Events
+                                a(href="/events") Events
                             li
-                                a.white-text(href="/login") Login
+                                a(href="/login") Login
                     div.col.m5.s12.center-on-small-only
                         p.right-align.bold.
                             Netaji Subhas Institute Of Technology
@@ -147,11 +156,11 @@ html
                             Sector-3, Dwarka
                             New Delhi - 110078
             div.footer-copyright
-                div.container.white-text © 2016 Innovision, NSIT
+                div.container © 2016 Innovision, NSIT
 
         #loginModal.modal
             .modal-content.center
-                h4.intro Login
+                h4.intro.white-text Login
                 .row
                     form.col.s12(role='form', action="/login", method="post")
                             .input-field.col.s8.offset-s2
@@ -163,7 +172,7 @@ html
                             button.btn.waves-effect.waves-light(type='submit', style="width: 200px;") Login
                 form.row(role='form', action="/login/fb", method="get")
                     .col.s12.center-align.center
-                        button.btn(type='submit')#fbLogin
+                        button.btn(type='submit' style="border: 0;")#fbLogin
                             img(src='/images/fb_login.png', style='max-width: 200px;')
                 .row
                     .col.s12.center-align.center

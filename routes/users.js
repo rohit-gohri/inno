@@ -27,12 +27,33 @@ router.post('/details', function (req, res) {
             user.save(function (err, data) {
                 if (err) {
                     console.log(err);
-                    res.render('details', {user: data, edit: 'failure'})
+                    res.render('details', {user: req.user, edit: 'failure'})
                 } else {
                     res.render('details', {user: data, edit: 'success'})
                 }
             });
         });
+});
+
+router.get('/addEM', userLogic.isAdmin, function (req, res) {
+    res.render('makeEM');
+});
+
+router.post('/addEM', userLogic.isAdmin, function(req, res) {
+    var array = req.body.inno_ids.split(',');
+    for(var i = 0; i < array.length; i++) {
+        Account.findOne({inno_id: array[i]}, function(err, user) {
+            if (err || !user)
+                res.render('makeEM', {msg: "Failure"});
+            else {
+                user.is_em = true;
+                user.save(function (err) {
+                    if (!err)
+                        res.render('makeEM', {msg: "Success"})
+                });
+            }
+        })
+    }
 });
 
 module.exports = router;

@@ -23,8 +23,8 @@ block content
                     input#endpoint(type="hidden" name="endpoint" value="" required=true)
             div.row &nbsp; &nbsp;
                 button.btn.waves-effect.waves-light.blue.darken-4(type='submit') Submit &nbsp; &nbsp;
-                a(href='/')
-                    button.btn.waves-effect.waves-light.blue.darken-4(type="button") Cancel
+        a.col.s12(href="/login/fb")
+            img(src='/images/fb_login.png', style='max-width: 200px; margin: 0 0 20px 0;')
 block scripts
     script.
         $('#register').submit(function () {
