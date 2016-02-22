@@ -1,7 +1,7 @@
 body, .btn, ul.collection, li.collection-header, li.collection-item, .dropdown-content li.selected {
-    background-color: #212121 !important;
+    background-color: #E64A19 !important;
 }
 .card, #slide-out, #hello, .collapsible-body, .collapsible-header, .modal,
 .select-wrapper ul, .select-wrapper ul li, footer, .event, .collapse {
-    background-color: #424242  !important;
+    background-color: #FF5722  !important;
 }
