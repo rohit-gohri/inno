@@ -13,7 +13,7 @@ var Event = new Schema({
     photo: String,
     minParticipants: {type:Number, default:'1'},
     isTeamEvent: {type:Boolean,default:false},
-    category: String,
+    category: [String],
     managers: [{type: Schema.ObjectId, ref: 'Account'}],
     // In case of team events, participants and winners refer to team._id of teams
     participants: [{type: Schema.ObjectId}],

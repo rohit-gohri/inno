@@ -35,7 +35,7 @@ mixin form
             label(for="timings") Date & Timings
     .row
         .input-field.col.s8.m4
-            select(name="category" required)
+            select(name="category" required multiple="multiple")
                 option(value="" disabled=true) Choose your option
                 option(value="Robotica" selected=event.category=='Robotica') Robotica
                 option(value="Coding" selected=event.category=='Coding') Coding
