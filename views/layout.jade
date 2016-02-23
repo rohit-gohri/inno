@@ -161,12 +161,12 @@ html
                             li
                                 a(href="/contact") Contact Us
                     div.col.m5.s12.center-on-small-only
-                        p#address.right-align.bold.
+                        p(itemprop="address" itemscope itemtype="http://schema.org/PostalAddress")#address.right-align.bold.
                             Netaji Subhas Institute Of Technology
                             (University Of Delhi)
-                            Azad Hind Fauj Marg
-                            Sector-3, Dwarka
-                            New Delhi - 110078
+                            span(itemprop="streetAddress") Azad Hind Fauj Marg
+                                Sector-3, Dwarka
+                            span(itemprop="addressLocality") New Delhi - 110078
             div.footer-copyright
                 div.container © 2016 Innovision, NSIT
 
