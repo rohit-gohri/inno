@@ -11,6 +11,11 @@ html
         link(rel='manifest' href='/manifest.json')
         link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,300', type='text/css')
         style.
+            @media only screen and (max-width: 600px) {
+                #address {
+                    text-align: center !important;
+                }
+            }
             #listicon {
                 margin-right:0;
             }
@@ -136,21 +141,27 @@ html
         footer.page-footer#footer
             .container
                 .row
-                    .col.m4.s12.center-on-small-only
-                        h5 Follow Us On
+                    .col.m3.s12.center-on-small-only
+                        h5 Follow Us
                         .container.zero
                             .row.center-on-small-only
                                 a(target="_blank" href="https://www.facebook.com/Innoitis")
                                     img(src='/images/fb.png', width='20px', height='20px' style="margin-left:10px;")
-                    div.col.m3.s12.center-on-small-only
+                    div.col.m4.s12.center-on-small-only
                         h5 Site
                         ul
                             li
                                 a(href="/events") Events
                             li
-                                a(href="/login") Login
+                                a(href="/categories") Categories
+                            li
+                                a(href="/sponsors") Sponsors
+                            li
+                                a(href="/about") About Us
+                            li
+                                a(href="/contact") Contact Us
                     div.col.m5.s12.center-on-small-only
-                        p.right-align.bold.
+                        p#address.right-align.bold.
                             Netaji Subhas Institute Of Technology
                             (University Of Delhi)
                             Azad Hind Fauj Marg
@@ -173,7 +184,7 @@ html
                             button.btn.waves-effect.waves-light(type='submit', style="width: 200px;") Login
                 form.row(role='form', action="/login/fb", method="get")
                     .col.s12.center-align.center
-                        button.btn(type='submit' style="border: 0;")#fbLogin
+                        button#fbLogin.btn(type='submit' style="border: 0;")
                             img(src='/images/fb_login.png', style='max-width: 200px;')
                 .row
                     .col.s12.center-align.center

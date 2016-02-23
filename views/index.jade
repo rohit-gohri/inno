@@ -15,6 +15,14 @@ block style
     style
         include ../public/stylesheets/style_countdown.css
     style.
+        @media only screen and (max-width: 600px) {
+            #preloader {
+                display: none;
+            }
+            #main {
+
+            }
+        }
         main, #big, footer, nav {
             -webkit-transition: all 0.3s 1s ease-out;
             transition: all 0.3s 1s ease-out;
@@ -163,9 +171,11 @@ block content
                     .col.s12.center
                         img(src="/images/inno-white.png")
                         h3.intro.white-text.zero INNOVISION'16
-                        h5.intro.black-text.zero NSIT's Science And Technical Festival
+                        h5.intro.black-text.zero NSIT's Annual Science And Technology Festival
                         h3.intro.white-text.zero 9th-12th March
                         h5.intro.black-text.zero BACK TO THE FUTURE
+                        br
+                        br
                         a#padd(href="/register")
                             button.btn.waves-effect.waves-light.intro.grey-text GET YOUR INNO ID
 
