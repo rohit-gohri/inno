@@ -25,11 +25,11 @@ mixin form
             input(value=event.fbLink type='text', id="fb_link" name="fbLink")
             label(for="fb_link") Facebook Event Link
         .input-field.col.s8.m7
-            input(value=event.contact type='text', id="contact" name="contact" required)
+            textarea.materialize-textarea(type='text', id="contact" name="contact" required) #{event.contact}
             label(for="contact") Contact Details
         .input-field.col.s8.m7
             input(value=event.venue type='text', id="venue" name="venue" required)
-            label(for="venue") Venue
+            label(for="venue") Venue/Online Platform
         .input-field.col.s8.m7
             input(value=event.timings type='text', id="timings" name="timings" required)
             label(for="timings") Date & Timings
