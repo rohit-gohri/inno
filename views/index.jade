@@ -20,7 +20,7 @@ block style
                 display: none;
             }
             #main {
-
+                display: inline-block !important;
             }
         }
         main, #big, footer, nav {
@@ -170,9 +170,9 @@ block content
                 .row
                     .col.s12.center
                         img(src="/images/inno-white.png")
-                        h3.intro.white-text.zero INNOVISION'16
+                        h4.intro.white-text.zero INNOVISION'16
                         h5.intro.black-text.zero NSIT's Annual Science And Technology Festival
-                        h3.intro.white-text.zero 9th-12th March
+                        h4.intro.white-text.zero 9th-12th March
                         h5.intro.black-text.zero BACK TO THE FUTURE
                         br
                         br
@@ -229,12 +229,12 @@ block content
                     br
                     br
                 .row
-                    .col.s12.m10.center
-                        h6 &nbsp;
-                        h1.intro.white-text.zero MEET ZERO
-                        h5.intro.black-text.zero OUR MASCOT, LOST IN TIME
-                    .col.m2.s12
-                        a(href="/about")
+                    a(href="/about")
+                        .col.s12.m10.center
+                            h6 &nbsp;
+                            h1.intro.white-text.zero MEET ZERO
+                            h5.intro.black-text.zero OUR MASCOT, LOST IN TIME
+                        .col.m2.s12
                             img#mascot.right(src="/images/mascot_shadow.png")
 
 block scripts
