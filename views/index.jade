@@ -15,6 +15,14 @@ block style
     style
         include ../public/stylesheets/style_countdown.css
     style.
+        @media only screen and (max-width: 600px) {
+            #preloader {
+                display: none;
+            }
+            #main {
+                display: inline-block !important;
+            }
+        }
         main, #big, footer, nav {
             -webkit-transition: all 0.3s 1s ease-out;
             transition: all 0.3s 1s ease-out;
@@ -25,7 +33,6 @@ block style
         #menu {
             z-index: 2;
         }
-
         #mascot {
             position: relative;
             margin: 0 auto;
@@ -102,6 +109,23 @@ block style
         .fab div{
             color: #fff !important;
         }
+
+        #get-id {
+            position: absolute;
+            top: 100px;
+            width: 200px;
+            margin-left: -100px;
+            left: 50%;
+        }
+
+        #get-id button {
+            background-color: #0D47A1 !important;
+            font-size: small !important;
+            color: #fff !important;
+        }
+        #padd {
+            margin: 5px 0 !important;
+        }
         #preloader {
             z-index: 11111;
             width: 100%;
@@ -146,22 +170,19 @@ block content
                 .row
                     .col.s12.center
                         img(src="/images/inno-white.png")
-                        h3.intro.white-text.zero INNOVISION'16
-                        h5.intro.black-text.zero NSIT's Science And Technical Festival
-                        h3.intro.white-text.zero 9th-12th March
+                        h4.intro.white-text.zero INNOVISION'16
+                        h5.intro.black-text.zero NSIT's Annual Science And Technology Festival
+                        h4.intro.white-text.zero 9th-12th March
                         h5.intro.black-text.zero BACK TO THE FUTURE
-                .row
-                    .col.s12.center
-                        a(href="/register")
-                        button.btn.waves-effect.waves-light
-                            h3.intro.white-text GET YOUR INNO ID
+                        br
+                        br
+                        a#padd(href="/register")
+                            button.btn.waves-effect.waves-light.intro.grey-text GET YOUR INNO ID
 
-        #register.blue.darken-3.hide-on-small-and-down
-            .container
-                .row.zero
-                    .col.s12.center
-                        a(href="/register")
-                           button.btn-large.waves-effect.waves-light.blue.accent-3.intro.white-text GET YOUR INNO ID
+        .row.center.hide-on-small-and-down
+            #get-id.transparent
+                a(href="/register")
+                    button.btn.waves-effect.waves-light.intro.grey-text GET YOUR INNO ID
 
         #countdown.white-text.zero
             .container
@@ -208,12 +229,13 @@ block content
                     br
                     br
                 .row
-                    .col.s12.m10.center
-                        h6 &nbsp;
-                        h1.intro.white-text.zero MEET ZERO
-                        h5.intro.black-text.zero OUR MASCOT, LOST IN TIME
-                    .col.m2.s12
-                        img#mascot.right(src="/images/mascot_shadow.png")
+                    a(href="/about")
+                        .col.s12.m10.center
+                            h6 &nbsp;
+                            h1.intro.white-text.zero MEET ZERO
+                            h5.intro.black-text.zero OUR MASCOT, LOST IN TIME
+                        .col.m2.s12
+                            img#mascot.right(src="/images/mascot_shadow.png")
 
 block scripts
     script(src='/javascripts/jquery.countdown.min.js')
@@ -238,6 +260,8 @@ block scripts
             }
             return null;
         }
+        $('#fb').attr('src', '/images/fb-black.png')
+
         $(document).ready(function () {
             $('select').material_select();
             $('.modal-trigger').leanModal();

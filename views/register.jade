@@ -1,5 +1,7 @@
 extends layout
 
+script(src='/javascripts/push.js')
+
 block content
     .container
         h3.intro REGISTER
@@ -22,17 +24,32 @@ block content
                     label(for="pass2") Confirm Password
                     input#endpoint(type="hidden" name="endpoint" value="" required=true)
             div.row &nbsp; &nbsp;
-                button.btn.waves-effect.waves-light.blue.darken-4(type='submit') Submit &nbsp; &nbsp;
+                button.btn.waves-effect.waves-light.blue.darken-4(type='submit') Submit
         a.col.s12(href="/login/fb")
             img(src='/images/fb_login.png', style='max-width: 200px; margin: 0 0 20px 0;')
 block scripts
     script.
-        $('#register').submit(function () {
-            if ($('#pass1').val() == $('#pass2').val())
-                return true;
-            else {
-                return true;
-            }
+        $(document).ready(function () {
+            $('#pass2').focusout(function () {
+                var pass = $('#pass1').val();
+                var pass2 = $('#pass2').val();
+                if (pass != pass2) {
+                    Materialize.toast('The passwords don\'t match!', 2000)
+                    $('button').attr('disabled', true);
+                } else {
+                    $('button').attr('disabled', false);
+                }
+            });
+            $('#pass1').focusout(function () {
+                var pass = $('#pass1').val();
+                var pass2 = $('#pass2').val();
+                if (pass != pass2 && pass2 != '') {
+                    Materialize.toast('The passwords don\'t match!', 2000)
+                    $('button').attr('disabled', true);
+                } else {
+                    $('button').attr('disabled', false);
+                }
+            });
         });
 
         document.getElementById('endpoint').value = endpoint;
