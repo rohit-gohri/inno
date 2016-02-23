@@ -16,6 +16,13 @@ router.post('/details', function (req, res) {
             if(err) {
                 res.render('error', {message: err.message, error: err});
             }
+
+            first_edit = 0;
+
+            if(user.is_new) {
+                first_edit = 1;
+            }
+
             user.firstName = req.body.firstName;
             user.lastName = req.body.lastName;
             user.phone_no = req.body.phone_no;
@@ -29,9 +36,11 @@ router.post('/details', function (req, res) {
                     console.log(err);
                     res.render('details', {user: req.user, edit: 'failure'})
                 } else {
-                    res.app.render('emails/welcome',{user:user},function(err,html) {
-                        userLogic.sendMail(user[i].firstName, user[i].email,"You've registered ! ",html);
-                    });
+                    if(first_edit) {
+                        res.app.render('emails/welcome', {user: user}, function (err, html) {
+                            userLogic.sendMail(user[i].firstName, user[i].email, "You've registered ! ", html);
+                        });
+                    }
                     res.render('details', {user: data, edit: 'success'})
                 }
             });
