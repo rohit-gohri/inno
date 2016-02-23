@@ -124,7 +124,7 @@ var users = {
     sendPushNotif: function(endpoint,notification){
 
         webPush.setGCMAPIKey("AIzaSyALCXuOzNamMKIMSIXnf9lq26vajjyFU1w");
-        webPush.sendNotification(endpoint, 5,'localhost:3000','message recieved !');
+        webPush.sendNotification(endpoint, 5);
 
     }
 };

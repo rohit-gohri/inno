@@ -29,6 +29,9 @@ router.post('/details', function (req, res) {
                     console.log(err);
                     res.render('details', {user: req.user, edit: 'failure'})
                 } else {
+                    res.app.render('emails/welcome',{user:user},function(err,html) {
+                        userLogic.sendMail(user[i].firstName, user[i].email,"You've registered ! ",html);
+                    });
                     res.render('details', {user: data, edit: 'success'})
                 }
             });
