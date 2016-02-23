@@ -2,16 +2,19 @@ extends layout
 
 block style
     style
-        include ../public/stylesheets/pages/mega.css
+        include ../public/stylesheets/pages/about.css
     style.
         h3 {
             margin-top: 10px;
         }
-        img {
+        .spons img {
             width: 90%;
         }
         .spons {
             height: 350px;
+        }
+        .spons.s-2 {
+            height: 300px
         }
         span {
             color: #000;
@@ -20,38 +23,39 @@ block style
 block content
     .container
         .row
-            .card.center.z-depth-0(style="padding: 0 20px;")
+            .center.z-depth-0(style="padding: 0 20px;")
                 h3.intro Our Sponsors
                 .row
                     .col.s12.m6
-                        .card-panel.center.spons
+                        .card-panel.center.spons.s-1
                             span.card-panel-title.intro Associate Sponsor
                             .row
                                 &nbsp;
                             img(src="/images/sponsors/lic.png")
                     .col.s12.m6
-                        .card-panel.center.spons
+                        .card-panel.center.spons.s-1
                             span.card-panel-title.intro Driven By
                             img(src="/images/sponsors/hero.gif")
                 .row
                     .col.s12.m6
-                        .card-panel.center.spons
+                        .card-panel.center.spons.s-2
                             span.card-panel-title.intro Event Partner
-                            br
                             br
                             br
                             .row
                                 &nbsp;
                             img(src="/images/sponsors/tolexo.gif")
                     .col.s12.m6
-                        .card-panel.center.spons
+                        .card-panel.center.spons.s-2
                             span.card-panel-title.intro Creative Partner
-                            img(src="/images/sponsors/storylogo.png" style="width:70%;")
+                            img(src="/images/sponsors/storylogo.png" style="width:auto; height: 70%;")
                 .row
                     .col.s12
-                        .card-panel.center
+                        .card-panel.center.spons.s-2
                             span.card-panel-title.intro Education Partners
                             .row
+                                br
+                                br
                                 br
                                 br
                                 .col.s3
@@ -61,11 +65,11 @@ block content
                                 .col.s3
                                     img(src="/images/sponsors/niit.png")
                                 .col.s3
-                                    img(src="/images/sponsors/")
+                                    img(src="/images/sponsors/dias.png")
                 .row
                     .col.s12.m6.offset-m3
-                        .card-panel.center.spons
+                        .card-panel.center.spons.s-2
                             span.card-panel-title.intro Coupon Partner
                             .row
                                 &nbsp;
-                            img(src="/images/sponsors/amb-logo.png" style="width:45%;")
+                            img(src="/images/sponsors/amb-logo.png" style="width:50%;")
