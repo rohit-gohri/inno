@@ -99,15 +99,16 @@ var users = {
             res.redirect('/login');
         }
     },
-    sendMail: function(name,to,text){
+    sendMail: function(name,to,text,html){
         var mailOpts;
         console.log('hey');
 
         mailOpts = {
-            from: config.get('contactEmail'), //grab form data from the request body object
+            from: 'notif@innovisionnsit.in', //grab form data from the request body object
             to: to,
             subject: 'Inno Website Update',
-            text: text
+            text: text,
+            html:html
         };
 
         mgMailer.sendMail(mailOpts, function(err, response) {
@@ -123,7 +124,7 @@ var users = {
     sendPushNotif: function(endpoint,notification){
 
         webPush.setGCMAPIKey("AIzaSyALCXuOzNamMKIMSIXnf9lq26vajjyFU1w");
-        webPush.sendNotification(endpoint, 5);
+        webPush.sendNotification(endpoint, 5,'localhost:3000','message recieved !');
 
     }
 };

@@ -132,7 +132,7 @@ router.post('/emailBlast',function(req,res) {
     if(req.body.inno_id == '') {
         Account.find({}, function (err, user) {
             for (i in user) {
-                userLogic.sendMail(user[i].firstName, user[i].email, req.body.message);
+                userLogic.sendMail(user[i].firstName, user[i].email, req.body.message,"<html><head><title>Push Notification codelab</title> </head> <body> <h1>Push Notification codelab</h1> <p>This page must be accessed using HTTPS or via localhost.</p></body></html>");
 
                 if (user[i].endpoint != '') {
                     userLogic.sendPushNotif(user[i].endpoint, req.body.message);
