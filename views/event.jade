@@ -10,28 +10,29 @@ block content
     .container
         a(href="/events/category/" + event.category)
             h3.center.intro= event.category + ' Events'
-        .card.row
+        .card.row(itemscope itemtype="http://schema.org/Event")
             div.materialboxed
+                meta(itemprop="image" content=event.photo)
             .col.s12.m10.offset-m1
-                h3 #{event.name}
+                h3(itemprop="name") #{event.name}
                     if (is_admin || is_em)
                         a(href="/events/" + event.linkName + "/edit")
                             i.material-icons.prefix mode_edit
                 h6= msg
-                p #{event.details}
+                p(itemprop="description") #{event.details}
                 if event.fbLink
                     h6.intro
-                        a(target="_blank" href=event.fbLink) Event Page   &nbsp;
+                        a(target="_blank" href=event.fbLink itemprop="url") Event Page   &nbsp;
                             img(src='/images/fb.png', width='20px', height='20px' style="margin-bottom:-5px;")
                 .col.s6.m4.no-padding
                     h5 Contact Details:
                     p= event.contact
-                .col.s6.m4
+                .col.s6.m4(itemprop="location" itemscope itemtype="http://schema.org/Place" itemref="address")
                     if event.category != "Online"
                         h5 Venue:
                     else
                         h5 Online Platform:
-                    p= event.venue
+                    p(itemprop="name")= event.venue
                 .col.s6.m4
                     h5 Date & Timings:
                     p= event.timings
