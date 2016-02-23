@@ -129,15 +129,26 @@ router.get('/emailBlast',userLogic.isAdmin,function(req,res){
 
 router.post('/emailBlast',function(req,res) {
 
-    Account.find({}, function (err, user){
-        for(i in user){
-            userLogic.sendMail(user[i].firstName,user[i].email,req.body.message);
+    if(req.body.inno_id == '') {
+        Account.find({}, function (err, user) {
+            for (i in user) {
+                userLogic.sendMail(user[i].firstName, user[i].email, req.body.message);
 
-            if(user[i].endpoint != '') {
-                userLogic.sendPushNotif(user[i].endpoint,req.body.message);
+                if (user[i].endpoint != '') {
+                    userLogic.sendPushNotif(user[i].endpoint, req.body.message);
+                }
             }
+        });
+    } else {
+        ids = req.body.inno_id.split(',');
+
+        for(id in ids) {
+            console.log(ids[id]);
+            Account.findOne({inno_id:ids[id]},function(err,user){
+               userLogic.sendMail(user.firstName,user.email,req.body.message);
+            });
         }
-    });
+    }
     res.redirect('/');
 });
 
