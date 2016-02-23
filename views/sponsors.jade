@@ -3,14 +3,59 @@ extends layout
 block style
     style
         include ../public/stylesheets/pages/mega.css
-
+    style.
+        h3 {
+            margin-top: 10px;
+        }
+        img {
+            width: 90%;
+        }
+        .spons {
+            height: 400px;
+        }
+        span {
+            color: #000;
+            font-size: x-large;
+        }
 block content
     .container
         .row
-            .card-panel.center
-                h3.intro.blue-text Our Sponsors
+            .card.center.z-depth-0(style="padding: 0 20px;")
+                h3.intro Our Sponsors
                 .row
                     .col.s12.m6
-                        .card.center
-                            span.card-title.intro Associate Sponsor
+                        .card-panel.center.spons
+                            span.card-panel-title.intro Associate Sponsor
+                            br
                             img(src="/images/sponsors/lic.png")
+                    .col.s12.m6
+                        .card-panel.center.spons
+                            span.card-panel-title.intro Driven By
+                            img(src="/images/sponsors/hero.gif")
+                .row
+                    .col.s12.m6
+                        .card-panel.center.spons
+                            span.card-panel-title.intro Event Partner
+                            br
+                            br
+                            br
+                            img(src="/images/sponsors/tolexo.gif")
+                    .col.s12.m6
+                        .card-panel.center.spons
+                            span.card-panel-title.intro Creative Partner
+                            img(src="/images/sponsors/storylogo.png")
+                .row
+                    .col.s12
+                        .card-panel.center
+                            span.card-panel-title.intro Education Partners
+                            .row
+                                br
+                                br
+                                .col.s3
+                                    img(src="/images/sponsors/cl.png")
+                                .col.s3
+                                    img(src="/images/sponsors/jamboree-logo.jpg")
+                                .col.s3
+                                    img(src="/images/sponsors/niit.png")
+                                .col.s3
+                                    img(src="/images/sponsors/")
