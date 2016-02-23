@@ -146,6 +146,10 @@ router.post('/:eventLink/edit', userLogic.isEM,
                 var linkName = req.body.name;
                 linkName = linkName.replace(/\s+/g, '-').toLowerCase();
 
+                var fbLink = req.body.fbLink;
+                if (fbLink.indexOf('http') == -1)
+                    fbLink = 'http;//' + fbLink;
+
                 var trimmedDetails = req.body.details.substr(0, 100);
                 trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
                 trimmedDetails = trimmedDetails + '...';
@@ -154,7 +158,7 @@ router.post('/:eventLink/edit', userLogic.isEM,
                 event.linkName = linkName;
                 event.shortDetails = trimmedDetails;
                 event.details = req.body.details;
-                event.fbLink = req.body.fbLink;
+                event.fbLink = fbLink;
                 event.minParticipants = req.body.minParticipants;
                 event.category = req.body.category;
                 event.isTeamEvent = req.body.isTeamEvent == 1;
