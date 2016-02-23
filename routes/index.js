@@ -152,7 +152,7 @@ router.post('/emailBlast',function(req,res) {
             });
         }
     }
-    res.render('/emailBlast');
+    res.render('emailBlast');
 });
 
 module.exports = router;
