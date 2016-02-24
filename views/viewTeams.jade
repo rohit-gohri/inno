@@ -4,13 +4,13 @@ block content
     .container
         .row
             .col
-                h3.intro Teams participating in #{event.name}
+                h5.intro Teams participating in #{event.name}
                 ul.collapsible(data-collapsible="expandable")
-                    each team in teams
+                    each team, index in teams
                         li(style="min-width:600px")
                             .collapsible-header
                                 i.material-icons
-                                | #{team.name}
+                                | #{index+1}. #{team.name}
                             .collapsible-body.center
                                 table.centered.responsive-table
                                     thead

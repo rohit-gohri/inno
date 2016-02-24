@@ -36,11 +36,11 @@ router.post('/details', function (req, res) {
                     console.log(err);
                     res.render('details', {user: req.user, edit: 'failure'})
                 } else {
-                    if(first_edit) {
-                        res.app.render('emails/welcome', {user: user}, function (err, html) {
-                            userLogic.sendMail(user.firstName, user.email, "Registered for Innovision'16!", html);
-                        });
-                    }
+                    //if(first_edit) {
+                    //    res.app.render('emails/welcome', {user: user}, function (err, html) {
+                    //        userLogic.sendMail(user.firstName, user.email, "Registered for Innovision'16!", html);
+                    //    });
+                    //}
                     res.render('details', {user: data, edit: 'success'})
                 }
             });
