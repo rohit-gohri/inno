@@ -2,6 +2,12 @@
    Created by shubham on 31/1/16.
 extends layout
 
+block meta
+    if category
+        title= category + ' Events - Innovision, NSIT'
+    else
+        title= 'Events - Innovision, NSIT'
+
 block content
     //.slider
         ul.slides.black

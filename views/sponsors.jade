@@ -1,5 +1,8 @@
 extends layout
 
+block meta
+    title= 'Sponsors - Innovision, NSIT'
+
 block style
     style
         include ../public/stylesheets/pages/about.css
@@ -28,27 +31,31 @@ block content
                 .row
                     .col.s12.m6
                         .card-panel.center.spons.s-1
-                            span.card-panel-title.intro Associate Sponsor
-                            .row
-                                &nbsp;
-                            img(src="/images/sponsors/lic.png")
+                            a(href="http://www.licindia.in")
+                                span.card-panel-title.intro Associate Sponsor
+                                .row
+                                    | &nbsp;
+                                img(src="/images/sponsors/lic.png")
                     .col.s12.m6
                         .card-panel.center.spons.s-1
-                            span.card-panel-title.intro Driven By
-                            img(src="/images/sponsors/hero.gif")
+                            a(href="http://www.heromotocorp.in")
+                                span.card-panel-title.intro Driven By
+                                img(src="/images/sponsors/hero.gif")
                 .row
                     .col.s12.m6
                         .card-panel.center.spons.s-2
-                            span.card-panel-title.intro Event Partner
-                            br
-                            br
-                            .row
-                                &nbsp;
-                            img(src="/images/sponsors/tolexo.gif")
+                            a(href="http://www.tolexo.com")
+                                span.card-panel-title.intro Event Partner
+                                br
+                                br
+                                .row
+                                    | &nbsp;
+                                img(src="/images/sponsors/tolexo.gif")
                     .col.s12.m6
                         .card-panel.center.spons.s-2
-                            span.card-panel-title.intro Creative Partner
-                            img(src="/images/sponsors/storylogo.png" style="width:auto; height: 70%;")
+                            a(href="https://storymirror.com")
+                                span.card-panel-title.intro Creative Partner
+                                img(src="/images/sponsors/storylogo.png" style="width:auto; height: 70%;")
                 .row
                     .col.s12
                         .card-panel.center.spons.s-2
@@ -58,18 +65,19 @@ block content
                                 br
                                 br
                                 br
-                                .col.s3
+                                a.col.s3(href="http://www.careerlauncher.com")
                                     img(src="/images/sponsors/cl.png")
-                                .col.s3
+                                a.col.s3(href="http://www.jamboreeindia.com")
                                     img(src="/images/sponsors/jamboree-logo.jpg")
-                                .col.s3
+                                a.col.s3(href="http://www.niit.com")
                                     img(src="/images/sponsors/niit.png")
-                                .col.s3
+                                a.col.s3(href="http://www.diasindia.com")
                                     img(src="/images/sponsors/dias.png")
                 .row
                     .col.s12.m6.offset-m3
                         .card-panel.center.spons.s-2
-                            span.card-panel-title.intro Coupon Partner
-                            .row
-                                &nbsp;
-                            img(src="/images/sponsors/amb-logo.png" style="width:50%;")
+                            a(href="http://askmebazaar.com")
+                                span.card-panel-title.intro Coupon Partner
+                                .row
+                                    | &nbsp;
+                                img(src="/images/sponsors/amb-logo.png" style="width:50%;")

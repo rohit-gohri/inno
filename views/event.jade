@@ -1,5 +1,17 @@
 extends layout
 
+block meta
+    title= event.name + " - Innovision, NSIT"
+    meta(name="keywords" content="Innovision,nsit,inno,FEST" + event.name.split(' '))
+    meta(property="article:author" content="https://www.facebook.com/Innoitis/")
+    meta(name="publisher" content="https://www.facebook.com/Innoitis/")
+    meta(name="copyright" content="https://www.facebook.com/Innoitis/")
+    meta( name="revisit-after" content="1 day")
+    meta(property="og:type" content="website")
+    meta(property="og:url" content=event.fbLink)
+    meta(property="og:image" content=event.photo)
+    meta(property="og:description" content= event.details)
+
 block content
     if event.nxtEvent
         a(href="/events/" + event.nxtEvent)
@@ -8,8 +20,8 @@ block content
             h3#prev.zero.intro <
 
     .container
-        a(href="/events/category/" + event.category)
-            h3.center.intro= event.category + ' Events'
+        a(href="/events/category/" + event.category[0])
+            h3.center.intro= event.category[0] + ' Events'
         .card.row(itemscope itemtype="http://schema.org/Event")
             div.materialboxed
                 meta(itemprop="image" content=event.photo)
