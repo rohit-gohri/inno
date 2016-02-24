@@ -193,13 +193,12 @@ html
 
     script(src='/javascripts/jquery.min.js')
     script(src='/javascripts/materialize.js')
-    block scripts
     script.
         $(document).ready(function () {
             $('select').material_select();
             $('.modal-trigger').leanModal();
             $('.collapsible').collapsible({
-                accordion: true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+                accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
             });
             // Initialize collapse button
             $("#menu").sideNav({
@@ -208,3 +207,4 @@ html
                 closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
             });
         });
+    block scripts

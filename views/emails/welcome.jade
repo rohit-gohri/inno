@@ -1,9 +1,38 @@
 doctype transitional
 html(xmlns='http://www.w3.org/1999/xhtml', style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
     head
+        script(type="application/ld+json").
+            {
+              "@context": "http://schema.org",
+              "@type": "EventReservation",
+              "reservationNumber": #{user.inno_id},
+              "reservationStatus": "http://schema.org/Confirmed",
+              "underName": {
+                "@type": "Person",
+                "name": #{user.firstName} + ' ' #{user.lastName}
+              },
+              "reservationFor": {
+                "@type": "Event",
+                "name": "Innovision'16",
+                "startDate": "2016-03-09T18:30:00+05:30",
+                "endDate": "2016-03-12T22:00:00+05:30",
+                "location": {
+                  "@type": "Place",
+                  "name": "NSIT",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "NSIT, Azad Hind Fauj Marg",
+                    "addressLocality": "Sector-3, Dwarka",
+                    "addressRegion": "New Delhi",
+                    "postalCode": "110060",
+                    "addressCountry": "IN"
+                  }
+                }
+              }
+            }
         meta(name='viewport', content='width=device-width')
         meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-        title Alerts e.g. approaching your limit
+        title Welcome Innovader!
         style(type='text/css').
             img {
                 max-width: 100%;

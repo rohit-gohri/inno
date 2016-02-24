@@ -54,9 +54,9 @@ block content
                     &nbsp; &nbsp;
                 br
                 //TODO: Admin Panel
-                //if is_admin || is_em
-                //    h5
-                //        a(href='/events/' + event.name + '/participants') Participants
+                if is_admin || is_em
+                    h5
+                        a(href='/events/' + event.linkName + '/participants') Participants
                 //    h5
                 //        a(href='/events/' + event.name + '/winners/') Winners
                 //if is_admin

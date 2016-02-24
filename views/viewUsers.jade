@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    .container
+        .row
+            .col
+                if participants
+                    h3.intro Participants of #{event.name}
+                if members
+                    h3.intro Team Members of #{team.name}
+                table.centered.responsive-table
+                    thead
+                        tr
+                            th(data-field='id') INNO ID
+                            th(data-field='name') Name
+                            th(data-field='college') College
+                            th(data-field='email') Email
+                            th(data-field='phone') Phone Number
+                    tbody
+                        each p in participants
+                            tr
+                                td= p.inno_id
+                                td= p.firstName + ' ' + p.lastName
+                                td= p.college + ', ' + p.course
+                                td= p.email
+                                td= p.phone_no
+block style
+    style
+        include ../public/stylesheets/pages/about.css

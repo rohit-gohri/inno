@@ -38,7 +38,7 @@ router.post('/details', function (req, res) {
                 } else {
                     if(first_edit) {
                         res.app.render('emails/welcome', {user: user}, function (err, html) {
-                            userLogic.sendMail(user.firstName, user.email, "You've registered ! ", html);
+                            userLogic.sendMail(user.firstName, user.email, "Registered for Innovision'16!", html);
                         });
                     }
                     res.render('details', {user: data, edit: 'success'})
