@@ -14,6 +14,12 @@ block content
                     textarea.materialize-textarea(id="message" name="message" required=true style="min-height:120px;")
                     label(for="message") Email Blast
 
+                select(name="type" required)
+                    option(value="Blast" ) Blast
+                    option(value="initial") Initial welcome mail
+                label Select Category
+
+
                 button.btn.waves-effect.waves-light(type="submit") Send
 block style
     style

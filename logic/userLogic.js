@@ -104,7 +104,7 @@ var users = {
         console.log('hey');
 
         mailOpts = {
-            from: 'notif@innovisionnsit.in', //grab form data from the request body object
+            from: 'hello@innovisionnsit.in', //grab form data from the request body object
             to: to,
             subject: 'Inno Website Update',
             text: text,

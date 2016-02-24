@@ -129,11 +129,16 @@ router.get('/emailBlast',userLogic.isAdmin,function(req,res){
 
 router.post('/emailBlast',function(req,res) {
 
+    var template;
+    if(req.body.type=="initial"){
+        template="emails/welcome";
+    }
+
     if(req.body.inno_id == '') {
         Account.find({}, function (err, user) {
             for (i in user) {
 
-                res.app.render('emails/welcome',{user:user[i]},function(err,html) {
+                res.app.render(template,{user:user[i]},function(err,html) {
                     userLogic.sendMail(user[i].firstName, user[i].email, req.body.message,html);
                 });
 
