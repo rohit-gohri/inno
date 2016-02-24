@@ -99,15 +99,16 @@ var users = {
             res.redirect('/login');
         }
     },
-    sendMail: function(name,to,text){
+    sendMail: function(name,to,text,html){
         var mailOpts;
         console.log('hey');
 
         mailOpts = {
-            from: config.get('contactEmail'), //grab form data from the request body object
+            from: 'hello@innovisionnsit.in', //grab form data from the request body object
             to: to,
             subject: 'Inno Website Update',
-            text: text
+            text: text,
+            html:html
         };
 
         mgMailer.sendMail(mailOpts, function(err, response) {

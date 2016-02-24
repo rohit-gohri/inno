@@ -5,9 +5,20 @@ block content
         .row
             h3.intro Email Blast
             form.col.s12(role="form" action="/emailBlast" method="post")
+                .input-field.col.s12
+                    //i.material-icons.blue-text.darken-4.prefix email
+                    input#inno_id(type='text', name="inno_id")
+                    label(for="inno_id") Enter Inno Id
+
                 .input-field.col.s8.m7
                     textarea.materialize-textarea(id="message" name="message" required=true style="min-height:120px;")
                     label(for="message") Email Blast
+
+                select(name="type" required)
+                    option(value="Blast" ) Blast
+                    option(value="initial") Initial welcome mail
+                label Select Category
+
 
                 button.btn.waves-effect.waves-light(type="submit") Send
 block style
