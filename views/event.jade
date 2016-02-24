@@ -83,11 +83,11 @@ block content
             .row
                 form.col.s12.row(role='form', action="/events/" + event.linkName + "/register/", method="post")
                     each team, index in teams
-                        p
+                        p.team-radio
                             input.with-gap(name="teamName" type="radio" id="opt"+index value=team.name)
                             label.white-text(for="opt"+index) #{team.name}
                     .row
-                        button.btn.waves-effect.waves-light(type="submit" disabled=teams.length==0) Select Team
+                        button#select-team.btn.waves-effect.waves-light(type="submit" disabled=teams.length==0) Select Team
                             i.material-icons.prefix.right send
                     .row
                         button.btn.waves-light.waves-effect.row
@@ -122,5 +122,17 @@ block scripts
                     $(this).css('background-size', 'contain')
                 else
                     $(this).css('background-size', 'cover')
+            });
+            $('#select-team').click( function () {
+                var radioName = 'teamName';
+                if ($('input[name=' + radioName + ']:checked').length) {
+                    // at least one of the radio buttons was checked
+                    return true; // allow whatever action would normally happen to continue
+                }
+                else {
+                    // no radio button was checked
+                    $('.team-radio').css('color', 'white');
+                    return false; // stop whatever action would normally happen
+                }
             });
         });

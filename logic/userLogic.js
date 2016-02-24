@@ -53,7 +53,6 @@ var users = {
         Event.find({isTeamEvent: false, participants: req.user._id})
             .lean().exec(function(err, events) {
                 req.eventList = events;
-                console.log(events);
                 next();
         });
 
