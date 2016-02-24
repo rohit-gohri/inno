@@ -1,13 +1,19 @@
 extends layout
 
+block meta
+    if (user.is_new)
+        title= "Complete Registration - Innovision, NSIT"
+    else
+        title= "Profile - Innovision, NSIT"
+
 block content
     .container
         .card.row
             form.col.l10.offset-l1.s12(role='form', action='/users/details', method='post')
                 if (user.is_new)
-                    h3.intro Register
+                    h4.intro Complete Registration
                 else
-                    h3.intro Profile
+                    h4.intro Profile
                 h4.black-text.intro Inno ID : #{user.inno_id}
                 .row
                     .col.s12.m6.no-padding
@@ -15,7 +21,7 @@ block content
                             if edit=='success'
                                 h6.col.s12.blue-text Edit Successful
                             else
-                                h6.col.s12.red-text Edit Failed. Please enter a valid phone number.
+                                h6.col.s12.red-text Edit Failed. This phone number has already been registered.
                         if (user.is_new)
                             h6.col.s12.red-text Please fill out these details
                         if(user.is_admin || user.is_em)
@@ -41,7 +47,8 @@ block content
                                     //input#photo-upload(type="file" name="photo")
                 .row
                     .input-field.col.m6.s12
-                        p#email= user.email
+                        input(value=user.email, id='email', name='email', type='email', class='validate' required=true disabled=user.email!=null)
+                        //p#email= user.email
                         label.active(for='email') Email
                     .input-field.col.m6.s12
                         input(value=user.phone_no, id='phone_no', name='phone_no',type='tel', class='validate' required=true)
@@ -129,3 +136,19 @@ block style
         #dp-box:hover #overlay {
             opacity: 1;
         }
+block scripts
+    script.
+        $('#phone_no').focusout(function () {
+            var phone_no = $('#phone_no').val();
+            console.log(phone_no);
+            var f = Math.floor(phone_no/1000000000);
+            console.log(f);
+            if (phone_no.length != 10 || ( f != 9 && f != 8 && f != 7) ) {
+                Materialize.toast('Enter a valid phone number!', 4000)
+                $('#phone_no+label').css('color','red');
+                $('button').attr('disabled', true);
+            } else {
+                $('#phone_no+label').css('color','white');
+                $('button').attr('disabled', false);
+            }
+        });

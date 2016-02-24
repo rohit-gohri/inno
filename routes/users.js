@@ -22,7 +22,9 @@ router.post('/details', function (req, res) {
             if(user.is_new) {
                 first_edit = 1;
             }
-
+            if (user.email == null) {
+                user.email = req.body.email;
+            }
             user.firstName = req.body.firstName;
             user.lastName = req.body.lastName;
             user.phone_no = req.body.phone_no;

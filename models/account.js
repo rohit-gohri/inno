@@ -36,7 +36,7 @@ var Account = new Schema({
     accessToken: String,
     inno_id: {type:String, unique:true, dropDups:true, sparse:true},
     password: String,
-    email: {type:String, validator:emailValidator, unique:true, dropDups:true, trim: true},
+    email: {type:String, validator:emailValidator, unique:true, dropDups:true, sparse:true, trim: true},
     firstName: String,
     lastName: String,
     endpoint:String,

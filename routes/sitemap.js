@@ -5,8 +5,8 @@ var config = require('config');
 
 var URL = config.get('url');
 var defURLs = [
-    {url: '/'},
-    {url: '/events', priority: 1.0},
+    {url: '/', priority: 1.0},
+    {url: '/events', priority: 0.9},
     {url: '/events/category/Mega', priority: 0.8},
     {url: '/events/category/Coding', priority: 0.7},
     {url: '/events/category/Hardware', priority: 0.7},
@@ -15,7 +15,7 @@ var defURLs = [
     {url: '/events/category/Bio', priority: 0.7},
     {url: '/events/category/Online', priority: 0.7},
     {url: '/events/category/Miscellaneous', priority: 0.7},
-    {url: '/schedule', priority: 0.8},
+    {url: '/schedule', priority: 0.5},
     {url: '/sponsors', priority: 0.7},
     {url: '/campus', priority: 0.7},
     {url: '/contact', priority: 0.8},
