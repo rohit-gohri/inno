@@ -95,15 +95,15 @@ block content
 
 block style
     style
-        if event.category=="Hardware" || event.category=="Online"
+        if event.category[0]=="Hardware" || event.category[0]=="Online"
             include ../public/stylesheets/pages/robot.css
-        else if event.category == "Bio"
+        else if event.category[0] == "Bio"
             include ../public/stylesheets/pages/bio.css
-        else if event.category == "Coding" || event.category=="Robotica"
+        else if event.category[0] == "Coding" || event.category[0]=="Robotica"
             include ../public/stylesheets/pages/code.css
-        else if event.category == "Mega"
+        else if event.category[0] == "Mega"
             include ../public/stylesheets/pages/mega.css
-        else if event.category == "Quiz"
+        else if event.category[0] == "Quiz"
             include ../public/stylesheets/pages/misc.css
         else
             include ../public/stylesheets/pages/list.css

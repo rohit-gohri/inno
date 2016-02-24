@@ -84,7 +84,7 @@ var users = {
             if(req.user.is_admin)
                 return next();
             else
-                res.render("error", {message: "You don't have permissions to view this"});
+                res.render("error", {message: "You don't have permissions to view this", error: {}});
         } else {
             res.redirect('/login');
         }
@@ -94,7 +94,7 @@ var users = {
             if(req.user.is_em || req.user.is_admin)
                 return next();
             else
-                res.render("error", {message: "You don't have permissions to view this"});
+                res.render("error", {message: "You don't have permissions to view this", error:{}});
         } else {
             res.redirect('/login');
         }
