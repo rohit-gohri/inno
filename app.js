@@ -142,7 +142,7 @@ app.use(function (err, req, res, next) {
     console.log("BC!!! Ye PRODUCTION me error kisne push kia????" + err);
     res.render('error', {
         message: err.message,
-        error: {}
+        error: {status: 404}
     });
 });
 
