@@ -38,11 +38,13 @@ router.post('/details', function (req, res) {
                     console.log(err);
                     res.render('details', {user: req.user, edit: 'failure'})
                 } else {
-                    //if(first_edit) {
-                    //    res.app.render('emails/welcome', {user: user}, function (err, html) {
-                    //        userLogic.sendMail(user.firstName, user.email, "Registered for Innovision'16!", html);
-                    //    });
-                    //}
+                    if(first_edit) {
+                        res.app.render('emails/welcome', {user: user}, function (err, html) {
+                            userLogic.sendMail(user.firstName, user.email, "Welcome to Innovision'16!",
+                                "Greetings ,Now that you've registered for Innovision '16, we welcome you to this four dimensional journey through space-time.Your INNO ID is "+data.inno_id+"You will be able to register for events and participate in them (and probably win exciting prizes!) with this. Please carry your INNO ID and an identification proof on the days of the fest, i.e. 9th to 12th February. If you have any further queries please drop us a mail at contact@innovisionnsit.in. See you there, Team Innovision"
+                                , html);
+                        });
+                    }
                     res.render('details', {user: data, edit: 'success'})
                 }
             });

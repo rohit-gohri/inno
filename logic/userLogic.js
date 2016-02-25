@@ -98,14 +98,14 @@ var users = {
             res.redirect('/login');
         }
     },
-    sendMail: function(name,to,text,html){
+    sendMail: function(name,to,subject,text,html){
         var mailOpts;
         console.log('hey');
 
         mailOpts = {
             from: 'hello@innovisionnsit.in', //grab form data from the request body object
             to: to,
-            subject: 'Inno Website Update',
+            subject: subject,
             text: text,
             html:html
         };

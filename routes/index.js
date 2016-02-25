@@ -130,34 +130,37 @@ router.get('/emailBlast',userLogic.isAdmin,function(req,res){
 router.post('/emailBlast',function(req,res) {
 
     var template;
-    if(req.body.type=="initial"){
-        template="emails/welcome";
-    }
+    if(req.body.type=="initial") {
+        template = "emails/welcome";
 
-    if(req.body.inno_id == '') {
-        Account.find({}, function (err, user) {
-            for (i in user) {
 
-                res.app.render(template,{user:user[i]},function(err,html) {
-                    userLogic.sendMail(user[i].firstName, user[i].email, req.body.message,html);
-                });
+        if (req.body.inno_id == '') {
+            Account.find({}, function (err, user) {
+                for (i in user) {
 
-                if (user[i].endpoint != '') {
-                    userLogic.sendPushNotif(user[i].endpoint, req.body.message);
+                    res.app.render(template, {user: user[i]}, function (err, html) {
+                        userLogic.sendMail(user[i].firstName, user[i].email, "Welcome to Innovision'16!",
+                            "Greetings ,Now that you've registered for Innovision '16, we welcome you to this four dimensional journey through space-time.Your INNO ID is "+user[i].inno_id+"You will be able to register for events and participate in them (and probably win exciting prizes!) with this. Please carry your INNO ID and an identification proof on the days of the fest, i.e. 9th to 12th February. If you have any further queries please drop us a mail at contact@innovisionnsit.in. See you there, Team Innovision"
+                            , html);
+                    });
+
+                    if (user[i].endpoint != '') {
+                        userLogic.sendPushNotif(user[i].endpoint, req.body.message);
+                    }
                 }
-            }
-        });
-    } else {
-        ids = req.body.inno_id.split(',');
-
-        for(id in ids) {
-            console.log(ids[id]);
-            Account.findOne({inno_id:ids[id]},function(err,user){
-               userLogic.sendMail(user.firstName,user.email,req.body.message);
             });
+        } else {
+            ids = req.body.inno_id.split(',');
+
+            for (id in ids) {
+                console.log(ids[id]);
+                Account.findOne({inno_id: ids[id]}, function (err, user) {
+                    userLogic.sendMail(user.firstName, user.email, req.body.message);
+                });
+            }
         }
+        res.render('emailBlast');
     }
-    res.render('emailBlast');
 });
 
 module.exports = router;
