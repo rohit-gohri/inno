@@ -66,6 +66,8 @@ router.post('/addEM', userLogic.isAdmin, function(req, res) {
                 user.save(function (err) {
                     if (!err)
                         res.render('makeEM', {msg: "Success"})
+                    else
+                        res.render('makeEM', {msg: "Failure"});
                 });
             }
         })

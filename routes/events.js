@@ -183,15 +183,12 @@ router.get('/:eventLink/participants', userLogic.isEM, function (req, res) {
                 res.render('error', {message: "Event not found!", error: {status: 404, stack: ''}});
             } else {
                 var list = event.participants;
-                console.log(list);
                 if (!event.isTeamEvent) {
                     Account.find({_id: {$in: list}}).lean().exec(function (err, users) {
-                        console.log(users);
                         res.render('viewUsers', {participants: users, event: event});
                     })
                 } else {
                     Team.find({_id: {$in: list}}).populate('members captain').lean().exec(function(err, teams) {
-                        console.log(teams);
                         res.render('viewTeams', {teams: teams, event: event});
                     })
                 }
