@@ -60,41 +60,37 @@ router.post('/newTeam', userLogic.ensureAuthenticated, function(req, res) {
 
     Account.find({inno_id:{ $in: inno }},function(err, users) {
         console.log("in");
-       if (err) {
+        if (err) {
             console.log(err);
-            res.render('addTeam', {error: 'Some of the users were not found, please check the INNO IDs', inno_id: req.user.inno_id});
-        }
-        else
-        {
-            if(users)
-            {
-                console.log(users);
-                mem.push(captain);
-                for(var i=0;i<users.length;i++)
-                {
-                    console.log(users[i]._id);
-                    mem.push(users[i]._id);
-                    console.log("mem is");
-                    console.log(mem);
-                }
+            res.render('addTeam', {error: 'Some of the users were not found, please check the INNO IDs',
+                inno_id: req.user.inno_id});
+        } else if (users.length == inno.length) {
+            mem.push(captain);
+            for (var i=0; i < users.length; i++) {
+                console.log(users[i]._id);
+                mem.push(users[i]._id);
+            }
 
-                team = new Team({
+            team = new Team({
                 name: tname,
                 members: mem,
                 captain: captain
-                });
+            });
 
-                team.save(function (err, Team) {
-                    if(err) {
-                        console.log(err);
-                        res.render('addTeam', {error: 'There was some problem adding the team, please try again.', inno_id: req.user.inno_id});
-                    }
-                    else {
-                        res.render('addTeam',
-                            {message: 'Team ' + tname + ' added successfully. Please return to the event to complete the registration.', inno_id: req.user.inno_id});
-                    }
-                });
-            }
+            team.save(function (err, Team) {
+                if(err) {
+                    console.log(err);
+                    res.render('addTeam',
+                        {error: 'Team name already exists', inno_id: req.user.inno_id});
+                } else {
+                    res.render('addTeam',
+                        {message: 'Team ' + tname + ' added successfully. Please return to the event to complete the registration.',
+                            inno_id: req.user.inno_id});
+                }
+            });
+        } else {
+            res.render('addTeam',
+                {error: 'Some of the Inno IDs were incorrect, please try again.', inno_id: req.user.inno_id});
         }
     });
 });

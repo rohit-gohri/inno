@@ -88,7 +88,6 @@ router.get('/:eventLink', userLogic.getTeams, eventLogic.isRegistered, function 
 router.post('/:eventLink/register/', userLogic.ensureAuthenticated, function (req, res){
 
     var elink=req.params.eventLink;
-    var teamName = req.body.teamName;
     var id = req.user._id;
 
     Event.findOne({linkName: elink}, function(err, event) {
@@ -99,16 +98,19 @@ router.post('/:eventLink/register/', userLogic.ensureAuthenticated, function (re
 
         // team event
         else if (event.isTeamEvent) {
+            var teamName = req.body.teamName;
             Team.findOne({name: teamName}, function(err, team){
                 if(!team || err)
                     res.render('error', {message: "Error", error: {status: '', stack: ''}});
-                console.log(team);
-                event.participants.push(team._id);
-                event.save(function (err, event) {
-                    if(err)
-                        console.log(err);
-                    res.redirect('/events/' + event.linkName);
-                });
+                else {
+                    console.log(team);
+                    event.participants.push(team._id);
+                    event.save(function (err, event) {
+                        if (err)
+                            console.log(err);
+                        res.redirect('/events/' + event.linkName);
+                    });
+                }
             });
         }
 
@@ -137,7 +139,7 @@ router.get('/:eventLink/edit', userLogic.isEM, function (req, res) {
     })
 });
 
-router.post('/:eventLink/edit', userLogic.isEM,
+router.post('/:eventLink/edit', userLogic.isEM, upload.single('eventPhoto'),
     function(req, res) {
         Event.findOne({linkName: req.params.eventLink}, function (err, event) {
             if (err)
@@ -165,7 +167,8 @@ router.post('/:eventLink/edit', userLogic.isEM,
                 event.contact = req.body.contact;
                 event.venue = req.body.venue;
                 event.timings = req.body.timings;
-
+                if (req.file)
+                    event.photo = '/uploads/' + req.file.filename;
                 event.save(function() {
                     res.redirect('/events/' + linkName);
                 });

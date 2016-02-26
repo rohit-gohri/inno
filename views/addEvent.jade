@@ -11,7 +11,7 @@ block content
             h3.intro Add Event
         .row
             if edit
-                form.col.s12(role='form', action="/events/" + event.linkName + '/edit', method="post")
+                form.col.s12(role='form', action="/events/" + event.linkName + '/edit', method="post", enctype="multipart/form-data")
                     mixin form
             else
                 form.col.s12(role='form', action="/events/addEvent", method="post", enctype="multipart/form-data")
