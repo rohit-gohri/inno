@@ -65,8 +65,10 @@ block content
                 div.
                     &nbsp; &nbsp;
                 br
+                br
                 //TODO: Admin Panel
                 if is_admin || is_em
+                    h4.intro Event Manager Functions:
                     h5
                         a(href='/events/' + event.linkName + '/participants') Participants
                 //    h5
@@ -85,7 +87,7 @@ block content
                     each team, index in teams
                         p.team-radio
                             input.with-gap(name="teamName" type="radio" id="opt"+index value=team.name)
-                            label.white-text(for="opt"+index) #{team.name}
+                            label.white-text(for="opt"+index) #{team.name}          Members: #{team.members.length}
                     .row
                         button#select-team.btn.waves-effect.waves-light(type="submit" disabled=teams.length==0) Select Team
                             i.material-icons.prefix.right send

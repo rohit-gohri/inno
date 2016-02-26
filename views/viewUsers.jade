@@ -14,14 +14,16 @@ block content
                 table.centered.responsive-table
                     thead
                         tr
+                            th(data-field='num') #
                             th(data-field='id') INNO ID
                             th(data-field='name') Name
                             th(data-field='college') College
                             th(data-field='email') Email
                             th(data-field='phone') Phone Number
                     tbody
-                        each p in participants
+                        each p, index in participants
                             tr
+                                td= index + 1
                                 td= p.inno_id
                                 td= p.firstName + ' ' + p.lastName
                                 td= p.college + ', ' + p.course
