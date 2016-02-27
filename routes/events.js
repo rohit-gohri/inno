@@ -35,7 +35,7 @@ router.post('/addEvent', userLogic.isEM, upload.single('eventPhoto'), function(r
 
     var fbLink = req.body.fbLink;
     if (fbLink.indexOf('http') == -1)
-        fbLink = 'http;//' + fbLink;
+        fbLink = 'http://' + fbLink;
 
     var trimmedDetails = req.body.details.substr(0, 100);
     trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
@@ -150,7 +150,7 @@ router.post('/:eventLink/edit', userLogic.isEM, upload.single('eventPhoto'),
 
                 var fbLink = req.body.fbLink;
                 if (fbLink.indexOf('http') == -1)
-                    fbLink = 'http;//' + fbLink;
+                    fbLink = 'http://' + fbLink;
 
                 var trimmedDetails = req.body.details.substr(0, 100);
                 trimmedDetails = trimmedDetails.substr(0, Math.min(trimmedDetails.length, trimmedDetails.lastIndexOf(" ")));
