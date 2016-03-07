@@ -7,6 +7,15 @@ block content
     .container
         .row
             .col
+                h5.intro Emails :
+                p
+                    each team in teams
+                        each m in team.members
+                            span= m.email + ', '
+                        br
+
+        .row
+            .col
                 h5.intro Teams participating in #{event.name}
                 ul.collapsible(data-collapsible="expandable")
                     each team, index in teams
