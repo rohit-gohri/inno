@@ -19,13 +19,13 @@ router.post('/emailBlast', function(req,res,next) {
     req.template = "emails/" + req.body.type;
 
     if (req.body.emailList == 'all') {
-        Account.find({}, 'email firstName').lean().exec(function (err, users) {
+        Account.find({}, 'email firstName inno_id').lean().exec(function (err, users) {
             req.listofusers = users;
             next();
         });
     } else if (req.body.emailList == 'specify') {
         var array = req.body.inno_ids.split(',');
-        Account.find({inno_id: {$in: array}}, 'email firstName').lean().exec(function (err, users) {
+        Account.find({inno_id: {$in: array}}, 'email firstName inno_id').lean().exec(function (err, users) {
             req.listofusers = users;
             next();
         });
@@ -35,7 +35,7 @@ router.post('/emailBlast', function(req,res,next) {
                 res.render('error', {message: "Event not found!", error: {status: 404, stack: ''}});
             } else {
                 if (!event.isTeamEvent) {
-                    Account.find({_id: {$in: event.participants}}, 'email firstName').lean().exec(function (err, users) {
+                    Account.find({_id: {$in: event.participants}}, 'email firstName inno_id').lean().exec(function (err, users) {
                         req.listofusers = users;
                         next();
                     })
