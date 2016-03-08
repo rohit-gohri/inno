@@ -58,22 +58,31 @@ router.post('/emailBlast', function(req,res,next) {
             failure.push(inno_id);
         }
     };
-    async.each(req.listofusers,function(user,callback) {
-        async.waterfall([
-            function(callback) {
-                res.app.render(req.template, {user: user, msg: req.body.message}, function(err, html) {
-                    userLogic.sendMail(user.email, req.body.subject,
-                        "Hi " + user.firstName + ", / " + req.body.message + " / Regards, / Innovision Team", html, user.inno_id, set);
-                    callback();
-                })
-            }
-        ], function() {
-            callback();
-        })
-    }, function() {
-        Event.find({}, 'name linkName').lean().exec(function (err, events) {
-            res.render('emailBlast', {events: events, failure: failure});
+    for (var i = 0; i < req.listofusers.length; i += 50) {
+        var listofusers = [];
+        if (req.listofusers.length - i < 50) {
+            listofusers = req.listofusers.slice(i, req.listofusers.length);
+        } else {
+            listofusers = req.listofusers.slice(i, i + 50);
+        }
+        async.each(listofusers, function (user, callback) {
+            async.waterfall([
+                function (callback) {
+                    res.app.render(req.template, {user: user, msg: req.body.message}, function (err, html) {
+                        userLogic.sendMail(user.email, req.body.subject,
+                            "Hi " + user.firstName + ", / " + req.body.message + " / Regards, / Innovision Team", html, user.inno_id, set);
+                        callback();
+                    })
+                }
+            ], function () {
+                callback();
+            })
+        }, function () {
+
         });
+    }
+    Event.find({}, 'name linkName').lean().exec(function (err, events) {
+        res.render('emailBlast', {events: events, failure: failure});
     });
 });
 
