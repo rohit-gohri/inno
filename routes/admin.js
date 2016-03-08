@@ -54,7 +54,7 @@ router.post('/emailBlast', function(req,res,next) {
 }, function (req, res) {
     var failure = [];
     var set = function(val, inno_id) {
-        if (!val) {
+        if (val) {
             failure.push(inno_id);
         }
     };
