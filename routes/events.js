@@ -6,6 +6,7 @@ var Team = require('../models/team');
 var multer = require('multer');
 var userLogic = require('../logic/userLogic');
 var eventLogic = require('../logic/eventLogic');
+var json2xls = require('json2xls');
 
 var upload = multer({
     dest: 'public/uploads/',
@@ -23,7 +24,6 @@ router.get('/category/:category', function (req, res) {
         res.render('eventList', {events: events, category: req.params.category});
     });
 });
-
 
 router.get('/addEvent', userLogic.isEM, function (req, res) {
     res.render('addEvent', {event:{}, edit: false})
@@ -197,6 +197,43 @@ router.get('/:eventLink/participants', userLogic.isEM, function (req, res) {
                 }
             }
         })
+});
+
+router.get('/:eventLink/participants.xls', userLogic.isEM, json2xls.middleware, function (req, res) {
+    Event.findOne({linkName: req.params.eventLink},
+        function (err, event) {
+            if(!event || err ) {
+                res.render('error', {message: "Event not found!", error: {status: 404, stack: ''}});
+            } else {
+                var list = event.participants;
+                if (!event.isTeamEvent) {
+                    Account.find({_id: {$in: list}}).lean().exec(function (err, users) {
+                        res.xls(event.linkName + '.xlsx', users, {fields: ['inno_id', 'firstName', 'lastName', 'email', 'phone_no', 'college', 'course']});
+                    })
+                } else {
+                    Team.find({_id: {$in: list}}).populate('members captain').lean().exec(function(err, teams) {
+                        var out = [];
+                        for (var i in teams) {
+                           out.push({
+                               inno_id: "Team",
+                               firstName: teams[i].name,
+                               lastName: "",
+                               email: "",
+                               phone_no: "",
+                               college: "",
+                               course: ""
+                           });
+                            out.push.apply(out, teams[i].members);
+                        }
+                        res.xls(event.linkName + '.xlsx', out, {fields: ['inno_id', 'firstName', 'lastName', 'email', 'phone_no', 'college', 'course']});
+                    })
+                }
+            }
+        })
+});
+
+router.post('/:eventLink/addParticipants', userLogic.isEM, function (req, res) {
+
 });
 
 module.exports = router;

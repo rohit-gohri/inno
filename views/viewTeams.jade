@@ -7,13 +7,8 @@ block content
     .container
         .row
             .col
-                h5.intro Emails :
-                p
-                    each team in teams
-                        each m in team.members
-                            span= m.email + ', '
-                        br
-
+                h5.intro Export to excel
+                a(href="/events/"+event.linkName+"/participants.xls") Download
         .row
             .col
                 h5.intro Teams participating in #{event.name}

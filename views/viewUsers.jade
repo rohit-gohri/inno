@@ -7,6 +7,10 @@ block content
     .container
         .row
             .col
+                h5.intro Export to excel
+                a(href="/events/" + event.linkName + "/participants.xls") Download
+        .row
+            .col
                 if participants
                     h3.intro Participants of #{event.name}
                 if members
