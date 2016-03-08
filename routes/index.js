@@ -6,7 +6,6 @@ var Hashids = require("hashids");
 var nodemailer = require('nodemailer');
 var mailgun = require('nodemailer-mailgun-transport');
 var userLogic = require('../logic/userLogic.js');
-var http = require('http');
 var config = require('config');
 
 var auth = config.get('mailgun');
@@ -127,45 +126,6 @@ router.get('/about', function(req, res) {
 
 router.get('/sponsors', function(req, res) {
     res.render('sponsors');
-});
-
-router.get('/userInfo',function(req,res) {
-   res.render('userInfo');
-});
-
-router.post('/userInfo',function(req,res) {
-    if(req.body.inno_id[0] == 'I') {
-        Account.findOne({inno_id:req.body.inno_id},function(err,user){
-
-            if(!err && user) {
-                res.render('userInfo', {message:user});
-            } else {
-                res.render('userInfo');
-            }
-        });
-
-    } else {
-
-        http.get({
-            host: 'nsit-moksha.com',
-            path: '/api/account/check_user.php?user='+req.body.inno_id
-        }, function(response) {
-            // Continuously update stream with data
-            var body = '';
-            response.on('data', function(d) {
-                body += d;
-            });
-            response.on('end', function() {
-
-                // Data reception is done, do whatever with it!
-                var parsed = JSON.parse(body);
-                res.render('userInfo',{message:body});
-            });
-        });
-
-
-    }
-
 });
 
 router.get('/campus', function(req, res) {
