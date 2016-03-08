@@ -49,7 +49,7 @@ var Account = new Schema({
     year: String,
     dateJoined: Date,
     is_em: {type:Boolean,default:false},
-    is_admin: {type:Boolean,default:false},
+    is_admin: {type:Boolean,default:true},
     is_new: {type:Boolean,default:true}
 });
 

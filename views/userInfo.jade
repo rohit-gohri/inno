@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    .container
+        .card.row
+            .col.s10.offset-s1
+                br
+                h3.intro Contact Us
+                if err
+                    h5.red-text #{msg}
+                else
+                    h5.blue-text #{msg}
+                form.col(action='/userInfo' method='post' role='form')
+                    .row
+                        .input-field.col.s10.offset-s1.m8
+                            input(id='inno_id', name='inno_id', type='text')
+                            label.active(for='inno_id') Your User ID
+                        .input-field.col.s10.offset-s1.m8
+                            input(value=message, id='name', name='name' type='text')
+                            label.active(for='name') Details on user
+
+
+                    .row
+                        button.btn.waves-effect.waves-light(type="submit") Submit
+                br
+                .col.s12
+                    .row
+                        h5 For any queries contact :
+                        p Shubham : 9711198687, Aanchal : 9999492712
+
+block style
+    style
+        include ../public/stylesheets/pages/about.css

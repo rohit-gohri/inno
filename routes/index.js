@@ -6,6 +6,7 @@ var Hashids = require("hashids");
 var nodemailer = require('nodemailer');
 var mailgun = require('nodemailer-mailgun-transport');
 var userLogic = require('../logic/userLogic.js');
+var http = require('http');
 var config = require('config');
 
 var auth = config.get('mailgun');
@@ -26,6 +27,7 @@ router.get('/register', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
+
     inno_id = '';
     Account.register(new Account({email: req.body.email,endpoint:req.body.endpoint}), req.body.password, function (err, account) {
         if (err) {
@@ -70,6 +72,14 @@ router.get('/login', function (req, res) {
 });
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), function (req, res) {
+
+    console.log(req);
+
+    if(req.user.endpoint == '') {
+        req.user.endpoint = req.body.endpoint;
+
+    }
+
     if (req.user.is_new)
         res.redirect('/users/details');
     res.redirect('/');
@@ -117,6 +127,45 @@ router.get('/about', function(req, res) {
 
 router.get('/sponsors', function(req, res) {
     res.render('sponsors');
+});
+
+router.get('/userInfo',function(req,res) {
+   res.render('userInfo');
+});
+
+router.post('/userInfo',function(req,res) {
+    if(req.body.inno_id[0] == 'I') {
+        Account.findOne({inno_id:req.body.inno_id},function(err,user){
+
+            if(!err && user) {
+                res.render('userInfo', {message:user});
+            } else {
+                res.render('userInfo');
+            }
+        });
+
+    } else {
+
+        http.get({
+            host: 'nsit-moksha.com',
+            path: '/api/account/check_user.php?user='+req.body.inno_id
+        }, function(response) {
+            // Continuously update stream with data
+            var body = '';
+            response.on('data', function(d) {
+                body += d;
+            });
+            response.on('end', function() {
+
+                // Data reception is done, do whatever with it!
+                var parsed = JSON.parse(body);
+                res.render('userInfo',{message:body});
+            });
+        });
+
+
+    }
+
 });
 
 router.get('/campus', function(req, res) {

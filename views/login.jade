@@ -14,6 +14,7 @@ block content
                         div.input-field.col.s8.offset-s2.m8
                             input(type='password', id="password" name="password")
                             label(for="password") Password
+                            input(id="endpoint" type="hidden" name="endpoint" value="")
                     .row.zero
                         button.btn.waves-effect.waves-light(type='submit') Submit
                 form.row(role='form', action="/login/fb", method="get")
@@ -23,6 +24,25 @@ block content
                     .col.s12
                         a(href='/register')
                             button.btn.waves-effect.waves-light(style="width: 200px; margin-left:-12px;") Register
+
+
+
+block scripts
+    script.
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('serviceWorker.js').then(function (reg) {
+                console.log(':^)', reg);
+                reg.pushManager.subscribe({
+                    userVisibleOnly: true
+                }).then(function (sub) {
+
+                    document.getElementById('endpoint').value = sub.endpoint;
+                    console.log(endpoint);
+                });
+            }).catch(function (error) {
+                console.log(':^(', error);
+            });
+        }
 
 block style
     style
