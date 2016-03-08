@@ -18,7 +18,7 @@ block content
                 .input-field.col.s8.m7
                     select#list(name="emailList" required)
                         option(value="all") All
-                        option(value="specified") Specify Below
+                        option(value="specify") Specify Below
                         each event in events
                             option(value=event.linkName) Event: #{event.name}
                     label(for="list") Who To Send
