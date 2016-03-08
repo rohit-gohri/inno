@@ -5,8 +5,9 @@ var Team = require('../models/team');
 var nodemailer  = require('nodemailer');
 var mailgun = require('nodemailer-mailgun-transport');
 var config = require('config');
-var auth = config.get('mailgun');
 var webPush = require('web-push');
+
+var auth = config.get('mailgun');
 var mgMailer = nodemailer.createTransport(mailgun(auth));
 
 var users = {
@@ -98,9 +99,9 @@ var users = {
             res.redirect('/login');
         }
     },
-    sendMail: function(name,to,subject,text,html){
+    sendMail: function(to,subject,text,html,inno_id,setsuc){
         var mailOpts;
-        console.log('hey');
+        console.log('sending mail to ' + to);
 
         mailOpts = {
             from: 'hello@innovisionnsit.in', //grab form data from the request body object
@@ -111,14 +112,14 @@ var users = {
         };
 
         mgMailer.sendMail(mailOpts, function(err, response) {
-
             if (err) {
-                console.log('Error occured, message not sent.');
+                console.log('ERROR MAIL : ' + to);
+                setsuc(true, inno_id);
             } else {
-                console.log('Message Sent! Thank You.');
+                console.log('MAIL Sent : ' + to);
+                setsuc(false, inno_id);
             }
         })
-
     },
     sendPushNotif: function(endpoint,notification){
 

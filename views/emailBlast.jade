@@ -2,25 +2,50 @@ extends layout
 
 block content
     .container
-        .row
-            h3.intro Email Blast
+        .card.row
             form.col.s12(role="form" action="/emailBlast" method="post")
-                .input-field.col.s12
-                    //i.material-icons.blue-text.darken-4.prefix email
-                    input#inno_id(type='text', name="inno_id")
-                    label(for="inno_id") Enter Inno Id
+                h3.intro Email Blast
+
+                    if failure
+                        if failure.length == 0
+                            h5.blue-text Success
+                        else
+                            h5.red-text Failure
+                            p
+                                for email in failure
+                                    span= email + ', '
 
                 .input-field.col.s8.m7
-                    textarea.materialize-textarea(id="message" name="message" required=true style="min-height:120px;")
-                    label(for="message") Email Blast
+                    select#list(name="emailList" required)
+                        option(value="all") All
+                        option(value="specified") Specify Below
+                        each event in events
+                            option(value=event.linkName) Event: #{event.name}
+                    label(for="list") Who To Send
 
-                select(name="type" required)
-                    option(value="Blast" ) Blast
-                    option(value="initial") Initial welcome mail
-                label Select Category
+                .input-field.col.s8.m7
+                    input(disabled=true type='text', id="inno_ids" name="inno_ids")
+                    label(for="inno_ids") Enter INNO IDs(comma separated)
 
+                .input-field.col.s8.m7
+                    select#template(name="type" required)
+                        option(value="custom" ) Custom Notification Message
+                        option(value="welcome") Welcome Mail
+                        option(value="app") App Download
+                        option(value="schedule") Schedule
+                    label(for="template") Select Template
 
-                button.btn.waves-effect.waves-light(type="submit") Send
+                .input-field.col.s8.m7
+                    input(type='text' id="subject" name="subject")
+                    label(for="subject") Subject
+
+                .input-field.col.s8.m7
+                    textarea.materialize-textarea(id="message" name="message" style="min-height:120px;")
+                    label(for="message") Message
+
+                .col.s8.m7
+                    .row
+                        button.btn.waves-effect.waves-light(type="submit") Send
 block style
     style
         include ../public/stylesheets/pages/about.css

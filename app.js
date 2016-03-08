@@ -22,6 +22,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var events = require('./routes/events');
 var teams = require('./routes/teams');
+var admin = require('./routes/admin');
 var sitemap = require('./routes/sitemap');
 
 var userLogic = require('./logic/userLogic');
@@ -59,6 +60,7 @@ app.use(paginate.middleware(10, 50));
 
 app.get('*', userLogic.setLoginStatus);
 app.use('/', index);
+app.use('/', admin);
 app.use('/', sitemap);
 app.use('/users', users);
 app.use('/events', events);

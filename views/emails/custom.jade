@@ -90,58 +90,25 @@ html(xmlns='http://www.w3.org/1999/xhtml', style="font-family: 'Helvetica Neue',
                         table.main(width='100%', cellpadding='0', cellspacing='0', style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; border-radius: 3px; background-color: #fff; margin: 0; border: 1px solid #e9e9e9;", bgcolor='#fff')
                             tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
                                 td.alert.alert-warning(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 16px; vertical-align: top; color: #fff; font-weight: 500; text-align: center; border-radius: 3px 3px 0 0; background-color: #FF9F00; margin: 0; padding: 20px;", align='center', bgcolor='#FF9F00', valign='top')
+                                    //HEADING
                                     | Your Inno ID : #{user.inno_id}
                             tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
                                 td.content-wrap(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 20px;", valign='top')
                                     table(width='100%', cellpadding='0', cellspacing='0', style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
                                         tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
                                             td.content-block(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;", valign='top')
+                                                //MAIL START
                                                 | Greetings #{user.firstName},
                                                 br
-                                                | Now that you've registered for Innovision '16, we welcome you to this four dimensional journey through space-time.
-                                        tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
-                                            td.content-block(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;", valign='top')
-                                                strong Your INNO ID is #{user.inno_id}
-                                        tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
-                                            td.content-block(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;", valign='top')
-                                                | You will be able to register for events and participate in them (and probably win exciting prizes!) with this.
-                                        tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
-                                            td.content-block(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;", valign='top')
-                                                a.btn-primary(href='https://www.innovisionnsit.in/events', style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #348eda; margin: 0; border-color: #348eda; border-style: solid; border-width: 10px 20px;") View Events
-                                        tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
-                                            td.content-block(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;", valign='top')
-                                                | You'll need to show your INNO ID, your valid college ID & the app downloads below to the security personnel at Innovision'16 for entry to the fest. Please keep them with you on the days of the fest, i.e. 9th to 12th March.
-
-                                        tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
-                                            td.content-block(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;", valign='top')
-                                                | For entry into the college premises, the following apps need to be downloaded & physically verified at the entry gates:
-                                                br
-                                                strong 1. Loud Shout App
-                                                br
-                                                | Download link (Android):
-                                                    a(href="http://bit.ly/loudshoutNSIT") bit.ly/loudshoutNSIT
-                                                br
-                                                | Download link (iOS):
-                                                    a(href="http://bit.ly/loudhoutiNSIT") bit.ly/loudhoutiNSIT
-                                                br
-                                                strong Note: After registering on the Loudshout App, you have to choose "NSIT, Delhi" as your Basecamp.
-                                                br
-                                                strong 2. Faagio
-                                                br
-                                                | Download link (Android):
-                                                    a(href="http://bit.ly/faagioNSIT") bit.ly/faagioNSIT
-                                                br
-                                                strong Note: After signing up on the Faagio App, you have to enter the referral code 'NSIT2016'.
-                                                br
-                                                | Important: Users of phones that do not support these apps would be required to show & verify this fact by displaying their phones at the entry gate.
-                                                br
-                                                | If you have any further queries please drop us a mail at pr.innovision.nsit@gmail.com
+                                                | #{msg}
 
                                         tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
                                             td.content-block(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;", valign='top')
                                                 | See you there
                                                 br
                                                 | Team Innovision
+
+
                         .footer(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;")
                             table(width='100%', style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
                                 tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
