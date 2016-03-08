@@ -1,9 +1,38 @@
 doctype transitional
 html(xmlns='http://www.w3.org/1999/xhtml', style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
     head
+        script(type="application/ld+json").
+            {
+              "@context": "http://schema.org",
+              "@type": "EventReservation",
+              "reservationNumber": #{user.inno_id},
+              "reservationStatus": "http://schema.org/Confirmed",
+              "underName": {
+                "@type": "Person",
+                "name": #{user.firstName} + ' ' #{user.lastName}
+              },
+              "reservationFor": {
+                "@type": "Event",
+                "name": "Innovision'16",
+                "startDate": "2016-03-09T18:30:00+05:30",
+                "endDate": "2016-03-12T22:00:00+05:30",
+                "location": {
+                  "@type": "Place",
+                  "name": "NSIT",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "NSIT, Azad Hind Fauj Marg",
+                    "addressLocality": "Sector-3, Dwarka",
+                    "addressRegion": "New Delhi",
+                    "postalCode": "110060",
+                    "addressCountry": "IN"
+                  }
+                }
+              }
+            }
         meta(name='viewport', content='width=device-width')
         meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-        title Alerts e.g. approaching your limit
+        title Welcome Innovader!
         style(type='text/css').
             img {
                 max-width: 100%;
@@ -81,7 +110,7 @@ html(xmlns='http://www.w3.org/1999/xhtml', style="font-family: 'Helvetica Neue',
                                                 a.btn-primary(href='https://www.innovisionnsit.in/events', style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #348eda; margin: 0; border-color: #348eda; border-style: solid; border-width: 10px 20px;") View Events
                                         tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
                                             td.content-block(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;", valign='top')
-                                                | Please carry your INNO ID and an identification proof on the days of the fest, i.e. 9th to 12th February. If you have any further queries please drop us a mail at contact@innovisionnsit.in.
+                                                | Please carry your INNO ID and an identification proof on the days of the fest, i.e. 9th to 12th February. If you have any further queries please drop us a mail at inno2k16@gmail.com
                                         tr(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;")
                                             td.content-block(style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;", valign='top')
                                                 | See you there

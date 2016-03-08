@@ -176,29 +176,25 @@ router.post('/:eventLink/edit', userLogic.isEM,
 });
 
 //TODO: Admin Panel
-router.get('/:eventLink/participants', function (req, res) {
+router.get('/:eventLink/participants', userLogic.isEM, function (req, res) {
     Event.findOne({linkName: req.params.eventLink},
         function (err, event) {
             if(!event || err ) {
                 res.render('error', {message: "Event not found!", error: {status: 404, stack: ''}});
             } else {
-                //if(req.params.listType == 'participants') {
-                    var list = event.participants;
-                //} else if(req.params.listType == 'winners') {
-                //    var list = event.winners;
-                //} else if(req.params.listType == 'managers') {
-                //    var list = event.managers;
-                //}
-                //Account.paginate({_id: list}, { page: req.query.page, limit: req.query.limit },
-                //    function(err, users, pageCount, itemCount) {
-                //        if (err) return next(err);
-                //        res.render('participants', {
-                //            participants: users,
-                //            pageCount: pageCount,
-                //            itemCount: itemCount,
-                //            pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
-                //        });
-                //    });
+                var list = event.participants;
+                console.log(list);
+                if (!event.isTeamEvent) {
+                    Account.find({_id: {$in: list}}).lean().exec(function (err, users) {
+                        console.log(users);
+                        res.render('viewUsers', {participants: users, event: event});
+                    })
+                } else {
+                    Team.find({_id: {$in: list}}).populate('members captain').lean().exec(function(err, teams) {
+                        console.log(teams);
+                        res.render('viewTeams', {teams: teams, event: event});
+                    })
+                }
             }
         })
 });
