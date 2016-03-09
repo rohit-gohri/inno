@@ -25,6 +25,7 @@ router.get('/register', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
+
     inno_id = '';
     Account.register(new Account({email: req.body.email,endpoint:req.body.endpoint}), req.body.password, function (err, account) {
         if (err) {
@@ -69,6 +70,14 @@ router.get('/login', function (req, res) {
 });
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), function (req, res) {
+
+    console.log(req);
+
+    if(req.user.endpoint == '') {
+        req.user.endpoint = req.body.endpoint;
+
+    }
+
     if (req.user.is_new)
         res.redirect('/users/details');
     res.redirect('/');
