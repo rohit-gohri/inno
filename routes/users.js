@@ -88,12 +88,12 @@ router.post('/addEM', userLogic.isAdmin, function(req, res) {
 });
 
 
-router.get('/userInfo',function(req,res) {
-    res.render('userInfo');
+router.get('/oh/my/god/userInfo',function(req,res) {
+    res.render('userInfo',{user:{}});
 });
 
 
-router.post('/userInfo',function(req,res) {
+router.post('/oh/my/god/userInfo',function(req,res) {
     if(req.body.inno_id[0] == 'I') {
         Account.findOne({inno_id:req.body.inno_id},function(err,user){
 
@@ -137,25 +137,21 @@ router.get('/photoUpload',function(req,res) {
     res.render('photoUpload');
 });
 
-router.post('/photoUpload',function(req,res,next){
-    Account.findOne({inno_id:req.body.inno_id},function(err,user) {
-        if (!err && user) {
-            next();
-        } else {
-            res.render('photoUpload', {err: true, msg: 'Failure'});
-        }
-    });
-},upload.single('userPhoto'), function(req,res) {
+router.post('/photoUpload',upload.single('userPhoto'), function(req,res) {
     Account.findOne({inno_id:req.body.inno_id},function(err,user){
         if(!err && user) {
-            user.photoid = '/uploads/photoids' + req.file.filename;
+            user.photoId = '/uploads/photoids/' + req.file.filename;
+            user.save();
             res.render('photoUpload', {err: false, msg: 'Success'});
         } else {
             res.render('photoUpload', {err: true, msg: 'Failure'});
         }
     });
 
+});
 
+router.get('/photoUpload/:inno_id',function(req,res) {
+    res.render('photoUpload',{inno_id:req.params.inno_id});
 });
 
 

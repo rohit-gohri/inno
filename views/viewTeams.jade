@@ -27,6 +27,7 @@ block content
                                             th(data-field='college') College
                                             th(data-field='email') Email
                                             th(data-field='phone') Phone Number
+                                            th(data-field='photo') Photo Upload 
                                     tbody
                                         each p in team.members
                                             tr
@@ -35,6 +36,11 @@ block content
                                                 td= p.college + ', ' + p.course
                                                 td= p.email
                                                 td= p.phone_no
+                                                if p.photoId    
+                                                    td &#10004
+                                                else
+                                                    td 
+                                                        a(href="/users/photoUpload/" + p.inno_id) &#10060
 
 block style
     style
