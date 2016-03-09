@@ -118,6 +118,10 @@ router.get('/sponsors', function(req, res) {
     res.render('sponsors');
 });
 
+router.get('/schedule', function(req, res) {
+    res.render('schedule');
+});
+
 router.get('/campus', function(req, res) {
     res.render('campus');
 });
