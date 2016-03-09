@@ -24,6 +24,7 @@ router.get('/register', function (req, res) {
     res.render('register', {});
 });
 
+
 router.post('/register', function (req, res) {
 
     inno_id = '';
@@ -45,6 +46,8 @@ router.post('/register', function (req, res) {
         });
     });
 });
+
+
 
 router.get('/login/fb', passport.authenticate('facebook', {authType: 'rerequest', scope: ['email']}));
 

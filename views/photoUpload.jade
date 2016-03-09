@@ -10,19 +10,22 @@ block content
                     h5.red-text #{msg}
                 else
                     h5.blue-text #{msg}
-                form.col(action='/users/photoUpload' method='post' role='form' enctype="multipart/form-data")
+                form.col.m6(action='/users/photoUpload' method='post' role='form' enctype="multipart/form-data")
                     .row
-                        .input-field.col.s10.offset-s1.m8
+                        .input-field.col
                             input(id='inno_id', name='inno_id', type='text',value=inno_id)
                             label.active(for='inno_id') Your User ID
                     .row
-                        .input-field.file-field.col.s8.m7
+                        .input-field.file-field.col
                             .btn.blue.darken-4.waves-effect.waves-light
                                 span Photo
                                 input(type="file" name="userPhoto" required =true)
                     .row
-                        .input-field.col.s10.offset-s1.m8
+                        .input-field.col
                             button.btn.waves-effect.waves-light(type="submit") Submit
+                .col.s12.m6.no-padding
+                    if img
+                        img.col.s10.right#dp(src=img)
 
 block style
     style
