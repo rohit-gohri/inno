@@ -126,25 +126,21 @@ router.get('/photoUpload',function(req,res) {
     res.render('photoUpload');
 });
 
-router.post('/photoUpload',function(req,res,next){
-    Account.findOne({inno_id:req.body.inno_id},function(err,user) {
-        if (!err && user) {
-            next();
-        } else {
-            res.render('photoUpload', {err: true, msg: 'Failure'});
-        }
-    });
-},upload.single('userPhoto'), function(req,res) {
+router.post('/photoUpload',upload.single('userPhoto'), function(req,res) {
     Account.findOne({inno_id:req.body.inno_id},function(err,user){
         if(!err && user) {
-            user.photoid = '/uploads/photoids' + req.file.filename;
+            user.photoId = '/uploads/photoids/' + req.file.filename;
+            user.save();
             res.render('photoUpload', {err: false, msg: 'Success'});
         } else {
             res.render('photoUpload', {err: true, msg: 'Failure'});
         }
     });
 
+});
 
+router.get('/photoUpload/:inno_id',function(req,res) {
+    res.render('photoUpload',{inno_id:req.params.inno_id});
 });
 
 
