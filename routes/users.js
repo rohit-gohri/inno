@@ -77,12 +77,12 @@ router.post('/addEM', userLogic.isAdmin, function(req, res) {
 });
 
 
-router.get('/userInfo',function(req,res) {
-    res.render('userInfo');
+router.get('/oh/my/god/userInfo',function(req,res) {
+    res.render('userInfo',{user:{}});
 });
 
 
-router.post('/userInfo',function(req,res) {
+router.post('/oh/my/god/userInfo',function(req,res) {
     if(req.body.inno_id[0] == 'I') {
         Account.findOne({inno_id:req.body.inno_id},function(err,user){
 
