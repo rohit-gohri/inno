@@ -111,6 +111,10 @@ block style
             color: #fff !important;
         }
 
+        .parallax-container {
+            height: 400px;
+        }
+
         #get-id {
             position: absolute;
             top: 100px;
@@ -126,6 +130,9 @@ block style
         }
         #padd {
             margin: 5px 0 !important;
+        }
+        .felicity {
+            background-color: #00b0e9;
         }
         #preloader {
             z-index: 11111;
@@ -187,9 +194,15 @@ block content
 
         #countdown.white-text.zero
             .container
-                h3.intro.center.white-text Going Back To the future in
+                h3.intro.center.white-text.zero Welcome Back To the Future
+                h5.intro.center.white-text See What's Here :
                 .row.zero
-                    .col.s12
+                    .col.s12.center
+                        a(href="/schedule")
+                            button.btn.waves-effect.waves-light.intro.grey-text Schedule
+                        br
+                        br
+                    //.col.s12
                         div
                             <div class="clock">
                             <svg class="hands" viewBox="0 0 32 32">
@@ -218,11 +231,15 @@ block content
                             </div>
                             </div>
                             <h6 class="greeting"><h6>
-                    .col.s12.hide-on-med-and-up
-                        br
-                        br
-                        br
-                        br
+        .felicity.zero
+            .container
+                .row.zero
+                    .center.z-depth-0(style="padding: 0 20px;")
+                        .row.zero
+                            .col.s12
+                                .card-panel.center(style="width: 550px !important; margin-left: auto; margin-right: auto;")
+                                    img.zero(src="images/felicity.png" style="height: 350px !important")
+
         #zero.orange
             .container
                 .row.hide-on-med-and-down
@@ -240,7 +257,6 @@ block content
 
 block scripts
     script(src='/javascripts/jquery.countdown.min.js')
-    script(src='/javascripts/index_countdown.js')
     script.
         function createCookie(name, value, days) {
             if (days) {
@@ -266,6 +282,7 @@ block scripts
         $(document).ready(function () {
             $('select').material_select();
             $('.modal-trigger').leanModal();
+            $('.parallax').parallax();
             $('.collapsible').collapsible({
                 accordion: true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
             });
