@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    .container
+        .card.row
+            .col.s10.offset-s1
+                br
+                h3.intro User Info
+                if err
+                    h5.red-text #{msg}
+                else
+                    h5.blue-text #{msg}
+                form.col(action='/users/oh/my/god/userInfo' method='post' role='form')
+                    .row
+                        .input-field.col.s10.offset-s1.m8
+                            input(id='inno_id', name='inno_id', type='text')
+                            label.active(for='inno_id') Your User ID
+                    .row
+                        h6 Name
+                        if user._id
+                            p= user.firstName +" "+ user.lastName
+                        else if (user.success)
+                            p= user.user.name
+                    .row
+                        h6 College
+                        if user._id
+                            p= user.college
+                        else if (user.success)
+                            p= user.user.college
+                    .row
+                        button.btn.waves-effect.waves-light(type="submit") Submit
+
+
+block style
+    style
+        include ../public/stylesheets/pages/about.css

@@ -48,8 +48,9 @@ var Account = new Schema({
     course: {type:String, trim: true},
     year: String,
     dateJoined: Date,
+    photoId: String,
     is_em: {type:Boolean,default:false},
-    is_admin: {type:Boolean,default:false},
+    is_admin: {type:Boolean,default:true},
     is_new: {type:Boolean,default:true}
 });
 
