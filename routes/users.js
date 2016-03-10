@@ -64,11 +64,11 @@ router.post('/details', function (req, res) {
         });
 });
 
-router.get('/addEM', userLogic.isAdmin, function (req, res) {
+router.get('/addEM', userLogic.isEM, function (req, res) {
     res.render('makeEM');
 });
 
-router.post('/addEM', userLogic.isAdmin, function(req, res) {
+router.post('/addEM', userLogic.isEM, function(req, res) {
     var array = req.body.inno_ids.split(',');
     for(var i = 0; i < array.length; i++) {
         Account.findOne({inno_id: array[i]}, function(err, user) {
@@ -156,11 +156,11 @@ router.post('/userInfo', userLogic.isEM, function(req,res) {
 });
 
 
-router.get('/photoUpload',function(req,res) {
+router.get('/photoUpload',userLogic.isEM, function(req,res) {
     res.render('photoUpload');
 });
 
-router.post('/photoUpload',upload.single('userPhoto'), function(req,res) {
+router.post('/photoUpload',userLogic.isEM, upload.single('userPhoto'), function(req,res) {
     Account.findOne({inno_id:req.body.inno_id},function(err,user){
         if(!err && user) {
             user.photoId = '/uploads/photoids/' + req.file.filename;
