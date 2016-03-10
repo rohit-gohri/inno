@@ -50,7 +50,7 @@ var Account = new Schema({
     dateJoined: Date,
     photoId: String,
     is_em: {type:Boolean,default:false},
-    is_admin: {type:Boolean,default:true},
+    is_admin: {type:Boolean,default:false},
     is_new: {type:Boolean,default:true}
 });
 
