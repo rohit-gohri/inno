@@ -10,9 +10,13 @@ block content
                     h5.red-text #{msg}
                 else
                     h5.blue-text #{msg}
-                form.col(action='/users/oh/my/god/userInfo' method='post' role='form')
+                if admin
+                    - var call = '/users/userInfo'
+                else
+                    - var call = '/users/oh/my/god/userInfo'
+                form.col.s6(action=call method='post' role='form')
                     .row
-                        .input-field.col.s10.offset-s1.m8
+                        .input-field.col.s12
                             input(id='inno_id', name='inno_id', type='text')
                             label.active(for='inno_id') Your User ID
                     .row
@@ -28,8 +32,18 @@ block content
                         else if (user.success)
                             p= user.user.college
                     .row
+                        if admin
+                            .col.s6
+                                h6 Email
+                                p= user.email
+                            .col.s6
+                                h6 Phone Number
+                                p= user.phone_no
+                    .row
                         button.btn.waves-effect.waves-light(type="submit") Submit
-
+                if admin
+                    .col.s6
+                        img(src=user.photoId)
 
 block style
     style

@@ -44,8 +44,10 @@ block content
                                 td= p.college + ', ' + p.course
                                 td= p.email
                                 td= p.phone_no
-                                if p.photoId    
-                                    td &#10004
+                                if p.photoId
+                                    td
+                                        a(href="/users/userInfo/" + p.inno_id target="_blank")
+                                            | &#10004
                                 else
                                     td 
                                         a(href="/users/photoUpload/" + p.inno_id) &#10060

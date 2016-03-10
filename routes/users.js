@@ -92,6 +92,9 @@ router.get('/oh/my/god/userInfo',function(req,res) {
     res.render('userInfo',{user:{}});
 });
 
+router.get('/userInfo', userLogic.isEM, function(req,res) {
+    res.render('userInfo',{user:{}, admin: true});
+});
 
 router.post('/oh/my/god/userInfo',function(req,res) {
     if(req.body.inno_id[0] == 'I') {
@@ -130,6 +133,26 @@ router.post('/oh/my/god/userInfo',function(req,res) {
 
     }
 
+});
+
+router.get('/userInfo/:inno_id', userLogic.isEM, function(req,res) {
+    Account.findOne({inno_id:req.params.inno_id},function(err,user){
+        if(!err && user) {
+            res.render('userInfo', { msg: 'User Exists.', err:false, inno: true, user:user, admin: true});
+        } else {
+            res.render('userInfo',{ msg: 'User Does Not Exist.', err:true});
+        }
+    });
+});
+
+router.post('/userInfo', userLogic.isEM, function(req,res) {
+    Account.findOne({inno_id:req.body.inno_id},function(err,user){
+        if(!err && user) {
+            res.render('userInfo', { msg: 'User Exists.', err:false, inno: true, user:user});
+        } else {
+            res.render('userInfo',{ msg: 'User Does Not Exist.', err:true});
+        }
+    });
 });
 
 
