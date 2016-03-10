@@ -142,7 +142,7 @@ router.post('/photoUpload',upload.single('userPhoto'), function(req,res) {
         if(!err && user) {
             user.photoId = '/uploads/photoids/' + req.file.filename;
             user.save();
-            res.render('photoUpload', {err: false, msg: 'Success' ,img: user.photoId});
+            res.render('photoUpload', {err: false, msg: 'Success'});
         } else {
             res.render('photoUpload', {err: true, msg: 'Failure'});
         }
