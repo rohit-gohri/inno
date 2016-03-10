@@ -10,6 +10,16 @@ block content
                 h5.intro Export to excel
                 a(href="/events/" + event.linkName + "/participants.xls") Download
         .row
+            .col.s12
+                h5.intro Add Participant
+                form.col.s12(role="form" action="/events/" + event.linkName + "/register-i" method="post")
+                    if err
+                        h5.red-text= err
+                    .input-field.col.s12
+                        input(type='text', id="inno_ids" name="inno_ids" required=true)
+                        label(for="inno_ids") Enter INNO IDs(comma separated)
+                    button.btn.waves-effect.waves-light(type="submit") Add Participants
+        .row
             .col
                 if participants
                     h3.intro Participants of #{event.name}
