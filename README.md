@@ -1,14 +1,14 @@
 # Inno - A fest website
 
 ## The site features the following functions :
-  1) Login/Register using FB and Local
-  2) Automatic generation of unique IDs for all users on successfull registration (INNO-ID)
-  3) Admin and Event Manager(EM) accounts with special functions
-  4) Events create and udate operations for EMs
-  5) Ability to register for events by users
-  6) View participants and export to Excel for EMs
-  7) Automatic mailing through Mailgun on registration
-  8) Mass mailing to all registered users through Mailgun
+  1. Login/Register using FB and Local
+  2. Automatic generation of unique IDs for all users on successfull registration (INNO-ID)
+  3. Admin and Event Manager(EM) accounts with special functions
+  4. Events create and udate operations for EMs
+  5. Ability to register for events by users
+  6. View participants and export to Excel for EMs
+  7. Automatic mailing through Mailgun on registration
+  8. Mass mailing to all registered users through Mailgun
 
 ## Installation instructions to follow (for Ubuntu 14.04 LTS)
 Should work on other versions too, but mongodb is not officially supported on 15.x for now and requires some work arounds.
@@ -93,3 +93,6 @@ Should work on other versions too, but mongodb is not officially supported on 15
   
     npm start
     
+  Or wif you are using pm2
+    
+    pm2 start pm2_debug.json
