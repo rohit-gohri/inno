@@ -36,7 +36,8 @@ Should work on other versions too, but mongodb is not officially supported on 15
     https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
     
   Check mongo is installed by starting the server:
-    $ mongod
+      
+      mongod
     
 ### libkrb5-dev
   Required for mongoose (nodejs module)
@@ -49,7 +50,7 @@ Should work on other versions too, but mongodb is not officially supported on 15
   
       git clone https://github.com/rohit-95/inno.git
     
-      cd fin-hack-backend
+      cd inno
     
   Run npm install - this installs all the dependencies of the project (found in package.json) :
     
