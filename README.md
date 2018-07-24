@@ -97,3 +97,8 @@ Should work on other versions too, but mongodb is not officially supported on 15
   Or wif you are using pm2
     
     pm2 start pm2_debug.json
+
+## Other Contributors
+
+[Homepage Animation & Illustration](https://github.com/rohit-95/inno/tree/master/public/assets/robot): [Utkarsh Yadav](https://github.com/utkarshyadav5)
+ 
