@@ -21,7 +21,7 @@
     "jade": "~1.11.0",
     "json2xls": "^0.1.1",
     "kerberos": "0.0.18",
-    "mongodb": "^2.1.4",
+    "mongodb": "^3.1.13",
     "mongoose": "^4.3.7",
     "mongoose-auto-increment": "^5.0.1",
     "mongoose-paginate": "^5.0.0",
