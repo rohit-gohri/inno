@@ -1,0 +1,22 @@
+{
+  "mailgun": {
+    "auth": {
+      "api_key": "<your-mailgun-api-key>",
+      "domain": "<domain-registered-on-mailgun>"
+    }
+  },
+  "url": "https://innovision.herokuapp.com",
+  "hashids": {
+    "secret": "HASH_SECRET",
+    "no_chars": 4,
+    "chars": "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+  },
+  "contactEmail": "inno@rohit.page",
+  "dbhost": "MONGO_URI",
+  "sessionSecret": "SESSION_SECRET",
+  "fb": {
+    "clientID": "FB_APP_ID",
+    "clientSecret": "FB_APP_SECRET",
+    "callbackURL": "https://innovision.herokuapp.com/login/fb/callback"
+  }
+}

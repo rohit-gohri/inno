@@ -1,0 +1,11 @@
+{
+  "hashids": {
+    "secret": "HASH_SECRET"
+  },
+  "dbhost": "MONGO_URI",
+  "sessionSecret": "SESSION_SECRET",
+  "fb": {
+    "clientID": "FB_APP_ID",
+    "clientSecret": "FB_APP_SECRET"
+  }
+}

@@ -8,7 +8,6 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var Account = require('./models/account');
 var paginate = require('express-paginate');
 var Hashids = require("hashids");
 
@@ -16,7 +15,10 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 var config = require('config');
 
-var hashids = new Hashids(config.get('hashids').secret, config.get('hashids').no_chars, config.get('hashids').chars);
+// mongoose
+mongoose.connect(config.get('dbhost'));
+
+var Account = require('./models/account');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -24,13 +26,11 @@ var events = require('./routes/events');
 var teams = require('./routes/teams');
 var admin = require('./routes/admin');
 var sitemap = require('./routes/sitemap');
-
 var userLogic = require('./logic/userLogic');
 
 var app = express();
 
-// mongoose
-mongoose.connect(config.get('dbhost'));
+var hashids = new Hashids(config.get('hashids').secret, config.get('hashids').no_chars, config.get('hashids').chars);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -5,7 +5,7 @@ var mongoosePaginate = require('mongoose-paginate');
 var validate = require('mongoose-validator');
 var autoIncrement = require('mongoose-auto-increment');
 
-var connection = mongoose.createConnection('mongodb://127.0.0.1:27017/innovision');
+var connection = mongoose.connection;
 autoIncrement.initialize(connection);
 
 var nameValidator = [
