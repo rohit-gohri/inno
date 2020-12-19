@@ -22,7 +22,7 @@
     "json2xls": "^0.1.1",
     "kerberos": "0.0.18",
     "mongodb": "^2.1.4",
-    "mongoose": "^4.3.7",
+    "mongoose": "^5.7.5",
     "mongoose-auto-increment": "^5.0.1",
     "mongoose-paginate": "^5.0.0",
     "mongoose-validator": "^1.2.4",
