@@ -144,6 +144,9 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
+    if (!err.status || err.status === 500) {
+        console.error(err, 'Unknown Error')
+    }
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
