@@ -14,7 +14,7 @@ block meta
 
 block style
     style
-        include ../public/stylesheets/style_countdown.css
+        include ../public/assets/stylesheets/style_countdown.css
     style.
         @media only screen and (max-width: 600px) {
             #preloader {
@@ -161,7 +161,7 @@ block content
     #preloader.white(style='text-align:centre; padding-top: 200px; padding-left: 550px; padding-bottom: 250px; padding-right: 250px;')
         #status
             object(type="image/svg+xml" data="/assets/inno_icon.svg" width='50%' height='50%')
-                img#no-svg(src="/images/inno2.png" alt="No SVG support" width='50%', height='50%')
+                img#no-svg(src="/assets/images/inno2.png" alt="No SVG support" width='50%', height='50%')
 
     #main.hidden
         .robot.hide-on-small-and-down
@@ -177,7 +177,7 @@ block content
             .container
                 .row
                     .col.s12.center
-                        img(src="/images/inno-white.png")
+                        img(src="/assets/images/inno-white.png")
                         h4.intro.white-text.zero INNOVISION'16
                         h5.intro.black-text.zero NSIT's Annual Science And Technology Festival
                         h4.intro.white-text.zero 9th-12th March
@@ -253,10 +253,10 @@ block content
                             h1.intro.white-text.zero MEET ZERO
                             h5.intro.black-text.zero OUR MASCOT, LOST IN TIME
                         .col.m2.s12
-                            img#mascot.right(src="/images/mascot_shadow.png")
+                            img#mascot.right(src="/assets/images/mascot_shadow.png")
 
 block scripts
-    script(src='/javascripts/jquery.countdown.min.js')
+    script(src='/assets/javascripts/jquery.countdown.min.js')
     script.
         function createCookie(name, value, days) {
             if (days) {
@@ -277,7 +277,7 @@ block scripts
             }
             return null;
         }
-        $('#fb').attr('src', '/images/fb-black.png')
+        $('#fb').attr('src', '/assets/images/fb-black.png')
 
         $(document).ready(function () {
             $('select').material_select();

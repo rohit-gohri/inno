@@ -34,7 +34,7 @@ block content
                             th(data-field='college') College
                             th(data-field='email') Email
                             th(data-field='phone') Phone Number
-                            th(data-field='photo') Photo Upload 
+                            th(data-field='photo') Photo Upload
                     tbody
                         each p, index in participants
                             tr
@@ -49,8 +49,8 @@ block content
                                         a(href="/users/userInfo/" + p.inno_id target="_blank")
                                             | &#10004
                                 else
-                                    td 
+                                    td
                                         a(href="/users/photoUpload/" + p.inno_id) &#10060
 block style
     style
-        include ../public/stylesheets/pages/about.css
+        include ../public/assets/stylesheets/pages/about.css

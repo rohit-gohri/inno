@@ -12,14 +12,14 @@ block content
     //.slider
         ul.slides.black
             li
-                img(src="/images/pd.jpg")
+                img(src="/assets/images/pd.jpg")
                 .caption.left-align
                     h3 PANEL DISCUSSION
                     h5.light.
                         Clash of wits, conflicting intellects, a hour of unprecedented
                         intellectual simulation awaits the people in the form of 'Panel Discussion'
             li
-                img(src="/images/robowars.jpg")
+                img(src="/assets/images/robowars.jpg")
                 .caption.left-align
                     h3 ROBOTICA
                     h5.light.
@@ -27,7 +27,7 @@ block content
                         Line Follower competition, Robot Quidditch, Maze
                         Navigation event and several more.
             li
-                img(src="/images/felicity.jpg")
+                img(src="/assets/images/felicity.jpg")
                 .caption.left-align
                     h3 FELICITY
                     h5.light.
@@ -35,7 +35,7 @@ block content
                         doesn’t come close to describe all the emotions that Felicity at Inno’
                         induces. Felicity is one of the headliner events at the fest.
             li
-                img(src="/images/defexpo.jpg")
+                img(src="/assets/images/defexpo.jpg")
                 .caption.left-align
                     h3 DEFENSE EXPO
                     h5.light.
@@ -59,7 +59,7 @@ block content
                                 i.material-icons.right more_vert
                             if event.fbLink
                                 p: a(target="_blank" href=event.fbLink)
-                                    img(src='/images/fb.png', width='20px', height='20px')
+                                    img(src='/assets/images/fb.png', width='20px', height='20px')
                         .card-reveal.event
                             span.card-title.white-text #{event.name}
                                 i.material-icons.right close
@@ -70,14 +70,14 @@ block content
 block style
     style
         if category == "Hardware" || category == "Online"
-            include ../public/stylesheets/pages/robot.css
+            include ../public/assets/stylesheets/pages/robot.css
         else if category == "Bio"
-            include ../public/stylesheets/pages/bio.css
+            include ../public/assets/stylesheets/pages/bio.css
         else if category == "Coding" || category == "Robotica"
-            include ../public/stylesheets/pages/code.css
+            include ../public/assets/stylesheets/pages/code.css
         else if category == "Mega"
-            include ../public/stylesheets/pages/mega.css
+            include ../public/assets/stylesheets/pages/mega.css
         else if category == "Quiz"
-            include ../public/stylesheets/pages/misc.css
+            include ../public/assets/stylesheets/pages/misc.css
         else
-            include ../public/stylesheets/pages/list.css
+            include ../public/assets/stylesheets/pages/list.css

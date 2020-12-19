@@ -5,10 +5,10 @@ html
             title= "Innovision, NSIT"
         meta(name="theme-color" content="#ffffff")
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
-        link(rel='stylesheet', href='/font/material\ icons/material-icons.css')
-        link(href='/stylesheets/materialize.min.css', rel='stylesheet', media='screen')
-        link(rel='stylesheet', href='/stylesheets/style.css')
-        link(rel='stylesheet', href='/font/intro/intro.css')
+        link(rel='stylesheet', href='/assets/font/material\ icons/material-icons.css')
+        link(href='/assets/stylesheets/materialize.min.css', rel='stylesheet', media='screen')
+        link(rel='stylesheet', href='/assets/stylesheets/style.css')
+        link(rel='stylesheet', href='/assets/font/intro/intro.css')
         link(rel='manifest' href='/manifest.json')
         link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,300', type='text/css')
         style.
@@ -49,9 +49,9 @@ html
                 a#menu.brand-logo.left(href="#" data-activates="slide-out")
                     i.material-icons menu
                 a.brand-logo.hide-on-small-and-down.center.hide-on-small-and-down(href="/")
-                    img#big(src="/images/inno_full_logo_poster_.png")
+                    img#big(src="/assets/images/inno_full_logo_poster_.png")
                 a.brand-logo.hide-on-small-and-down.right(href="/")
-                    img#inno-logo-top.right(src="/images/inno-white.png" style="margin-right:10px; margin-top:5px")
+                    img#inno-logo-top.right(src="/assets/images/inno-white.png" style="margin-right:10px; margin-top:5px")
 
                 ul#slide-out.side-nav
                     if !login
@@ -155,7 +155,7 @@ html
                         .container.zero
                             .row.center-on-small-only
                                 a(target="_blank" href="https://www.facebook.com/Innoitis")
-                                    img#fb(src='/images/fb.png', width='20px', height='20px' style="margin-left:10px;")
+                                    img#fb(src='/assets/images/fb.png', width='20px', height='20px' style="margin-left:10px;")
                     div.col.m5.s12.center-on-small-only
                         h5 Site
                         .col.s6
@@ -199,14 +199,14 @@ html
                 form.row(role='form', action="/login/fb", method="get")
                     .col.s12.center-align.center
                         button#fbLogin.btn(type='submit' style="border: 0;")
-                            img(src='/images/fb_login.png', style='max-width: 200px;')
+                            img(src='/assets/images/fb_login.png', style='max-width: 200px;')
                 .row
                     .col.s12.center-align.center
                         a(href='/register')
                             button.btn.waves-effect.waves-light(style="width: 200px;") Register
 
-    script(src='/javascripts/jquery.min.js')
-    script(src='/javascripts/materialize.js')
+    script(src='/assets/javascripts/jquery.min.js')
+    script(src='/assets/javascripts/materialize.js')
     script.
         $(document).ready(function () {
             $('select').material_select();

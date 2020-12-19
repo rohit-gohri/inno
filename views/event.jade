@@ -35,7 +35,7 @@ block content
                 if event.fbLink
                     h6.intro
                         a(target="_blank" href=event.fbLink itemprop="url") Event Page   &nbsp;
-                            img(src='/images/fb.png', width='20px', height='20px' style="margin-bottom:-5px;")
+                            img(src='/assets/images/fb.png', width='20px', height='20px' style="margin-bottom:-5px;")
                 .col.s6.m4.no-padding
                     h5 Contact Details:
                     p= event.contact
@@ -93,17 +93,17 @@ block content
 block style
     style
         if event.category[0]=="Hardware" || event.category[0]=="Online"
-            include ../public/stylesheets/pages/robot.css
+            include ../public/assets/stylesheets/pages/robot.css
         else if event.category[0] == "Bio"
-            include ../public/stylesheets/pages/bio.css
+            include ../public/assets/stylesheets/pages/bio.css
         else if event.category[0] == "Coding" || event.category[0]=="Robotica"
-            include ../public/stylesheets/pages/code.css
+            include ../public/assets/stylesheets/pages/code.css
         else if event.category[0] == "Mega"
-            include ../public/stylesheets/pages/mega.css
+            include ../public/assets/stylesheets/pages/mega.css
         else if event.category[0] == "Quiz"
-            include ../public/stylesheets/pages/misc.css
+            include ../public/assets/stylesheets/pages/misc.css
         else
-            include ../public/stylesheets/pages/list.css
+            include ../public/assets/stylesheets/pages/list.css
     style.
         .materialboxed {
             height:400px;

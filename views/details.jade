@@ -78,7 +78,7 @@ block content
                                 a(href="/events/" + event.linkName)
                                     span.title= event.name
                                     p: a(target="_blank" href=event.fbLink)
-                                        img(src='/images/fb.png', width='20px', height='20px')
+                                        img(src='/assets/images/fb.png', width='20px', height='20px')
                                     a.secondary-content(href="/events/" + event.linkName)
                                         i.material-icons send
                 if (user.is_new)
@@ -92,7 +92,7 @@ block content
 
 block style
     style
-        include ../public/stylesheets/pages/about.css
+        include ../public/assets/stylesheets/pages/about.css
     style.
         #dp, #dp-box {
             box-shadow: inset 1px 1px 40px 0 rgba(0, 0, 0, .45);
@@ -101,7 +101,7 @@ block style
         }
         #dp-box {
             box-shadow: inset 1px 1px 40px 0 rgba(0, 0, 0, .45);
-            background: url(/images/def-prof.png);
+            background: url(/assets/images/def-prof.png);
             background-size: cover;
             border-radius: 5px;
             overflow: hidden;
