@@ -5,7 +5,7 @@
       "domain": "<domain-registered-on-mailgun>"
     }
   },
-  "url": "https://innovision.herokuapp.com",
+  "url": "https://inno.boring.download",
   "hashids": {
     "secret": "HASH_SECRET",
     "no_chars": 4,
@@ -17,6 +17,6 @@
   "fb": {
     "clientID": "FB_APP_ID",
     "clientSecret": "FB_APP_SECRET",
-    "callbackURL": "https://innovision.herokuapp.com/login/fb/callback"
+    "callbackURL": "https://inno.boring.download/login/fb/callback"
   }
 }
