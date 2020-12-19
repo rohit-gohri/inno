@@ -6,7 +6,7 @@ The site has been deployed using Heroku and MongoDB Atlas Free tiers at https://
 
 [![Home Page](./temp/home_page.png)](#Homepage)
 
-![Events Page](./temp/events.page)
+![Events Page](./temp/events.png)
 
 ## The site features the following functions :
 
@@ -113,8 +113,13 @@ Or if you are using pm2
 
     pm2 start pm2_debug.json
 
-## Other Contributors
+## Contributors
+
+### [Code](https://github.com/rohit-gohri/inno/graphs/contributors)
+
+See Github Contributors: https://github.com/rohit-gohri/inno/graphs/contributors
 
 ### [Homepage](https://github.com/rohit-95/inno/tree/master/public/assets/robot):
 
 #### Animations & Illustrations By [Utkarsh Yadav](https://github.com/utkarshyadav5): @utkarshyadav5
+
