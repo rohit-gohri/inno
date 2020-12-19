@@ -16,7 +16,10 @@ const MongoStore = require('connect-mongo')(session);
 var config = require('config');
 
 // mongoose
-mongoose.connect(config.get('dbhost'));
+mongoose.connect(config.get('dbhost'), {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
 var Account = require('./models/account');
 
@@ -130,7 +133,6 @@ app.use(function (req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
-        console.log("BC!!! Development wala chal raha hai!!!!" + err);
         res.render('error', {
             message: err.message,
             error: err
@@ -143,7 +145,6 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
-    console.log("BC!!! Ye PRODUCTION me error kisne push kia????" + err);
     res.render('error', {
         message: err.message,
         error: err

@@ -9,7 +9,6 @@ var nodemailer = require('nodemailer');
 var mailgun = require('nodemailer-mailgun-transport');
 var userLogic = require('../logic/userLogic.js');
 var config = require('config');
-var async = require("async");
 
 var auth = config.get('mailgun');
 
