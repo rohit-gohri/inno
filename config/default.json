@@ -12,7 +12,7 @@
     "chars": "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
   },
   "contactEmail": "inno@rohit.page",
-  "dbhost": "MONGO_URI",
+  "dbhost": "mongodb://127.0.0.1:27027/inno-site",
   "sessionSecret": "SESSION_SECRET",
   "fb": {
     "clientID": "FB_APP_ID",
