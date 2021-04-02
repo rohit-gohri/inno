@@ -84,6 +84,14 @@ It needs to have the following format :
 }
 ```
 
+### Mailgun API Key
+
+This is used for sending emails. Signup and get your own key here: <https://www.mailgun.com/email-api/>
+
+### FB Client ID and Secrets
+
+This is used for Login with Facebook. Create your own app and get your own key here: <https://developers.facebook.com/docs/development/create-an-app/>
+
 ## Run
 
 - Development (localhost) - this will read overrides from `config/development.json`
@@ -119,4 +127,3 @@ See Github Contributors: <https://github.com/rohit-gohri/inno/graphs/contributor
 ### [Homepage](https://github.com/rohit-gohri/inno/tree/master/public/assets/robot)
 
 #### Animations & Illustrations By [Utkarsh Yadav](https://github.com/utkarshyadav5): @utkarshyadav5
-
