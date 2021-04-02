@@ -2,7 +2,7 @@
 
 ## [Preview](https://inno.boring.download/)
 
-The site has been deployed using Heroku and MongoDB Atlas Free tiers at https://inno.boring.download/
+The site has been deployed using Heroku and MongoDB Atlas at <https://inno.boring.download/>
 
 [![Home Page](./temp/home_page.png)](#Homepage)
 
@@ -25,10 +25,12 @@ The site has been deployed using Heroku and MongoDB Atlas Free tiers at https://
 
 - nodejs 14.x
 
-  Check that you have node and npm(comes with node) successfully installed:
+    Check that you have node and npm(comes with node) successfully installed:
 
-      $ node -v
-      $ npm -v
+    ```sh
+    node -v
+    npm -v
+    ```
 
 - mongodb 4.4
 
@@ -39,13 +41,16 @@ The site has been deployed using Heroku and MongoDB Atlas Free tiers at https://
 
 1. Clone the project using git and cd into it:
 
-      git clone https://github.com/rohit-gohri/inno.git
-
-      cd inno
+    ```sh
+    git clone https://github.com/rohit-gohri/inno.git
+    cd inno
+    ```
 
 1. Run npm install - this installs all the dependencies of the project (found in package.json) :
 
-      npm install
+    ```sh
+    npm install
+    ```
 
 ## Config File
 
@@ -54,48 +59,56 @@ Add a `production.json` and `development.json` file in the `config` directory. T
 
 It needs to have the following format :
 
-    ```json
-    {
-      "mailgun": {
-        "auth": {
-          "api_key": "<your-mailgun-api-key>",
-          "domain": "<domain-registered-on-mailgun>"
-        }
-      },
-      "url": "<domain-name-on-which-this-is-setup>",
-      "hashids": {
-        "secret": "<hash-secret-for-unique-id-generation>",
-        "no_chars": 4,
-        "chars": "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-      },
-      "contactEmail": "<email-for-contact-form>",
-      "dbhost": "<mongodb-host-url",
-      "sessionSecret": "<session-secret>",
-      "fb": {
-        "clientID": "<FB-app-id-for-login>",
-        "clientSecret": "<fb-app-secret>",
-        "callbackURL": "<site-url> + /login/fb/callback"
-      }
+```json
+{
+  "mailgun": {
+    "auth": {
+      "api_key": "<your-mailgun-api-key>",
+      "domain": "<domain-registered-on-mailgun>"
     }
-    ```
+  },
+  "url": "<domain-name-on-which-this-is-setup>",
+  "hashids": {
+    "secret": "<hash-secret-for-unique-id-generation>",
+    "no_chars": 4,
+    "chars": "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+  },
+  "contactEmail": "<email-for-contact-form>",
+  "dbhost": "<mongodb-host-url",
+  "sessionSecret": "<session-secret>",
+  "fb": {
+    "clientID": "<FB-app-id-for-login>",
+    "clientSecret": "<fb-app-secret>",
+    "callbackURL": "<site-url> + /login/fb/callback"
+  }
+}
+```
 
 ## Run
 
 - Development (localhost) - this will read overrides from `config/development.json`
 
+    ```sh
     npm run dev
+    ```
 
 - Development Watch Mode (uses nodemon)
 
+    ```sh
     npm run dev:watch
+    ```
 
 - Production - this will read overrides from `config/production.json`
 
+    ```sh
     npm run start
+    ```
 
 - Production PM2
 
+    ```sh
     pm2 start ecosystem.config.js --env production
+    ```
 
 ## Contributors
 
