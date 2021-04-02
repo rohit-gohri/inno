@@ -8,7 +8,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "node ./bin/www"
+    "dev": "NODE_ENV=development node ./bin/www",
+    "start": "NODE_ENV=production node ./bin/www"
   },
   "dependencies": {
     "async": "^1.5.2",

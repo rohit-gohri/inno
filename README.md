@@ -11,7 +11,7 @@ The site has been deployed using Heroku and MongoDB Atlas Free tiers at https://
 ## The site features the following functions :
 
 1. Login/Register using FB and Local
-2. Automatic generation of unique IDs for all users on successfull registration (INNO-ID)
+2. Automatic generation of unique IDs for all users on successful registration (INNO-ID)
 3. Admin and Event Manager(EM) accounts with special functions
 4. Create events and update operations for EMs
 5. Ability to register for events by users
@@ -19,107 +19,87 @@ The site has been deployed using Heroku and MongoDB Atlas Free tiers at https://
 7. Automatic mailing through Mailgun on registration
 8. Mass mailing to all registered users through Mailgun
 
-## Installation instructions to follow (for Ubuntu 14.04 LTS)
+## Installation
 
-Should work on other versions too, but mongodb is not officially supported on 15.x for now and requires some work arounds.
+### Requirements
 
-## Requirements
+- nodejs 14.x
 
-### nodejs
+  Check that you have node and npm(comes with node) successfully installed:
 
-Installation
+      $ node -v
+      $ npm -v
 
-    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-    sudo apt-get install -y nodejs
+- mongodb 4.4
 
-After Installation
+    Follow the official instructions at:
+    <https://docs.mongodb.com/manual/administration/install-community/>
 
-    sudo apt-get install nodejs-legacy
+### Steps
 
-Check that you have node and npm(comes with node) successfully installed:
-
-    $ node -v
-    $ npm -v
-
-### mongodb
-
-Installation :
-Follow the official instructions at:
-https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
-
-Check mongo is installed by starting the server:
-
-      mongod
-
-### libkrb5-dev
-
-Required for mongoose (nodejs module)
-
-    sudo apt-get install libkrb5-dev
-
-### modules:
-
-Clone the project using git and cd into it:
+1. Clone the project using git and cd into it:
 
       git clone https://github.com/rohit-gohri/inno.git
 
       cd inno
 
-Run npm install - this installs all the dependencies of the project (found in package.json) :
+1. Run npm install - this installs all the dependencies of the project (found in package.json) :
 
       npm install
 
 ## Config File
 
-Add a 'production.json' file in the 'config' directory. This file is used to store API keys and various other variable configurations like : site-url, contact-form-email, etc.
+There is a `config/default.json` config file that provides default value 
+Add a `production.json` and `development.json` file in the `config` directory. This file is used to store API keys and various other variable configurations like : site-url, contact-form-email, etc. Only add the things you want to overwrite in `default.json`.
+
 It needs to have the following format :
 
-```json
-{
-  "mailgun": {
-    "auth": {
-      "api_key": "<your-mailgun-api-key>",
-      "domain": "<domain-registered-on-mailgun>"
+    ```json
+    {
+      "mailgun": {
+        "auth": {
+          "api_key": "<your-mailgun-api-key>",
+          "domain": "<domain-registered-on-mailgun>"
+        }
+      },
+      "url": "<domain-name-on-which-this-is-setup>",
+      "hashids": {
+        "secret": "<hash-secret-for-unique-id-generation>",
+        "no_chars": 4,
+        "chars": "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+      },
+      "contactEmail": "<email-for-contact-form>",
+      "dbhost": "<mongodb-host-url",
+      "sessionSecret": "<session-secret>",
+      "fb": {
+        "clientID": "<FB-app-id-for-login>",
+        "clientSecret": "<fb-app-secret>",
+        "callbackURL": "<site-url> + /login/fb/callback"
+      }
     }
-  },
-  "url": "<domain-name-on-which-this-is-setup>",
-  "hashids": {
-    "secret": "<hash-secret-for-unique-id-generation>",
-    "no_chars": 4,
-    "chars": "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-  },
-  "contactEmail": "<email-for-contact-form>",
-  "dbhost": "<mongodb-host-url",
-  "sessionSecret": "<session-secret>",
-  "fb": {
-    "clientID": "<FB-app-id-for-login>",
-    "clientSecret": "<fb-app-secret>",
-    "callbackURL": "<site-url> + /login/fb/callback"
-  }
-}
-```
+    ```
 
 ## Run
 
-Start Mongo
+- Development (localhost) - this will read overrides from `config/development.json`
 
-    mongod
+    npm run dev
 
-Start App
+- Production - this will read overrides from `config/production.json`
 
-    npm start
+    npm run start
 
-Or if you are using pm2
+- Production PM2
 
-    pm2 start pm2_debug.json
+    pm2 start ecosystem.config.js --env production
 
 ## Contributors
 
 ### [Code](https://github.com/rohit-gohri/inno/graphs/contributors)
 
-See Github Contributors: https://github.com/rohit-gohri/inno/graphs/contributors
+See Github Contributors: <https://github.com/rohit-gohri/inno/graphs/contributors>
 
-### [Homepage](https://github.com/rohit-95/inno/tree/master/public/assets/robot):
+### [Homepage](https://github.com/rohit-gohri/inno/tree/master/public/assets/robot)
 
 #### Animations & Illustrations By [Utkarsh Yadav](https://github.com/utkarshyadav5): @utkarshyadav5
 
