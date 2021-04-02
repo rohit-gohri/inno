@@ -1,7 +1,12 @@
 {
-  "name": "innoWebsite",
+  "name": "inno",
   "version": "0.0.1",
   "private": true,
+  "author": {
+    "name": "Rohit Gohri",
+    "url": "https://rohit.page"
+  },
+  "license": "MIT",
   "scripts": {
     "start": "node ./bin/www"
   },
