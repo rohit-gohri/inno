@@ -50,7 +50,7 @@ The site has been deployed using Heroku and MongoDB Atlas Free tiers at https://
 ## Config File
 
 There is a `config/default.json` config file that provides default value 
-Add a `production.json` and `development.json` file in the `config` directory. This file is used to store API keys and various other variable configurations like : site-url, contact-form-email, etc. Only add the things you want to overwrite in `default.json`.
+Add a `production.json` and `development.json` file in the `config` directory. These files are used to store API keys and various other variable configurations like : site-url, contact-form-email, etc. Only add the things you want to overwrite in `default.json`.
 
 It needs to have the following format :
 
@@ -84,6 +84,10 @@ It needs to have the following format :
 - Development (localhost) - this will read overrides from `config/development.json`
 
     npm run dev
+
+- Development Watch Mode (uses nodemon)
+
+    npm run dev:watch
 
 - Production - this will read overrides from `config/production.json`
 

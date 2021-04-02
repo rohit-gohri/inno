@@ -9,6 +9,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development node ./bin/www",
+    "dev:watch": "NODE_ENV=development nodemon ./bin/www",
     "start": "NODE_ENV=production node ./bin/www"
   },
   "dependencies": {
@@ -44,5 +45,7 @@
     "sitemap": "^1.5.0",
     "web-push": "^1.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
