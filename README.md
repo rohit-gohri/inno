@@ -123,11 +123,15 @@ This is used for Login with Facebook. Create your own app and get your own key h
 To get access to admin panel, you'll have to manually mark a user as `is_admin: true` in the DB. 
 You'll need [MongoDB Compass](https://www.mongodb.com/products/compass) or other similar tool for it.
 
+<details>
+ <summary>Click to expand detailed steps.</summary>
+
 1. Connect to DB
-	
-<img width="638" alt="image" src="https://user-images.githubusercontent.com/31949290/113467209-32cc8400-945f-11eb-8a7e-aed866c666fb.png">
+
+	<img width="638" alt="image" src="https://user-images.githubusercontent.com/31949290/113467209-32cc8400-945f-11eb-8a7e-aed866c666fb.png">
 
 2. Select `inno-site` DB
+
 	<img width="684" alt="image" src="https://user-images.githubusercontent.com/31949290/113467220-40820980-945f-11eb-9bac-a4c0f46123e1.png">
 
 3. Select `accounts` collection
@@ -139,12 +143,14 @@ You'll need [MongoDB Compass](https://www.mongodb.com/products/compass) or other
 	<img width="1013" alt="image" src="https://user-images.githubusercontent.com/31949290/113467264-99ea3880-945f-11eb-93f9-217c80c098a3.png">
 
 5. After that if you go to profile you'll have these extra buttons (also a button to add other event managers)
+
 	<img width="528" alt="image" src="https://user-images.githubusercontent.com/31949290/113467307-cb630400-945f-11eb-9b6a-85c24c6dfd5f.png">
 
 6. And if you are an Admin or an Event Manager (EM) you'll get access to edit event details and see participant info on event page
 
 	<img width="499" alt="image" src="https://user-images.githubusercontent.com/31949290/113467375-3f9da780-9460-11eb-841f-3870928e4220.png">
 
+</details>
 
 
 ## Contributors
