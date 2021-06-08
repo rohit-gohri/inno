@@ -25,7 +25,7 @@
     "express-paginate": "^0.1.0",
     "express-session": "^1.17.1",
     "hashids": "^1.0.2",
-    "jade": "~1.11.0",
+    "pug": "~3.0.2",
     "json2xls": "^0.1.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.8",

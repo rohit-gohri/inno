@@ -1,0 +1,135 @@
+extends layout
+
+block meta
+    title= event.name + " - Innovision, NSIT"
+    meta(name="keywords" content="Innovision,nsit,inno,FEST" + event.name.split(' '))
+    meta(property="article:author" content="https://www.facebook.com/Innoitis/")
+    meta(name="publisher" content="https://www.facebook.com/Innoitis/")
+    meta(name="copyright" content="https://www.facebook.com/Innoitis/")
+    meta( name="revisit-after" content="1 day")
+    meta(property="og:type" content="website")
+    meta(property="og:url" content=event.fbLink)
+    meta(property="og:image" content=event.photo)
+    meta(property="og:description" content= event.details)
+
+block content
+    if event.nxtEvent
+        a(href="/events/" + event.nxtEvent)
+            h3#nxt.zero.intro >
+        a(href="/events/" + event.prevEvent)
+            h3#prev.zero.intro <
+
+    .container
+        a(href="/events/category/" + event.category[0])
+            h3.center.intro= event.category[0] + ' Events'
+        .card.row(itemscope itemtype="http://schema.org/Event")
+            div.materialboxed
+                meta(itemprop="image" content=event.photo)
+            .col.s12.m10.offset-m1
+                h3(itemprop="name") #{event.name}
+                    if (is_admin || is_em)
+                        a(href="/events/" + event.linkName + "/edit")
+                            i.material-icons.prefix mode_edit
+                h6= msg
+                p(itemprop="description") #{event.details}
+                if event.fbLink
+                    h6.intro
+                        a(target="_blank" href=event.fbLink itemprop="url") Event Page   &nbsp;
+                            img(src='/assets/images/fb.png', width='20px', height='20px' style="margin-bottom:-5px;")
+                .col.s6.m4.no-padding
+                    h5 Contact Details:
+                    //- p= event.contact
+                .col.s6.m4(itemprop="location" itemscope itemtype="http://schema.org/Place" itemref="address")
+                    if event.category != "Online"
+                        h5 Venue:
+                    else
+                        h5 Online Platform:
+                    p(itemprop="name")= event.venue
+                .col.s6.m4
+                    h5 Date & Timings:
+                    p= event.timings
+                .col.s6.m12.no-padding
+                    if(event.isTeamEvent)
+                        h5 Team Event
+                        p Max Team Size: #{event.minParticipants}
+                .col.s12.no-padding
+                    if !is_registered
+                        if event.isTeamEvent
+                            a.modal-trigger(href="#eventTeamModal")
+                                button.btn.waves-effect.waves-light Register
+                        else
+                            form(role='form', action='/events/' + event.linkName + "/register", method='post')
+                                button.btn.waves-effect(type="submit") Register
+                    else
+                        h6 Successfully registered for this event
+                br
+                br
+                //TODO: Admin Panel
+                if is_admin || is_em
+                    h5.intro Event Manager Functions:
+                    h6
+                        a(href='/events/' + event.linkName + '/participants') Participants
+
+
+        br
+        br
+
+    #eventTeamModal.modal
+        .modal-content.center
+            h4 Select Team for Event
+            .row
+                form.col.s12.row(role='form', action="/events/" + event.linkName + "/register/", method="post")
+                    each team, index in teams
+                        p.team-radio
+                            input.with-gap(name="teamName" type="radio" id="opt"+index value=team.name)
+                            label.white-text(for="opt"+index) #{team.name}          Members: #{team.members.length}
+                    .row
+                        button#select-team.btn.waves-effect.waves-light(type="submit" disabled=teams.length==0) Select Team
+                            i.material-icons.prefix.right send
+                    .row
+                        a(href="/teams/newTeam")
+                            .btn.waves-light.waves-effect.row New Team
+
+block style
+    style
+        if event.category[0]=="Hardware" || event.category[0]=="Online"
+            include ../public/assets/stylesheets/pages/robot.css
+        else if event.category[0] == "Bio"
+            include ../public/assets/stylesheets/pages/bio.css
+        else if event.category[0] == "Coding" || event.category[0]=="Robotica"
+            include ../public/assets/stylesheets/pages/code.css
+        else if event.category[0] == "Mega"
+            include ../public/assets/stylesheets/pages/mega.css
+        else if event.category[0] == "Quiz"
+            include ../public/assets/stylesheets/pages/misc.css
+        else
+            include ../public/assets/stylesheets/pages/list.css
+    style.
+        .materialboxed {
+            height:400px;
+            background: url(#{event.photo}) no-repeat center;
+            background-size: cover;
+        }
+
+block scripts
+    script.
+        $(document).ready(function () {
+            $('.materialboxed').materialbox().click(function() {
+                if ($(this).css('background-size') == 'cover')
+                    $(this).css('background-size', 'contain')
+                else
+                    $(this).css('background-size', 'cover')
+            });
+            $('#select-team').click( function () {
+                var radioName = 'teamName';
+                if ($('input[name=' + radioName + ']:checked').length) {
+                    // at least one of the radio buttons was checked
+                    return true; // allow whatever action would normally happen to continue
+                }
+                else {
+                    // no radio button was checked
+                    $('.team-radio').css('color', 'white');
+                    return false; // stop whatever action would normally happen
+                }
+            });
+        });

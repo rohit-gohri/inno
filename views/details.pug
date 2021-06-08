@@ -1,0 +1,158 @@
+extends layout
+
+block meta
+    if (user.is_new)
+        title= "Complete Registration - Innovision, NSIT"
+    else
+        title= "Profile - Innovision, NSIT"
+
+block content
+    .container
+        .card.row
+            form.col.l10.offset-l1.s12(role='form', action='/users/details', method='post')
+                if (user.is_new)
+                    h4.intro Complete Registration
+                else
+                    h4.intro Profile
+                h4.black-text.intro Inno ID : #{user.inno_id}
+                .row
+                    .col.s12.m6.no-padding
+                        if (edit)
+                            if edit=='success'
+                                h6.col.s12.blue-text Edit Successful
+                            else
+                                h6.col.s12.red-text Edit Failed. This phone number has already been registered.
+                        if (user.is_new)
+                            h6.col.s12.red-text Please fill out these details
+                        if(user.is_admin || user.is_em)
+                            h6.col.intro
+                                a(href="/events/addEvent") Add Event
+                             h6.col.intro
+                                a(href="/users/userInfo") User Info
+                            h6.col.intro
+                                a(href="/users/photoUpload") Upload Photo ID
+                            h6.col.intro
+                                a(href="/users/addEM") Add EM
+                        if(user.is_admin)
+                            h6.col.intro
+                                a(href="/emailBlast") Email Blast
+                        .input-field.col.s12
+                            input(value=user.firstName, id='firstName', name='firstName', type='text', class='validate' required=true)
+                            label.active(for='firstName') First Name
+                        .input-field.col.s12
+                            input(value=user.lastName, id='lastName', name='lastName', type='text', class='validate' required=true)
+                            label.active(for='lastName') Last Name
+                    .col.s12.m6.no-padding
+                        if user.photo
+                            img.col.s5.right#dp(src=user.photo)
+                        else
+                            #dp-box.col.s5.right
+                                #overlay
+                                    //input#photo-upload(type="file" name="photo")
+                .row
+                    .input-field.col.m6.s12
+                        input(value=user.email, id='email', name='email', type='email', class='validate' required=true disabled=user.email!=null)
+                        //p#email= user.email
+                        label.active(for='email') Email
+                    .input-field.col.m6.s12
+                        input(value=user.phone_no, id='phone_no', name='phone_no',type='tel', class='validate' required=true)
+                        label.active(for='phone_no') Phone Number
+                //if (user.provider == 'local')
+                    a.row(href="/changePassword")
+                        .input-field.col.m6.s12
+                            input(value='********', id='password', name='password', type='password', class='validate')
+                            label.active(for='password') Password
+                div.row
+                    div.input-field.col.m6.s12
+                        input(value=user.college, id='college', name='college', type='text', class='validate' required=true)
+                        label.active(for='college') College
+                    div.input-field.col.m6.s12
+                        input(value=user.course, id='course', name='course', type='text', class='validate' required=true)
+                        label.active(for='course') Course
+                if(!user.is_new && events)
+                    ul.collection.with-header
+                        li.collection-header
+                            h4 Registered Events :
+                        each event in events
+                            li.collection-item.avatar
+                                a(href="/events/" + event.linkName)
+                                    span.title= event.name
+                                    p: a(target="_blank" href=event.fbLink)
+                                        img(src='/assets/images/fb.png', width='20px', height='20px')
+                                    a.secondary-content(href="/events/" + event.linkName)
+                                        i.material-icons send
+                if (user.is_new)
+                    div.row.center
+                        button.btn.waves-light.waves-effect(type='submit') Save
+                            i.material-icons.right send
+                else
+                    div.row.center
+                        button.btn.waves-light.waves-effect(type='submit') Update
+                            i.material-icons.right cloud
+
+block style
+    style
+        include ../public/assets/stylesheets/pages/about.css
+    style.
+        #dp, #dp-box {
+            box-shadow: inset 1px 1px 40px 0 rgba(0, 0, 0, .45);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #dp-box {
+            box-shadow: inset 1px 1px 40px 0 rgba(0, 0, 0, .45);
+            background: url(/assets/images/def-prof.png);
+            background-size: cover;
+            border-radius: 5px;
+            overflow: hidden;
+            padding: 0;
+            height: 150px;
+        }
+        /*#photo-upload {*/
+            /*color: transparent;*/
+        /*}*/
+        /*#photo-upload::-webkit-file-upload-button {*/
+            /*visibility: hidden;*/
+        /*}*/
+        /*#photo-upload::before {*/
+            /*font-family: "Material Icons";*/
+            /*content: 'E439';*/
+            /*color: white;*/
+            /*display: inline-block;*/
+            /*background: rgba(0,0,0,0);*/
+            /*border: 0;*/
+            /*padding: 5px 8px;*/
+            /*outline: none;*/
+            /*white-space: nowrap;*/
+            /*-webkit-user-select: none;*/
+            /*cursor: pointer;*/
+            /*font-size: 24px;*/
+        /*}*/
+        #overlay {
+            background: rgba(0, 0, 0, .75);
+            text-align: center;
+            padding: 75px 0 75px 0;
+            opacity: 0;
+            -webkit-transition: opacity .25s ease;
+            -moz-transition: opacity .25s ease;
+        }
+
+        #dp-box:hover #overlay {
+            opacity: 1;
+        }
+block scripts
+    script.
+        $('#phone_no').focusout(function () {
+            var phone_no = $('#phone_no').val();
+            console.log(phone_no);
+            var f = Math.floor(phone_no/1000000000);
+            console.log(f);
+            if (phone_no.length != 10 || ( f != 9 && f != 8 && f != 7) ) {
+                Materialize.toast('Enter a valid phone number!', 4000)
+                $('#phone_no+label').css('color','red');
+                $('button').attr('disabled', true);
+            } else {
+                $('#phone_no+label').css('color','white');
+                $('button').attr('disabled', false);
+            }
+        });
