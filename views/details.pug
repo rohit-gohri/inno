@@ -24,15 +24,15 @@ block content
                                 h6.col.s12.red-text Edit Failed. This phone number has already been registered.
                         if (user.is_new)
                             h6.col.s12.red-text Please fill out these details
-                        if(user.is_admin || user.is_em)
-                            h6.col.intro
-                                a(href="/events/addEvent") Add Event
-                             h6.col.intro
-                                a(href="/users/userInfo") User Info
-                            h6.col.intro
-                                a(href="/users/photoUpload") Upload Photo ID
-                            h6.col.intro
-                                a(href="/users/addEM") Add EM
+                            if(user.is_admin || user.is_em)
+                                h6.col.intro
+                                    a(href="/events/addEvent") Add Event
+                                h6.col.intro
+                                    a(href="/users/userInfo") User Info
+                                h6.col.intro
+                                    a(href="/users/photoUpload") Upload Photo ID
+                                h6.col.intro
+                                    a(href="/users/addEM") Add EM
                         if(user.is_admin)
                             h6.col.intro
                                 a(href="/emailBlast") Email Blast
