@@ -1,0 +1,111 @@
+extends layout
+
+block meta
+    title= "Admin: Add/Edit Event - Innovision, NSIT"
+
+block content
+    .container
+        if edit
+            h3.intro Edit Event
+        else
+            h3.intro Add Event
+        .row
+            if edit
+                form.col.s12(role='form', action="/events/" + event.linkName + '/edit', method="post", enctype="multipart/form-data")
+                    +form
+            else
+                form.col.s12(role='form', action="/events/addEvent", method="post", enctype="multipart/form-data")
+                    +form
+mixin form
+    .row
+        .input-field.col.s8.m7
+            input(value=event.name type='text', id="event_name" name="name" required=true)
+            label(for="event_name") Event Name
+        .input-field.col.s8.m7
+            textarea.materialize-textarea(id="details" name="details" required=true style="min-height:120px;") #{event.details}
+            label(for="details") Event Details
+        .input-field.col.s8.m7
+            input(value=event.fbLink type='text', id="fb_link" name="fbLink")
+            label(for="fb_link") Facebook Event Link
+        .input-field.col.s8.m7
+            textarea.materialize-textarea(type='text', id="contact" name="contact" required) #{event.contact}
+            label(for="contact") Contact Details
+        .input-field.col.s8.m7
+            input(value=event.venue type='text', id="venue" name="venue" required)
+            label(for="venue") Venue/Online Platform
+        .input-field.col.s8.m7
+            input(value=event.timings type='text', id="timings" name="timings" required)
+            label(for="timings") Date & Timings
+    .row
+        .input-field.col.s8.m4
+            select(name="category" required multiple="multiple")
+                option(value="" disabled=true) Choose your option
+                option(value="Robotica" selected=event.category=='Robotica') Robotica
+                option(value="Coding" selected=event.category=='Coding') Coding
+                option(value="Mega" selected=event.category=='Mega') Mega Events
+                option(value="Bio" selected=event.category == 'Bio') Bio Vision
+                option(value="Quiz" selected=event.category == 'Quiz') Quiz Fest
+                option(value="Hardware" selected=event.category == 'Hardware') Hardware
+                option(value="Online" selected=event.category == 'Online') Online
+                option(value="Miscellaneous" selected=event.category == 'Miscellaneous') Miscellaneous
+            label Select Category
+    .row
+        .input-field.file-field.col.s8.m7
+            .btn.blue.darken-4.waves-effect.waves-light
+                span Photo
+                input(type="file" name="eventPhoto" required=edit==false)
+            .file-path-wrapper
+                input.file-path.validate(type="text")
+    h6 Is the event a team event?
+    .row
+        .col.s4.m2.l1
+            input.with-gap(name="isTeamEvent" type="radio" id="teamEvent" checked=event.isTeamEvent==true value="1" required)
+            label(for="teamEvent") Yes
+        .col.s4.m2.l1
+            input.with-gap(name="isTeamEvent" type="radio" id="indEvent" checked=event.isTeamEvent==false value="0")
+            label(for="indEvent") No
+    if !event.isTeamEvent
+        .row#minPart.hidden
+            +minPart
+    else
+        .row#minPart
+            +minPart
+
+    .row
+        .col.s12
+            //&nbsp; &nbsp;
+            button.btn.waves-effect.waves-light.blue.darken-4(type='submit', style="width: 200px;")
+                if edit
+                    | Save
+                else
+                    | Add
+                i.material-icons.prefix.right send
+
+mixin minPart
+    .input-field.col.s8.m4
+        select(name='minParticipants')
+            option(value="" disabled selected=event.minParticipants == '1') Choose your option
+            option(value="2" selected=event.minParticipants == '2') 2
+            option(value="3" selected=event.minParticipants == '3') 3
+            option(value="4" selected=event.minParticipants == '4') 4
+            option(value="5" selected=event.minParticipants == '5') 5
+            option(value="6" selected=event.minParticipants == '6') 6
+        label Maximum Team Size
+
+block scripts
+    script.
+        $(document).ready(function () {
+            $("input[name='isTeamEvent']").change(radioValueChanged);
+        });
+        function radioValueChanged() {
+            radioValue = $(this).val();
+            if ($(this).is(":checked") && radioValue == "1") {
+                $('#minPart').toggleClass('hidden')
+            } else {
+                $('#minPart').toggleClass('hidden')
+            }
+        }
+
+block style
+    style
+        include ../public/assets/stylesheets/pages/about.css
