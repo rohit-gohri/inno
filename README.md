@@ -1,8 +1,8 @@
 # Inno - A fest website
 
-## [Preview](https://inno.boring.download/)
+## [Preview](https://inno.fly.dev/)
 
-The site has been deployed using Heroku and MongoDB Atlas at <https://inno.boring.download/>
+The site has been deployed using Fly.io and MongoDB Atlas at <https://inno.fly.dev/>
 
 [![Home Page](./temp/home_page.png)](#Homepage)
 
