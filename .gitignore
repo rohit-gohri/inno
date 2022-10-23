@@ -10,3 +10,17 @@ logs/
 public/uploads/
 config/production.json
 npm-debug.log
+
+# dependencies
+**/node_modules/
+/.pnp
+.pnp.js
+
+# misc
+.DS_Store
+
+# debug
+**/*.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
