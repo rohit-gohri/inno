@@ -6,6 +6,10 @@
     "name": "Rohit Gohri",
     "url": "https://rohit.page"
   },
+  "main": "bin/www",
+  "engines": {
+    "node": "14.x"
+  },
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node ./bin/www",

@@ -1,5 +1,5 @@
 app = "inno"
 
-[build]
-  builder = "paketobuildpacks/builder:base"
-  buildpacks = ["gcr.io/paketo-buildpacks/nodejs"]
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
