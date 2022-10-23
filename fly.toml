@@ -3,3 +3,20 @@ app = "inno"
 [[services]]
   internal_port = 3000
   protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = "80"
+    force_https = true
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = "443"
+
+[[statics]]
+  guest_path = "/app/public/assets"
+  url_prefix = "/assets"
+
+[[statics]]
+  guest_path = "/app/public/uploads"
+  url_prefix = "/uploads"

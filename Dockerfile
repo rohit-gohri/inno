@@ -1,5 +1,5 @@
 FROM node:14-alpine
-WORKDIR /workspace
+WORKDIR /app
 COPY . .
 RUN npm i --legacy-peer-deps
 EXPOSE 3000
